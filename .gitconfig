@@ -1,0 +1,7 @@
+[init]
+	defaultBranch = master
+[alias]
+	san = "config user.name 'Omar Almalol'"
+	sae = "config user.email 'omar.alma3lol@gmail.com'"
+	spn = "config user.name 'AlMA PRO'"
+	spe = "config user.email 'alma.pro.leader@gmail.com'"

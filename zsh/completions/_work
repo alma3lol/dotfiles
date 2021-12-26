@@ -1,0 +1,3 @@
+#compdef work
+
+_files $WORK -/
