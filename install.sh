@@ -70,12 +70,12 @@ link_if_not_linked $DOTFILES/nvim-config $HOME/.config/nvim/config
 
 # Initiating vim
 result=$(which vim 2>&1)
-if [[ "$result" == *"no vim"* ]]; then
+if [[ "$result" != *"no vim"* ]]; then
 	vim +PlugInstall +qall
 fi
 
 # Initiating neovim
 result=$(which vim 2>&1)
-if [[ "$result" == *"no vim"* ]]; then
+if [[ "$result" != *"no vim"* ]]; then
 	nvim --headless +PlugInstall +qa
 fi
