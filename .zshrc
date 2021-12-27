@@ -22,5 +22,5 @@ autoload -U $ZSH_CUSTOM/completions/*(:t)
 
 alias lg="lazygit"
 alias g="git"
-alias ll="ls -lA"
+alias ll="ls -lAsh"
 alias t="tree -I .git -a"
