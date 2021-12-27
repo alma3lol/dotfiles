@@ -1,6 +1,7 @@
 # Variables
 ZSH="$HOME/.oh-my-zsh"
-DOTFILES=`pwd`
+realpath_DOTFILES=`realpath $0`
+DOTFILES=`dirname $realpath_DOTFILES`
 ZSH_CUSTOM="$DOTFILES/zsh"
 package_manager_command=''
 
