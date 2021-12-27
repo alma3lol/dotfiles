@@ -34,10 +34,10 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-vinegar'
 Plug 'APZelos/blamer.nvim'
 Plug 'fenetikm/falcon'
-Plug 'macguirerintoul/night_owl_light.vim'
+Plug 'ray-x/aurora'
 call plug#end()
 
-colorscheme night_owl_light
+colorscheme aurora
 
 let g:lightline = {
 	      \ 'colorscheme': 'PaperColor_light',
