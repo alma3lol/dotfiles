@@ -53,8 +53,8 @@ highlight Blamer guifg=darkorange
 
 let mapleader=' '
 
-nnoremap <leader>1 :bN
-nnoremap <leader>2 :bn
+nnoremap <leader>1 :bN<CR>
+nnoremap <leader>2 :bn<CR>
 nnoremap <leader>3 #
 nnoremap <leader>4 $
 nnoremap <leader>5 %
@@ -64,6 +64,8 @@ nnoremap <leader>8 *
 nnoremap <leader>9 (
 nnoremap <leader>0 )
 
+nnoremap <C-k>s :wa<CR>
+nnoremap <C-k>w :bufdo bd<CR>
 nnoremap <leader>bd :bd<CR>
 nnoremap <leader>xbd :bd!<CR>
 nnoremap <leader>bn :ene<CR>
@@ -72,8 +74,12 @@ nnoremap <leader>xw :w!<CR>
 nnoremap <leader>j :wincmd j<CR>
 nnoremap <leader>k :wincmd k<CR>
 
-nnoremap <leader><leader>q :q
-nnoremap <leader><leader>s :so %
+nnoremap <leader><leader>of :e <C-R>=expand("<cfile>")<CR><CR>
+nnoremap <leader><leader>q :q<CR>
+nnoremap <leader><leader>s :so %<CR>
+nnoremap <leader><leader>v V
+nmap <C-/> vgc
+nmap <leader>/ vgc
 
 nnoremap <leader>c. ct.
 nnoremap <leader>c, ct,
@@ -140,3 +146,22 @@ nnoremap <leader><leader>y` yi`
 nnoremap <leader><leader>y9 yi(
 nnoremap <leader><leader>y[ yi[
 nnoremap <leader><leader>y{ yi{
+
+vmap <C-/> gc
+vmap <leader>/ gc
+vmap <leader>s' S'
+vmap <leader>s" S"
+vmap <leader>s` S`
+vmap <leader>s{ S{
+vmap <leader>s[ S[
+vmap <leader>s9 S(
+vnoremap J :m '>+1<CR>gv=gv
+vnoremap K :m '<-2<CR>gv=gv
+
+inoremap <F2> <C-O>:set invpaste paste?<CR><CR>
+inoremap <leader><leader><BS> <Esc>v0c
+inoremap <leader><leader>o <Esc>o
+inoremap <leader><leader>no <Esc>O
+inoremap <leader><leader>p <Esc>pa
+inoremap <c-j> <esc>:m .+1<CR>==a
+inoremap <c-k> <esc>:m .-2<CR>==a
