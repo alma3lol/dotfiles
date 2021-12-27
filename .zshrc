@@ -1,7 +1,7 @@
-realpath_DOTFILES=`realpath $0`
-export DOTFILES=`dirname $realpath_DOTFILES`
-export ZSH_CUSTOM="$DOTFILES/zsh"
-export WORK="$HOME/work"
+export DOTFILES=`dirname $(realpath $HOME/.zshrc)`
+export ZSH=$HOME/.oh-my-zsh
+export ZSH_CUSTOM=$DOTFILES/zsh
+export WORK=$HOME/work
 
 ZSH_THEME="rkj-repos"
 
@@ -11,9 +11,9 @@ plugins=(
 	history-substring-search
 	docker
 	zsh-syntax-highlighting
-	zsh-syntax-highlighting
 )
 
+source $ZSH/oh-my-zsh.sh
 source $ZSH_CUSTOM/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 fpath=($ZSH_CUSTOM/functions $ZSH_CUSTOM/completions $fpath)
