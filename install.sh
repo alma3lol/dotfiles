@@ -1,7 +1,7 @@
 # Variables
 ZSH="$HOME/.oh-my-zsh"
-ZSH_CUSTOM="$HOME/.dotfiles/zsh"
 DOTFILES=`pwd`
+ZSH_CUSTOM="$DOTFILES/zsh"
 package_manager_command=''
 
 # Checks

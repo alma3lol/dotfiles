@@ -1,4 +1,6 @@
-export ZSH_CUSTOM="$HOME/.dotfiles/zsh"
+realpath_DOTFILES=`realpath $0`
+export DOTFILES=`dirname $realpath_DOTFILES`
+export ZSH_CUSTOM="$DOTFILES/zsh"
 export WORK="$HOME/work"
 
 ZSH_THEME="rkj-repos"
