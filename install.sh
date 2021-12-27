@@ -75,7 +75,7 @@ if [[ "$result" != *"no vim"* ]]; then
 fi
 
 # Initiating neovim
-result=$(which vim 2>&1)
-if [[ "$result" != *"no vim"* ]]; then
+result=$(which nvim 2>&1)
+if [[ "$result" != *"no nvim"* ]]; then
 	nvim --headless +PlugInstall +qa
 fi
