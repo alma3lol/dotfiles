@@ -44,7 +44,6 @@ install_package_if_not_installed git
 install_package_if_not_installed curl
 
 # Dirs
-mkdir_if_not_exists $ZSH
 mkdir_if_not_exists $ZSH_CUSTOM
 mkdir_if_not_exists $ZSH_CUSTOM/plugins
 
@@ -59,8 +58,8 @@ clone_plugin_if_not_exists https://github.com/zsh-users/zsh-autosuggestions $ZSH
 
 # Oh-my-zsh
 result=$(sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" 2>&1)
-if [[ "$result" != *"folder already exists"* ]]; then
-	echo "Done installing zsh";
-else
+if [[ "$result" == *"folder already exists"* ]]; then
 	echo "Oh-my-zsh already exists."
+else
+	echo "Done installing zsh";
 fi
