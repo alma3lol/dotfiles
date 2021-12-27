@@ -43,6 +43,7 @@ install_package_if_not_installed git
 install_package_if_not_installed curl
 
 # Dirs
+mkdir_if_not_exists $HOME/.config/nvim
 mkdir_if_not_exists $ZSH_CUSTOM
 mkdir_if_not_exists $ZSH_CUSTOM/plugins
 
