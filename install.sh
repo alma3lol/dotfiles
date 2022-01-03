@@ -70,6 +70,7 @@ link_if_not_linked $DOTFILES/.zshrc $HOME/.zshrc
 link_if_not_linked $DOTFILES/.gitconfig $HOME/.gitconfig
 link_if_not_linked $DOTFILES/.vimrc $HOME/.vimrc
 link_if_not_linked $DOTFILES/.tmux.conf.local $HOME/.tmux.conf.local
+link_if_not_linked $HOME/.tmux/.tmux.conf $HOME/.tmux.conf
 link_if_not_linked $DOTFILES/kitty.conf $HOME/.config/kitty/kitty.conf
 link_if_not_linked $DOTFILES/nvim-init.vim $HOME/.config/nvim/init.vim
 link_if_not_linked $DOTFILES/nvim-config $HOME/.config/nvim/config
