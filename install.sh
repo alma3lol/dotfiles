@@ -44,6 +44,7 @@ install_package_if_not_installed curl
 
 # Dirs
 mkdir_if_not_exists $HOME/.config/nvim
+mkdir_if_not_exists $HOME/.config/kitty
 mkdir_if_not_exists $ZSH_CUSTOM
 mkdir_if_not_exists $ZSH_CUSTOM/plugins
 
@@ -65,6 +66,7 @@ rm $HOME/.zshrc
 link_if_not_linked $DOTFILES/.zshrc $HOME/.zshrc
 link_if_not_linked $DOTFILES/.gitconfig $HOME/.gitconfig
 link_if_not_linked $DOTFILES/.vimrc $HOME/.vimrc
+link_if_not_linked $DOTFILES/kitty.conf $HOME/.config/kitty/kitty.conf
 link_if_not_linked $DOTFILES/nvim-init.vim $HOME/.config/nvim/init.vim
 link_if_not_linked $DOTFILES/nvim-config $HOME/.config/nvim/config
 
