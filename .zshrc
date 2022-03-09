@@ -2,6 +2,7 @@ export DOTFILES=`dirname $(realpath $HOME/.zshrc)`
 export ZSH=$HOME/.oh-my-zsh
 export ZSH_CUSTOM=$DOTFILES/zsh
 export WORK=$HOME/work
+export NVIM=$HOME/.config/nvim/config
 
 ZSH_THEME="rkj-repos"
 
