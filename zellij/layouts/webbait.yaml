@@ -1,0 +1,40 @@
+---
+template:
+  direction: Horizontal
+  parts:
+    - direction: Vertical
+      borderless: true
+      split_size:
+        Fixed: 1
+      run:
+        plugin:
+          location: "zellij:tab-bar"
+    - direction: Vertical
+      body: true
+    - direction: Vertical
+      borderless: true
+      split_size:
+        Fixed: 2
+      run:
+        plugin:
+          location: "zellij:status-bar"
+tabs:
+  - name: "Code (client)"
+    focus: true
+  - name: "Code (server)"
+  - name: "Code (rtc)"
+  - name: "Runtime"
+    direction: Vertical
+    parts:
+    - direction: Horizontal
+      split_size:
+        Percent: 50
+      parts:
+        - direction: Vertical
+        - direction: Vertical
+    - direction: Horizontal
+      split_size:
+        Percent: 50
+session:
+  name: 'WebBait'
+  attach: true
