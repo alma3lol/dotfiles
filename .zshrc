@@ -47,3 +47,6 @@ export PATH="./node_modules/.bin:$HOME/.yarn/bin:$HOME/.config/yarn/global/node_
 # tabtab source for packages
 # uninstall by removing these lines
 [[ -f ~/.config/tabtab/__tabtab.zsh ]] && . ~/.config/tabtab/__tabtab.zsh || true
+
+export PNPM_HOME="/home/almapro/.local/share/pnpm"
+export PATH="$PNPM_HOME:$PATH"
