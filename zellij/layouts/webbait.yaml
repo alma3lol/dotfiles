@@ -22,7 +22,7 @@ tabs:
   - name: "Code (client)"
     focus: true
   - name: "Code (server)"
-  - name: "Code (rtc)"
+  - name: "Code (agent)"
   - name: "Runtime"
     direction: Vertical
     parts:
