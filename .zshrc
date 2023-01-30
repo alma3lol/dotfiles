@@ -1,8 +1,8 @@
 export ZSH=$HOME/.oh-my-zsh
 export ZSH_CUSTOM=$HOME/zsh
 export WORK=$HOME/work
-export NVIM=$HOME/.config/nvim/config
 export TERM="kitty"
+export EDITOR="nvim"
 
 ZSH_THEME="rkj-repos"
 
