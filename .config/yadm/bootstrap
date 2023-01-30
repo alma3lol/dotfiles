@@ -42,8 +42,9 @@ download_if_not_exists() {
 # Required packages
 echo """
 [!] You need to install the following:
-[+] noto fonts emoji
 [+] nerd fonts fira code
+[+] nerd fonts jetbrains mono
+[+] font-awesome
 """
 
 install_package_if_not_installed zsh
