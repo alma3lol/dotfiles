@@ -1,0 +1,15 @@
+themes {
+	mine {
+		fg "#3f3f3f" // status bar fg & inactive tab bar bg
+		bg "#00ffff" // Surface2
+		red "#fa5050" // status shortcut bar text
+		green "#89ca78" // active tab bg
+		blue "#89cafa"
+		yellow "#f9e2af"
+		magenta "#1a1a1a"
+		orange "#fab387"
+		cyan "#89dceb"
+		black "#080808" // status bar active bg
+		white "#89ca78" // font color
+	}
+}

@@ -1,0 +1,12 @@
+{Escape,super + x}
+	~/.config/sxhkd/powermenu/stop-rc.sh
+k
+	~/.config/sxhkd/powermenu/lock-rc.sh show_confirm_action
+l
+	~/.config/sxhkd/powermenu/logout-rc.sh show_confirm_action
+r
+	~/.config/sxhkd/powermenu/reboot-rc.sh show_confirm_action
+s
+	~/.config/sxhkd/powermenu/poweroff-rc.sh show_confirm_action
+u
+	~/.config/sxhkd/powermenu/suspend-rc.sh show_confirm_action

@@ -1,0 +1,6 @@
+Escape
+	~/.config/sxhkd/powermenu/poweroff-rc.sh cancel_action
+super + x
+	~/.config/sxhkd/powermenu/stop-rc.sh
+s
+	~/.config/sxhkd/powermenu/poweroff-rc.sh confirm_action

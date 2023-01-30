@@ -1,0 +1,6 @@
+Escape
+	~/.config/sxhkd/powermenu/lock-rc.sh cancel_action
+super + x
+	~/.config/sxhkd/powermenu/stop-rc.sh
+k
+	~/.config/sxhkd/powermenu/lock-rc.sh confirm_action

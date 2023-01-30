@@ -1,0 +1,20 @@
+#!/bin/bash
+
+get_available() {
+	eww update brightness_available=true
+}
+
+get_percent() {
+	value=`brightnessctl -m -d intel_backlight | awk -F, '{print substr($4, 0, length($4)-1)}' | tr -d '%'`
+	if [[ -z "$value" ]]; then
+		echo "0"
+	else
+		echo "$value"
+	fi
+}
+
+if [[ "$1" == "--available" ]]; then
+	get_available
+elif [[ "$1" == "--percent" ]]; then
+	get_percent
+fi

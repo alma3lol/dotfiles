@@ -1,0 +1,10 @@
+{Escape,super + m}
+	~/.config/sxhkd/music_win/stop-rc.sh
+{Left,Right}
+	playerctl position 1{-,+}
+super + {Left,Right}
+	playerctl {previous,next}
+@space
+	playerctl play-pause
+{_,super + }{Up,Down}
+	amixer -D pulse sset Master {1,5}%{+,-}

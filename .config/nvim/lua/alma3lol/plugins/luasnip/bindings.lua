@@ -1,0 +1,13 @@
+return function()
+	vim.g.alma3lol.bindings.nnoremap("<leader>os", "<cmd>lua require('luasnip.loaders').edit_snippet_files()<CR>")
+	vim.g.alma3lol.bindings.inoremap("<C-e>", "<Plug>luasnip-expand-or-jump")
+	vim.g.alma3lol.bindings.snoremap("<C-e>", "<Plug>luasnip-expand-or-jump")
+	vim.g.alma3lol.bindings.inoremap("<C-d>", "<Plug>luasnip-jump-next")
+	vim.g.alma3lol.bindings.snoremap("<C-d>", "<Plug>luasnip-jump-next")
+	vim.g.alma3lol.bindings.inoremap("<C-a>", "<Plug>luasnip-jump-prev")
+	vim.g.alma3lol.bindings.snoremap("<C-a>", "<Plug>luasnip-jump-prev")
+	vim.g.alma3lol.bindings.inoremap("<C-c>", "<Plug>luasnip-next-choice")
+	vim.g.alma3lol.bindings.snoremap("<C-c>", "<Plug>luasnip-next-choice")
+	vim.g.alma3lol.bindings.inoremap("<C-x>", "<Plug>luasnip-prev-choice")
+	vim.g.alma3lol.bindings.snoremap("<C-x>", "<Plug>luasnip-prev-choice")
+end

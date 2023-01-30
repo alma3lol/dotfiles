@@ -1,0 +1,6 @@
+Escape
+	~/.config/sxhkd/powermenu/reboot-rc.sh cancel_action
+super + x
+	~/.config/sxhkd/powermenu/stop-rc.sh
+r
+	~/.config/sxhkd/powermenu/reboot-rc.sh confirm_action

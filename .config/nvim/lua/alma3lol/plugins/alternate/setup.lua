@@ -1,0 +1,98 @@
+return function()
+	require('telescope-alternate').setup({
+		mappings = {
+			{ 'src/(.*)/(.*)([.].*).ts', {
+				{ "src/[1]/[2].service.ts", "Service" },
+				{ "src/[1]/[2].guard.ts", "Guard" },
+				{ "src/[1]/[2].module.ts", "Module" },
+				{ "src/[1]/[2].controller.spec.ts", "Test" },
+				{ "src/[1]/[2].controller.ts", "Controller" },
+				{ "src/[1]/[2].strategy.ts", "Strategy" },
+				{ "src/[1]/[2].logger.ts", "Logger" },
+			} },
+			{ 'src/(.*)/.*', {
+				{ 'src/[1]/index.ts', 'Index' },
+			} },
+			{ 'src/(.*)/index.ts', {
+				{ 'src/services/index.ts', 'Services' },
+				{ 'src/models/index.ts', 'Models' },
+				{ 'src/views/index.ts', 'Views' },
+				{ 'src/views/**/index.ts', 'Sub Views' },
+			} },
+			{ 'src/views/(.*).view.tsx', {
+				{ "src/services/[1].service.ts", "Service" },
+				{ "src/models/[1].model.ts", "Model" },
+				{ "src/views/add-[1:singularize].view.tsx", "Add View" },
+				{ "src/views/edit-[1:singularize].view.tsx", "Edit View" },
+				{ "src/views/delete-[1:singularize].view.tsx", "Delete View" },
+			} },
+			{ 'src/views/(.*)/(.*).view.tsx', {
+				{ "src/services/[2].service.ts", "Service" },
+				{ "src/models/[2].model.ts", "Model" },
+				{ "src/views/[1]/add-[2:singularize].view.tsx", "Add View" },
+				{ "src/views/[1]/edit-[2:singularize].view.tsx", "Edit View" },
+				{ "src/views/[1]/delete-[2:singularize].view.tsx", "Delete View" },
+			} },
+			{ 'src/views/(add[-])(.*).view.tsx', {
+				{ "src/services/[2:pluralize].service.ts", "Service" },
+				{ "src/models/[2:pluralize].model.ts", "Model" },
+				{ "src/views/edit-[1].view.tsx", "Edit View" },
+				{ "src/views/delete-[1].view.tsx", "Delete View" },
+			} },
+			{ 'src/views/(.*)/(add[-])(.*).view.tsx', {
+				{ "src/services/[3:pluralize].service.ts", "Service" },
+				{ "src/models/[3:pluralize].model.ts", "Model" },
+				{ "src/views/[1]/add-[3].view.tsx", "Add View" },
+				{ "src/views/[1]/edit-[3].view.tsx", "Edit View" },
+				{ "src/views/[1]/delete-[3].view.tsx", "Delete View" },
+			} },
+			{ 'src/views/(edit[-])(.*).view.tsx', {
+				{ "src/services/[2:pluralize].service.ts", "Service" },
+				{ "src/models/[2:pluralize].model.ts", "Model" },
+				{ "src/views/add-[1].view.tsx", "Add View" },
+				{ "src/views/delete-[1].view.tsx", "Delete View" },
+			} },
+			{ 'src/views/(.*)/(edit[-])(.*).view.tsx', {
+				{ "src/services/[3:pluralize].service.ts", "Service" },
+				{ "src/models/[3:pluralize].model.ts", "Model" },
+				{ "src/views/[1]/add-[3].view.tsx", "Add View" },
+				{ "src/views/[1]/delete-[3].view.tsx", "Delete View" },
+			} },
+			{ 'src/views/(delete[-])(.*).view.tsx', {
+				{ "src/services/[2:pluralize].service.ts", "Service" },
+				{ "src/models/[2:pluralize].model.ts", "Model" },
+				{ "src/views/add-[1].view.tsx", "Add View" },
+				{ "src/views/edit-[1].view.tsx", "Edit View" },
+			} },
+			{ 'src/views/(.*)/(delete[-])(.*).view.tsx', {
+				{ "src/services/[3:pluralize].service.ts", "Service" },
+				{ "src/models/[3:pluralize].model.ts", "Model" },
+				{ "src/views/[1]/add-[3].view.tsx", "Add View" },
+				{ "src/views/[1]/edit-[3].view.tsx", "Edit View" },
+			} },
+			{ 'src/models/(.*).model.ts', {
+				{ "src/services/[1].service.ts", "Service" },
+				{ "src/views/[1].view.tsx", "View" },
+				{ "src/views/add-[1:singularize].view.tsx", "Add View" },
+				{ "src/views/edit-[1:singularize].view.tsx", "Edit View" },
+				{ "src/views/delete-[1:singularize].view.tsx", "Delete View" },
+				{ "src/views/**/[1].view.tsx", "Sub View" },
+				{ "src/views/**/add-[1:singularize].view.tsx", "Sub Add View" },
+				{ "src/views/**/edit-[1:singularize].view.tsx", "Sub Edit View" },
+				{ "src/views/**/delete-[1:singularize].view.tsx", "Sub Delete View" },
+			} },
+			{ 'src/services/(.*).service.ts', {
+				{ "src/app/store.ts", "Store" },
+				{ "src/model/[1].model.ts", "Model" },
+				{ "src/views/[1].view.tsx", "View" },
+				{ "src/views/add-[1:singularize].view.tsx", "Add View" },
+				{ "src/views/edit-[1:singularize].view.tsx", "Edit View" },
+				{ "src/views/delete-[1:singularize].view.tsx", "Delete View" },
+				{ "src/views/**/[1].view.tsx", "Sub View" },
+				{ "src/views/**/add-[1:singularize].view.tsx", "Sub Add View" },
+				{ "src/views/**/edit-[1:singularize].view.tsx", "Sub Edit View" },
+				{ "src/views/**/delete-[1:singularize].view.tsx", "Sub Delete View" },
+			} },
+		},
+	})
+end

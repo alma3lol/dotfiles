@@ -1,0 +1,16 @@
+return function()
+	vim.g.alma3lol.bindings.nnoremap("<leader>du", ":lua require('dapui').toggle()<CR>")
+	vim.g.alma3lol.bindings.nnoremap("<F5>", ":lua require'dap'.continue()<CR>")
+	vim.g.alma3lol.bindings.nnoremap("<F10>", ":lua require'dap'.step_over()<CR>")
+	vim.g.alma3lol.bindings.nnoremap("<F11>", ":lua require'dap'.step_into()<CR>")
+	vim.g.alma3lol.bindings.nnoremap("<F12>", ":lua require'dap'.step_out()<CR>")
+	vim.g.alma3lol.bindings.nnoremap("<F9>", ":lua require'dap'.toggle_breakpoint()<CR>")
+	vim.g.alma3lol.bindings.nnoremap("<leader>bl", ":lua require'dap'.list_breakpoints()<CR>")
+	vim.g.alma3lol.bindings.nnoremap(",b", ":lua require'dap'.toggle_breakpoint()<CR>")
+	vim.g.alma3lol.bindings.nnoremap(",B", ":lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>")
+	vim.g.alma3lol.bindings.nnoremap(",Bl",
+		":lua require'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<CR>")
+	vim.g.alma3lol.bindings.nnoremap("<leader>ro", ":lua require'dap'.repl.open()<CR>")
+	vim.g.alma3lol.bindings.nnoremap("<leader>rl", ":lua require'dap'.run_last()<CR>")
+	vim.g.alma3lol.bindings.nnoremap("gh", "<cmd>lua require('alma3lol.functions').HoverInfo()<CR>")
+end
