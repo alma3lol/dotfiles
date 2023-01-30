@@ -63,7 +63,6 @@ install_package_if_not_installed exa
 install_package_if_not_installed btop
 install_package_if_not_installed fd
 install_package_if_not_installed tealdeer
-install_package_if_not_installed yadm
 
 # Dirs
 mkdir_if_not_exists $ZSH_CUSTOM/plugins
