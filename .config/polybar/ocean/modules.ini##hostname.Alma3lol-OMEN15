@@ -32,7 +32,7 @@ content-foreground = ${clr.red}
 type = internal/bspwm
 enable-click = true
 format = <label-state> <label-mode>
-format-font = 7
+format-font = 6
 
 label-focused = %icon%
 label-focused-foreground = ${clr.green}
@@ -48,7 +48,7 @@ label-empty-padding = 1
 
 ws-icon-default = 
 ws-icon-0 = "I;"
-ws-icon-1 = "II;"
+ws-icon-1 = "II;"
 ws-icon-2 = "III;"
 ws-icon-3 = "IV;"
 ws-icon-4 = "V;"
@@ -108,7 +108,7 @@ click-right = pavucontrol&
 
 [module/wlan]
 type = internal/network
-interface =wlp1s0f0u6
+interface = wlo1
 interval = 3.0
 
 format-connected = <label-connected>
