@@ -50,6 +50,7 @@ install_package_if_not_installed zsh
 install_package_if_not_installed git
 install_package_if_not_installed curl
 install_package_if_not_installed jump
+install_package_if_not_installed zoxide
 install_package_if_not_installed starship
 install_package_if_not_installed eww
 install_package_if_not_installed acpi
@@ -74,6 +75,7 @@ clone_if_not_exists https://github.com/zsh-users/zsh-history-substring-search $Z
 clone_if_not_exists https://github.com/zsh-users/zsh-autosuggestions $ZSH_CUSTOM/plugins/zsh-autosuggestions
 clone_if_not_exists https://github.com/unixorn/fzf-zsh-plugin.git $ZSH_CUSTOM/plugins/fzf-zsh-plugin
 clone_if_not_exists https://github.com/gsamokovarov/jump-ranger.git $ZSH_CUSTOM/plugins/jump-ranger
+clone_if_not_exists https://github.com/Aloxaf/fzf-tab $ZSH_CUSTOM/plugins/fzf-tab
 
 # Ranger plugins
 clone_if_not_exists https://github.com/SL-RU/ranger_udisk_menu.git $RANGER/ranger_udisk_menu

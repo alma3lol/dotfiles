@@ -13,6 +13,7 @@ plugins=(
 	docker
 	zsh-syntax-highlighting
 	fzf-zsh-plugin
+	fzf-tab
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -67,7 +68,7 @@ export BROWSER=brave
 alias n=nvim
 alias p=pnpm
 alias px=pnpx
-alias z=zellij
+alias zl=zellij
 alias m=mix
 
 export PATH=$HOME/.cache/rebar3/bin:$PATH
@@ -77,6 +78,7 @@ export FZF_CTRL_T_COMMAND="rg --hidden --files -g \\!.git 2>/dev/null | uniq"
 
 eval "$(starship init zsh)"
 eval "$(jump shell)"
+eval "$(zoxide init zsh)"
 
 autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C /usr/bin/terraform terraform
