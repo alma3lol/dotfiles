@@ -4,22 +4,11 @@ layout {
             plugin location="zellij:tab-bar"
         }
         children
-        pane size=2 borderless=true {
-            plugin location="zellij:status-bar"
-        }
     }
     tab focus=true
     tab
     tab
-    tab split_direction="Vertical" {
-        pane split_direction="Vertical" {
-            pane size="50%" split_direction="Horizontal" {
-                pane
-                pane
-            }
-            pane size="50%"
-        }
-    }
+    tab
 }
 session_name "WebBait"
 attach_to_session true

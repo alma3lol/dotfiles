@@ -3,6 +3,7 @@ export ZSH_CUSTOM=$HOME/zsh
 export WORK=$HOME/work
 export TERM="kitty"
 export EDITOR="nvim"
+export VISUAL="nvim"
 
 ZSH_THEME="rkj-repos"
 
