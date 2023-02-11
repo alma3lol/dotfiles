@@ -11,6 +11,8 @@ pgrep -x eww > /dev/null || eww daemon &
 $HOME/.config/polybar/ocean/launch.sh &
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 numlockx on &
+xset -dpms &
+xset s off &
 
 bspc monitor -d I II III IV V VI VII VIII IX X
 

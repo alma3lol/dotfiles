@@ -1,6 +1,6 @@
 return function()
-	vim.env.vimPlugPath = vim.fn.stdpath('data') .. "/site/autoload/plug.vim"
-	vim.cmd [[ so $vimPlugPath ]]
+	-- vim.env.vimPlugPath = vim.fn.stdpath('data') .. "/site/autoload/plug.vim"
+	-- vim.cmd [[ so $vimPlugPath ]]
 	for _, dir in ipairs({ 'backup', 'undodir', 'directory', 'ctags' }) do
 		if not vim.fn.isdirectory(vim.fn.stdpath('data') .. '/' .. dir) then
 			vim.fn.mkdir(vim.fn.stdpath('data') .. '/' .. dir)
