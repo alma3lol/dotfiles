@@ -65,8 +65,6 @@ padding-right = 10
 interval = 5.0
 click-left = rofi-bluetooth &
 
-
-
 [module/date]
 type = internal/date
 interval = 1
@@ -81,11 +79,10 @@ format-prefix = %{T5}%{T-}
 label = %{T1}%time%%{T-}
 label-padding = 1
 
-
-
-[module/pulseaudio]
+[module/audio]
 type = internal/pulseaudio
 use-ui-max = true
+interval = 1
 
 format-volume = <label-volume>
 format-volume-padding = 1 
@@ -105,7 +102,6 @@ label-muted-padding = 1
 
 click-right = pavucontrol&
 
-
 [module/wlan]
 type = internal/network
 interface = wlo1
@@ -121,10 +117,32 @@ label-connected-padding = 1
 
 format-disconnected = <label-disconnected>
 format-disconnected-padding = 1
-format-disconnected-prefix=""
+format-disconnected-prefix=""
 format-disconnected-font = 5
 format-disconnected-foreground = ${clr.red}
 label-disconnected = %{A1:rofi-wifi-menu:}Disconnected%{A}
+label-disconnected-foreground = ${clr.red}
+label-disconnected-padding = 1
+
+[module/eth]
+type = internal/network
+interface = eno1
+interval = 3.0
+
+format-connected = <label-connected>
+format-connected-padding = 1
+format-connected-prefix=""
+format-connected-font = 5
+label-connected = %ifname% -  %downspeed%  %upspeed%
+label-connected-foreground = ${clr.txt1}
+label-connected-padding = 1
+
+format-disconnected = <label-disconnected>
+format-disconnected-padding = 1
+format-disconnected-prefix=""
+format-disconnected-font = 5
+format-disconnected-foreground = ${clr.red}
+label-disconnected = %ifname% - Disconnected
 label-disconnected-foreground = ${clr.red}
 label-disconnected-padding = 1
 
@@ -149,3 +167,16 @@ format-underline = ${clr.blue}
 format-foreground = ${clr.blue}
 exec = python -u ~/.config/polybar/scripts/weather.py
 tail = true
+
+[module/menu-apps]
+type = custom/ipc
+
+hook-0 = date +%S
+hook-1 = whoami
+hook-2 = echo "Files in ${HOME}: $(ls -1a ~ | wc -l)"
+
+initial = 3
+
+[modules/empty]
+type = custom/text
+content = " | "

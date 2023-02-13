@@ -146,3 +146,18 @@ super + alt + ctrl + {h,j,k,l}
 # move a floating window
 super + {Left,Down,Up,Right}
 	bspc node -v {-20 0,0 20,0 -20,20 0}
+
+##########################
+# Polybar control
+##########################
+super + alt + 1
+	polybar-msg action menu-apps hook 0
+
+super + alt + 2
+	polybar-msg action menu-apps hook 1
+
+super + alt + 3
+	polybar-msg action menu-apps hook 2
+
+super + alt + n
+	~/.config/polybar/scripts/switch-network-bar.sh
