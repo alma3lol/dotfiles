@@ -13,6 +13,7 @@ $HOME/.config/polybar/ocean/launch.sh &
 numlockx on &
 xset -dpms &
 xset s off &
+nm-applet &
 
 bspc monitor -d I II III IV V VI VII VIII IX X
 
@@ -45,3 +46,4 @@ bspc rule -a Gimp desktop='^8' follow=on
 bspc rule -a Gimp-2.10 desktop='^8' follow=on
 bspc rule -a Spotify desktop='^9' follow=on
 bspc rule -a obsidian desktop='^10' follow=on
+bspc rule -a Fig state=floating layer=above manage=off border=off

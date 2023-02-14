@@ -8,8 +8,6 @@ while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done
 rm /tmp/polybar_mqueue*
 
 # Launch polybar
-polybar eth -c $HOME/.config/polybar/ocean/config.ini &
-ln -s /tmp/polybar_mqueue.$! /tmp/polybar_mqueue-eth.$!
 polybar time -c $HOME/.config/polybar/ocean/config.ini &
 ln -s /tmp/polybar_mqueue.$! /tmp/polybar_mqueue-time.$!
 polybar wlan -c $HOME/.config/polybar/ocean/config.ini &
