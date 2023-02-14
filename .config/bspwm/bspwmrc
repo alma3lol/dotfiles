@@ -47,3 +47,4 @@ bspc rule -a Gimp-2.10 desktop='^8' follow=on
 bspc rule -a Spotify desktop='^9' follow=on
 bspc rule -a obsidian desktop='^10' follow=on
 bspc rule -a Fig state=floating layer=above manage=off border=off
+bspc rule -a "Fig:*:Fig Dashboard" manage=on border=on state=tiled
