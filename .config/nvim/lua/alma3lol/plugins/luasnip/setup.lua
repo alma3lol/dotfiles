@@ -20,8 +20,8 @@ return function()
 	end
 
 	_G.jump_previous = function()
-		if luasnip.jumpable(-1) then
-			luasnip.jump(-1)
+		if luasnip.jumpable( -1) then
+			luasnip.jump( -1)
 		end
 	end
 
@@ -33,5 +33,5 @@ return function()
 
 	-- require("luasnip.loaders.from_vscode").load({ paths = { vim.env.CWD .. "/vsnip",
 	--     vim.env.CWD .. "/plugged/friendly-snippets" } })
-	require("luasnip.loaders.from_lua").load({ paths = vim.fn.expand('<sfile>:p:h') .. "/snips" })
+	require("luasnip.loaders.from_lua").load({ paths = vim.env.CWD .. "/lua/alma3lol/plugins/luasnip/snips" })
 end

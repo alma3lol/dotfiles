@@ -96,6 +96,7 @@ vim.g.alma3lol = {
 		silicon = require("alma3lol.plugins.silicon"),
 		sj = require("alma3lol.plugins.sj"),
 		sneak = require("alma3lol.plugins.sneak"),
+		snippetgenie = require("alma3lol.plugins.snippetgenie"),
 		spectre = require("alma3lol.plugins.spectre"),
 		ssr = require("alma3lol.plugins.ssr"),
 		substitute = require("alma3lol.plugins.substitute"),

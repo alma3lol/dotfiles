@@ -182,6 +182,7 @@ M.setup = function()
 				"m00qek/baleia.nvim"
 			},
 		}
+		use 'ziontee113/SnippetGenie'
 		if M.packer_bootstrap then
 			require('packer').sync()
 		end

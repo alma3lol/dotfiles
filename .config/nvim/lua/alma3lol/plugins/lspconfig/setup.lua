@@ -91,7 +91,7 @@ return function()
 	table.insert(runtime_path, "lua/?.lua")
 	table.insert(runtime_path, "lua/?/init.lua")
 
-	nvim_lsp.sumneko_lua.setup {
+	nvim_lsp.lua_ls.setup {
 		cmd = { lua_bin },
 		capabilities = capabilities,
 		on_attach = on_attach,
