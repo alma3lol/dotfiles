@@ -7,8 +7,8 @@ layout {
     }
     tab focus=true
     tab
-    tab
-    tab
+    tab cwd="agent"
+    tab cwd="agent"
 }
 session_name "WebBait"
 attach_to_session true
