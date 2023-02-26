@@ -163,10 +163,10 @@ super + alt + n
 	~/.config/polybar/scripts/switch-network-bar.sh
 
 XF86MonBrightness{Up,Down}
-	brightnessctl s 10%{+,-}
+	brightnessctl s 5%{+,-}
 
 XF86Audio{Raise,Lower}Volume
-	pulsemixer --change-volume {+,-}10
+	pulsemixer --change-volume {+,-}5
  
 XF86AudioMute
 	pulsemixer  --toggle-mute
