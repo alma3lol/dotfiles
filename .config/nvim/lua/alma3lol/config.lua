@@ -60,9 +60,13 @@ return function()
 	vim.opt.foldmethod = "expr"
 	vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 	vim.opt.foldnestmax = 1
+	vim.o.foldcolumn = '1'
+	vim.o.foldlevel = 99
+	vim.o.foldlevelstart = 99
 	vim.opt.runtimepath = vim.opt.runtimepath + ',' + vim.fn.expand('$CWD/treesitter')
 	vim.g.instant_username = "Alma3lol"
 	vim.g.dashboard_default_executive = 'telescope'
 	vim.g["test#strategy"] = "neovim"
 	vim.cmd [[ colorscheme nord ]]
+	vim.g.rnvimr_draw_border = true
 end

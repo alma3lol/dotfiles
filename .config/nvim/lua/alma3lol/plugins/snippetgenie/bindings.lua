@@ -1,0 +1,10 @@
+return function()
+	local genie = require("SnippetGenie")
+	vim.g.alma3lol.bindings.nnoremap("<leader>nsg", function()
+		genie.finalize_snippet()
+	end)
+	vim.g.alma3lol.bindings.xnoremap("<leader>nsg", function()
+		genie.create_new_snippet_or_add_placeholder()
+		vim.cmd("norm! i")
+	end)
+end

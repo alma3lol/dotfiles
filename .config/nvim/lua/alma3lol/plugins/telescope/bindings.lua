@@ -40,4 +40,5 @@ return function()
 	vim.g.alma3lol.bindings.nnoremap(",sw", function()
 		require('telescope.builtin').lsp_workspace_symbols({ query = vim.fn.expand("<cword>") })
 	end)
+	vim.g.alma3lol.bindings.nnoremap("<leader>mf", "<cmd>Telescope media_files<CR>")
 end

@@ -183,6 +183,7 @@ M.setup = function()
 			},
 		}
 		use 'ziontee113/SnippetGenie'
+		use 'kevinhwang91/rnvimr'
 		if M.packer_bootstrap then
 			require('packer').sync()
 		end

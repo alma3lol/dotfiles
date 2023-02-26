@@ -89,6 +89,7 @@ vim.g.alma3lol = {
 		package_info = require("alma3lol.plugins.package-info"),
 		prettier = require("alma3lol.plugins.prettier"),
 		renamestate = require("alma3lol.plugins.renamestate"),
+		rnvimr = require("alma3lol.plugins.rnvimr"),
 		runinblender = require("alma3lol.plugins.runinblender"),
 		sessionlens = require("alma3lol.plugins.sessionlens"),
 		sideways = require("alma3lol.plugins.sideways"),
