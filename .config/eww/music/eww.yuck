@@ -1,0 +1,48 @@
+;; widgets
+(defwidget volume []
+  (eventbox :onhover "eww update vol_reveal=true"
+            :onhoverlost "eww update vol_reveal=false"
+    (box :space-evenly "false" :orientation "h" :spacing "3"
+      (button :onclick "./scripts/pop audio" :class "volume_icon" "")
+        (scale :class "volbar"
+                  :value volume_percent
+                  :orientation "h"
+                  :tooltip "${volume_percent}%"
+                  :max 100
+                  :min 0
+                  :onchange "amixer -D pulse sset Master {}%" ))))
+
+;;  Music
+(defwidget music_pop []
+  (box :class "music_pop" :orientation "h" :space-evenly "false" :vexpand "false" :hexpand "false"
+    (box :class "music_cover_art" :vexpand "false" :hexpand "false" :style "background-image: url('${cover_art}');")
+    (box :orientation "v" :spacing 20 :space-evenly "false" :width "300px" :vexpand "false" :hexpand "false"
+      (label :halign "center" :class "music" :wrap "true" :text song)
+      (label :halign "center" :class "music_artist" :wrap "true" :text song_artist)
+      (label :halign "center" :class "music_time" :wrap "true" :text "${time_current}/${time_total}")
+      (box :class "music_btns_container" :orientation "h" :spacing 15 :halign "center" :space-evenly "false" :vexpand "false" :hexpand "false"
+        (button :class "music_btn_prev" :onclick "./scripts/music_info --prev" "󰙣")
+        (button :class "music_btn_play" :onclick "./scripts/music_info --toggle" song_status)
+        (button :class "music_btn_next" :onclick "./scripts/music_info --next" "󰙡"))
+      (box :spacing 3
+       (volume)
+       (box :space-evenly "false" :orientation "h" :spacing "3"
+         (button :onclick "./scripts/pop audio" :class "volume_icon" "󱑃")
+         (scale :class "volbar"
+                :active "false"
+                :value current_status
+                :orientation "h"
+                :max current_max
+                :min 0))
+       ))))
+
+
+;;  music
+(defwindow music_win
+  :stacking "fg"
+  :focusable "false"
+  :screen 1
+  :geometry (geometry :x "0%" :y "0%" :width 600 :height 200 :anchor "center center")
+  :wm-ignore true
+  (music_pop))
+

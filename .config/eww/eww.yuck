@@ -1,4 +1,3 @@
-(include "./bar/eww.yuck")
+(include "./polls.yuck")
 (include "./powermenu/eww.yuck")
-(include "./v-bar/eww.yuck")
-(include "./new-bar/eww.yuck")
+(include "./music/eww.yuck")
