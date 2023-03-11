@@ -3,7 +3,7 @@
   (eventbox :onhover "eww update vol_reveal=true"
             :onhoverlost "eww update vol_reveal=false"
     (box :space-evenly "false" :orientation "h" :spacing "3"
-      (button :onclick "./scripts/pop audio" :class "volume_icon" "")
+      (button :onclick "./assets/scripts/pop audio" :class "volume_icon" "")
         (scale :class "volbar"
                   :value volume_percent
                   :orientation "h"
@@ -21,13 +21,13 @@
       (label :halign "center" :class "music_artist" :wrap "true" :text song_artist)
       (label :halign "center" :class "music_time" :wrap "true" :text "${time_current}/${time_total}")
       (box :class "music_btns_container" :orientation "h" :spacing 15 :halign "center" :space-evenly "false" :vexpand "false" :hexpand "false"
-        (button :class "music_btn_prev" :onclick "./scripts/music_info --prev" "󰙣")
-        (button :class "music_btn_play" :onclick "./scripts/music_info --toggle" song_status)
-        (button :class "music_btn_next" :onclick "./scripts/music_info --next" "󰙡"))
+        (button :class "music_btn_prev" :onclick "./assets/scripts/music_info --prev" "󰙣")
+        (button :class "music_btn_play" :onclick "./assets/scripts/music_info --toggle" song_status)
+        (button :class "music_btn_next" :onclick "./assets/scripts/music_info --next" "󰙡"))
       (box :spacing 3
        (volume)
        (box :space-evenly "false" :orientation "h" :spacing "3"
-         (button :onclick "./scripts/pop audio" :class "volume_icon" "󱑃")
+         (button :onclick "./assets/scripts/pop audio" :class "volume_icon" "󱑃")
          (scale :class "volbar"
                 :active "false"
                 :value current_status

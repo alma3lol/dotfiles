@@ -1,3 +1,5 @@
+(include "./listeners.yuck")
 (include "./polls.yuck")
-(include "./powermenu/eww.yuck")
-(include "./music/eww.yuck")
+(include "./vars.yuck")
+(include "./widgets/powermenu.yuck")
+(include "./widgets/music.yuck")

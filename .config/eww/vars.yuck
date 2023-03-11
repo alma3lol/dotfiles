@@ -1,0 +1,5 @@
+(defvar show_confirm_poweroff false)
+(defvar show_confirm_reboot false)
+(defvar show_confirm_logout false)
+(defvar show_confirm_lock false)
+(defvar show_confirm_suspend false)
