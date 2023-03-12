@@ -3,3 +3,4 @@
 (include "./vars.yuck")
 (include "./widgets/powermenu.yuck")
 (include "./widgets/music.yuck")
+(include "./widgets/bar.yuck")

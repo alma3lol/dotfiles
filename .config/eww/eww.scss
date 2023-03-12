@@ -2,6 +2,8 @@ $surface-darkgrey: #20252b;
 $surface-fg: #ffffff;
 $surface-lightgrey: #3d464e;
 $surface-grey: #2b3238;
+$surface-green: #9ece6a;
+$surface-blue: #A8D7FE;
 $surface-red: #f87070;
 
 * {
@@ -9,4 +11,3 @@ $surface-red: #f87070;
 }
 
 @import "styles/index";
-@import "styles/music";

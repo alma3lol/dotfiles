@@ -1,47 +1,32 @@
 #!/bin/sh
-
 workspaces() {
-
-ws1=1
-ws2=2
-ws3=3
-ws4=4
-ws5=5
-ws6=6
-
-# Unoccupied
-un="0"
-
-# check if Occupied
-o1=$(bspc query -D -d .occupied --names | grep "$ws1" )
-o2=$(bspc query -D -d .occupied --names | grep "$ws2" )
-o3=$(bspc query -D -d .occupied --names | grep "$ws3" )
-o4=$(bspc query -D -d .occupied --names | grep "$ws4" )
-o5=$(bspc query -D -d .occupied --names | grep "$ws5" )
-o6=$(bspc query -D -d .occupied --names | grep "$ws6" )
-
-# check if Focused
-f1=$(bspc query -D -d focused --names | grep "$ws1" )
-f2=$(bspc query -D -d focused --names | grep "$ws2" )
-f3=$(bspc query -D -d focused --names | grep "$ws3" )
-f4=$(bspc query -D -d focused --names | grep "$ws4" )
-f5=$(bspc query -D -d focused --names | grep "$ws5" )
-f6=$(bspc query -D -d focused --names | grep "$ws6" )
-
-# check if Urgent
-# u1=$(bspc query -D -d .urgent --names | grep 1)
-# u2=$(bspc query -D -d .urgent --names | grep 2)
-# u3=$(bspc query -D -d .urgent --names | grep 3)
-# u4=$(bspc query -D -d .urgent --names | grep 4)
-# u5=$(bspc query -D -d .urgent --names | grep 5)
-
-echo 	"(box	:class \"works\" :orientation \"v\"	:halign \"center\"	:valign \"start\"	 :space-evenly \"false\" :spacing \"-5\" (button :onclick \"bspc desktop -f $ws1\"	:class	\"$un$o1$f1\"	\"\") (button :onclick \"bspc desktop -f $ws2\"	:class \"$un$o2$f2\"	 \"\") (button :onclick \"bspc desktop -f $ws3\"	:class \"$un$o3$f3\" \"\") (button :onclick \"bspc desktop -f $ws4\"	:class \"$un$o4$f4\"	\"\") (button :onclick \"bspc desktop -f $ws5\"	:class \"$un$o5$f5\" \"\" )  (button :onclick \"bspc desktop -f $ws6\"	:class \"$un$o6$f6\" \"\"))"
+	workspaces_arr=(I II III IV V VI VII VIII IX X)
+	workspaces_icons_arr=(         )
+	# Unoccupied
+	un="0"
+result='(box :class "works" :orientation "h" :spacing 5 :space-evenly "false"'
+for i in ${!workspaces_arr[@]}; do
+	w=${workspaces_arr[$i]}
+	o=$(bspc query -D -d .occupied --names | grep -E "^$w$" )
+	f=$(bspc query -D -d focused --names | grep -E "^$w$" )
+	ic=${workspaces_icons_arr[$i]}
+	if [ $f ]; then
+		f=$i
+	fi
+	if [ $o ]; then
+		o=$i
+	fi
+	w_btn=$(cat << EOF
+(button :onclick "bspc desktop -f $w" :class "$un$o$f" "$ic")
+EOF
+)
+	result="$result$w_btn"
+done
+result="$result)"
+echo $result
 
 }
-
 workspaces
 bspc subscribe desktop node_transfer | while read -r _ ; do
 workspaces
 done
-
-

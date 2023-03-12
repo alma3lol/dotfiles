@@ -3,3 +3,8 @@
 (defvar show_confirm_logout false)
 (defvar show_confirm_lock false)
 (defvar show_confirm_suspend false)
+(defvar vol_reveal false)
+(defvar br_reveal false)
+(defvar music_reveal false)
+(defvar wifi_rev false)
+(defvar time_rev false)
