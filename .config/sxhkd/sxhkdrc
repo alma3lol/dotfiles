@@ -182,3 +182,6 @@ super + alt + c
 
 super + alt + w
 	~/.config/rofi/wifi-launcher.sh
+
+super + alt + e
+	rofi -show emoji
