@@ -8,3 +8,5 @@
 (defvar music_reveal false)
 (defvar wifi_rev false)
 (defvar time_rev false)
+(defvar weather_rev true)
+(defvar hig_rev false)

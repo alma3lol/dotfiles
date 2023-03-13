@@ -132,7 +132,30 @@
     :space-evenly false  
     :halign "center"
     :class "center_modules"
-  (label :text "Coming soon")))
+      (revealer :transition "slideright"
+        :reveal hig_rev
+        :duration "300ms"
+        (hig))
+      (revealer :transition "slideright"
+        :reveal weather_rev
+        :duration "300ms"
+        (weather))
+  ))
+
+(defwidget weather []
+(box :orientation "h"
+    :space-evenly false
+    :halign "center"
+    :class "weather"
+  (label :text "  ")
+  (label :text weather)))
+
+(defwidget hig []
+(box :orientation "h"
+    :space-evenly false
+    :halign "center"
+  (label :text "🏳️‍🌈 Hamza is GAY 🏳️‍🌈")
+  ))
 
 (defwidget bar_1 []
 (box :class "bar_class"
