@@ -28,11 +28,11 @@ super + x
 
 # wifi menu
 super + shift + w
-	rofi-wifi-menu
+	rofi -show window
 
 # program launcher
 super + {_,shift + }d
-	$HOME/.config/rofi/launchers/themes/launcher.sh
+	rofi -show drun
 
 # file manager
 super + {e,shift + Return}
@@ -147,9 +147,6 @@ super + alt + ctrl + {h,j,k,l}
 super + {Left,Down,Up,Right}
 	bspc node -v {-20 0,0 20,0 -20,20 0}
 
-super + alt + {1,2}
-	~/.config/eww/assets/scripts/switch-center-widget {--WEATHER,--HIG}
-
 super + alt + n
 	~/.config/polybar/scripts/switch-network-bar.sh
 
@@ -170,6 +167,9 @@ super + alt + b
 
 super + alt + c
 	rofi -show calc
+
+super + ctrl + c
+	~/.config/eww/assets/scripts/switch-center-widget
 
 super + alt + w
 	~/.config/rofi/wifi-launcher.sh
