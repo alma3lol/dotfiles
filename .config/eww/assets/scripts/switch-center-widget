@@ -3,8 +3,9 @@
 eww update weather_rev=false
 eww update hig_rev=false
 
-if [ "$1" == "--WEATHER" ]; then
-	eww update weather_rev=true
-elif [ "$1" == "--HIG" ]; then
-	eww update hig_rev=true
-fi;
+result=$(printf "Weather\nHIG" | rofi -dmenu -i -p "Choose a widget: ")
+
+case $result in
+	"Weather") eww update weather_rev=true ;;
+	"HIG") eww update hig_rev=true ;;
+esac
