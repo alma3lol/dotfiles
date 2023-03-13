@@ -1,15 +1,13 @@
-(defwidget wifi [] 
+(defwidget wifi []
 (eventbox :onhover "eww update wifi_rev=true"
     :onhoverlost "eww update wifi_rev=false"
     (box :vexpand "false" :hexpand "false" :space-evenly "false"
-      (button :class "module-wif" :onclick "networkmanager_dmenu" :wrap "false" :limit-width 12 :style "color: ${COL_WLAN};" WLAN_ICON)
+      (button :class "module-wif" :onclick "~/.config/rofi/wifi-launcher.sh" :wrap "false" :limit-width 12 :style "color: ${COL_WLAN};" WLAN_ICON)
       (revealer :transition "slideright"
         :reveal wifi_rev
         :duration "350ms"
-        (label    :class "module_essid"
-          :text ESSID_WLAN
-          :orientation "h"
-)))))
+        (button :class "module_essid" :onclick "~/.config/rofi/wifi-launcher.sh" ESSID_WLAN)
+))))
 
 
 (defwidget workspaces []
@@ -30,7 +28,7 @@
           :tooltip "Battery on ${battery}%"
           :show_truncated false
           :wrap false
-          :text "")))))
+          :text "󰁹")))))
 
 
 (defwidget mem []
@@ -46,7 +44,7 @@
                 :tooltip "Using ${memory}% ram"
                 :show_truncated false
                 :wrap false
-                :text "")))))
+                :text "")))))
 
 
 
@@ -150,7 +148,8 @@
     :width "99%"
     :height "50px"
     :anchor "top center")
-  :stacking "fg"
+  :stacking "bg"
+  :wm-ignore true
   :windowtype "dock"
 (bar_1))
 
@@ -160,7 +159,7 @@
     (circular-progress :value battery
         :class "sys_bat"
         :thickness 9
-      (label :text ""
+      (label :text "󰁹"
           :class "sys_icon_bat"
           :limit-width 2
           :show_truncated false

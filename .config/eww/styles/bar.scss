@@ -93,13 +93,13 @@ tooltip label {
 .module_essid {
   font-size: 18;
   color: #a1bdce;
-  margin: 0px 10px 0px 0px;
+  margin: 0px;
 }
 .module-wif {
   font-size: 22;
   color: #a1bdce;
   border-radius: 100%;
-  margin: 0px 10px 0px 5px;
+  margin: 0px 10px 0px 10px;
 }
 
 .iconmem {
@@ -110,8 +110,12 @@ tooltip label {
 }
 .iconbat,
 .iconmem {
-  font-size: 5px;
-  margin: 5px;
+  font-size: 15px;
+  margin: 10px;
+}
+.iconmem {
+  font-size: 13px;
+  margin: 8px;
 }
 .bright_icon {
   font-size: 22;
@@ -279,6 +283,9 @@ calendar:indeterminate {
   font-size: 30;
   margin: 30px;
 }
+.sys_icon_mem {
+  margin: 25px;
+}
 .sys_win {
   background-color: #0f0f17;
 }
@@ -310,7 +317,7 @@ calendar:indeterminate {
 }
 
 .power-btn {
-  border-radius: 0px 12px 12px 0px;
+  border-radius: 0px 5px 5px 0px;
   margin-right: 0px;
   padding: 10px 10px 10px 10px;
   background: $surface-green;

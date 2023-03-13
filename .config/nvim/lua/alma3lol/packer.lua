@@ -184,6 +184,10 @@ M.setup = function()
 		}
 		use 'ziontee113/SnippetGenie'
 		use 'kevinhwang91/rnvimr'
+		use {
+			'Fymyte/rasi.vim',
+			ft = 'rasi',
+		}
 		if M.packer_bootstrap then
 			require('packer').sync()
 		end

@@ -173,3 +173,12 @@ XF86AudioMute
 
 XF86Audio{Prev,Play,Next}
 	playerctl {previous,play-pause,next}
+
+super + alt + b
+	~/.config/eww/assets/scripts/toggle-bar.sh
+
+super + alt + c
+	rofi -show calc
+
+super + alt + w
+	~/.config/rofi/wifi-launcher.sh
