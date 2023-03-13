@@ -44,6 +44,7 @@ echo """
 [!] You need to install the following:
 [+] nerd fonts fira code
 [+] nerd fonts jetbrains mono
+[+] nerd fonts symbols
 [+] font-awesome
 """
 
@@ -64,6 +65,8 @@ install_package_if_not_installed exa
 install_package_if_not_installed btop
 install_package_if_not_installed fd
 install_package_if_not_installed tealdeer
+install_package_if_not_installed rofi
+install_package_if_not_installed dunst
 
 # Dirs
 mkdir_if_not_exists $ZSH_CUSTOM/plugins
