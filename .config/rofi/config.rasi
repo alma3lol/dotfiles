@@ -84,7 +84,7 @@ mainbox {
     border-radius:               7px;
     border-color:                @border-colour;
     background-color:            transparent;
-    children:                    [ "listview", "inputbar" ];
+    children:                    [ "listview", "message", "inputbar" ];
 }
 
 /*****----- Inputbar -----*****/
