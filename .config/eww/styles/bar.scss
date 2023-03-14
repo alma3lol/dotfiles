@@ -326,3 +326,15 @@ calendar:indeterminate {
 .weather {
   color: $surface-blue;
 }
+
+.music_controls {
+  button {
+    margin-left: 10px;
+    &:last-child {
+      margin-left: 15px;
+    }
+  }
+  label {
+    margin-left: 10px;
+  }
+}

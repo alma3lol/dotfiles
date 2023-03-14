@@ -10,3 +10,4 @@
 (defvar time_rev false)
 (defvar weather_rev true)
 (defvar hig_rev false)
+(defvar music_controls_rev false)

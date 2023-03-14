@@ -2,10 +2,12 @@
 
 eww update weather_rev=false
 eww update hig_rev=false
+eww update music_controls_rev=false
 
-result=$(printf "Weather\nHIG" | rofi -dmenu -i -p "Choose a widget: ")
+result=$(printf "Weather\nHIG\nMusic Controls" | rofi -dmenu -i -p "Choose a widget: ")
 
 case $result in
 	"Weather") eww update weather_rev=true ;;
 	"HIG") eww update hig_rev=true ;;
+	"Music Controls") eww update music_controls_rev=true ;;
 esac

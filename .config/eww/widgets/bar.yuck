@@ -140,6 +140,10 @@
         :reveal weather_rev
         :duration "300ms"
         (weather))
+      (revealer :transition "slideright"
+        :reveal music_controls_rev
+        :duration "300ms"
+        (music_controls))
   ))
 
 (defwidget weather []
@@ -156,6 +160,28 @@
     :halign "center"
   (label :text "🏳️‍🌈 Hamza is GAY 🏳️‍🌈")
   ))
+
+(defwidget music_controls []
+  (box
+    :orientation "h"
+    :space-evenly false
+    :halign "center"
+    :class "music_controls"
+    (button
+      :onclick "playerctl prev"
+      ""
+    )
+    (button
+      :onclick "playerctl play-pause"
+      {music_status == "Paused" ? "" : ""}
+    )
+    (button
+      :onclick "playerctl next"
+      ""
+    )
+    (label :text song :limit-width 50)
+  )
+)
 
 (defwidget bar_1 []
 (box :class "bar_class"
