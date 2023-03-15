@@ -21,11 +21,8 @@ super + x
 super + r; {w,e}
 	{rofi -show window, rofi -show emoji}
 
-super + d; d
+super + d
 	rofi -show drun
-
-super + d; {1-9,0}
-	bspc desktop -f '^{1-9,10}'
 
 # file manager
 super + {e,shift + Return}
@@ -52,7 +49,7 @@ super + {_,shift + }q
 
 # send the newest marked node to the newest preselected node
 super + y
-	bspc node newest.marked -n newest.!automatic.local
+	bspc node last.marked -n 'newest.!automatic.local'
 
 # swap the current node and the biggest window
 super + g
@@ -82,8 +79,14 @@ super + {p,s,comma,period}
 super + bracket{left,right}
 	bspc desktop -f {prev,next}.local
 
+super + shift + brace{left,right}
+	bspc node -f {prev,next}.window
+
 # focus the older or newer node in the focus history
-super + tab
+super + Tab; {1-9,0}
+	bspc desktop -f '^{1-9,10}'
+
+alt + Tab
 	bspc wm -h off; bspc node older -f; bspc wm -h on
 
 # focus or send to the given desktop
