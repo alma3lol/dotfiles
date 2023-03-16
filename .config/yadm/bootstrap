@@ -42,10 +42,12 @@ download_if_not_exists() {
 # Required packages
 echo """
 [!] You need to install the following:
-[+] nerd fonts fira code
-[+] nerd fonts jetbrains mono
-[+] nerd fonts symbols
-[+] font-awesome
+[+] Nerd Fonts Firacode
+[+] Nerd Fonts JetBrainsMono
+[+] Nerd Fonts Symbols
+[+] Font Awesome
+[+] Noto Emoji
+[+] Noto color Emoji
 """
 
 install_package_if_not_installed zsh
@@ -67,6 +69,7 @@ install_package_if_not_installed fd
 install_package_if_not_installed tealdeer
 install_package_if_not_installed rofi
 install_package_if_not_installed dunst
+install_package_if_not_installed openrgb
 
 # Dirs
 mkdir_if_not_exists $ZSH_CUSTOM/plugins
