@@ -1,5 +1,6 @@
 #! /bin/sh
 
+alsactl init &
 pgrep -x pulseaudio > /dev/null || pulseaudio --start &
 pgrep -x picom > /dev/null || picom -b --config $HOME/.config/picom/picom.jonaburg.conf &
 # nitrogen --set-scaled ~/Pictures/WallPapers/ocean/ocean.png
