@@ -18,8 +18,8 @@ super + Escape
 super + x
 	~/.config/sxhkd/powermenu/start-rc.sh
 
-super + r; {w,e}
-	{rofi -show window, rofi -show emoji}
+super + r; {w,e,r}
+	{rofi -show window, rofi -show emoji,~/.config/rofi/openrgb.sh}
 
 super + d
 	rofi -show drun
