@@ -8,5 +8,5 @@ layout {
     tab focus=true
     tab
 }
-session_name "TOTP"
+session_name "OTP"
 attach_to_session true
