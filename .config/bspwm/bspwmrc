@@ -45,6 +45,8 @@ bspc rule -a obs desktop='^5' follow=on
 bspc rule -a TelegramDesktop desktop='^6' follow=on
 bspc rule -a Gimp desktop='^8' follow=on
 bspc rule -a Gimp-2.10 desktop='^8' follow=on
+bspc rule -a Blender desktop='^8' follow=on
+bspc rule -a kdenlive desktop='^8' follow=on
 bspc rule -a Spotify desktop='^9' follow=on
 bspc rule -a obsidian desktop='^10' follow=on
 bspc rule -a Fig state=floating layer=above manage=off border=off
