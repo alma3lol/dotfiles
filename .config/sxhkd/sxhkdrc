@@ -82,9 +82,8 @@ super + bracket{left,right}
 super + shift + brace{left,right}
 	bspc node -f {prev,next}.window
 
-# focus the older or newer node in the focus history
-super + Tab; {1-9,0}
-	bspc desktop -f '^{1-9,10}'
+super + Tab
+	rofi -show window
 
 alt + Tab
 	bspc wm -h off; bspc node older -f; bspc wm -h on
