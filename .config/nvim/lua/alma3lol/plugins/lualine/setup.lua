@@ -17,31 +17,32 @@ return function()
 			icons_enabled = true,
 			component_separators = '',
 			section_separators = '',
-			theme = {
-				normal = {
-					a = { fg = colors.color1, bg = colors.color6, gui = 'bold', separator = colors.color0 },
-					b = { fg = fg, bg = colors.color4 },
-					c = { fg = fg, bg = colors.color4 },
-					x = { fg = fg, bg = colors.color4 },
-					y = { fg = fg, bg = colors.color4 },
-					z = { fg = colors.color1, bg = colors.color6 },
-				},
-				insert = {
-					a = { fg = colors.color1, bg = colors.color0, gui = 'bold', separator = colors.color0 },
-				},
-				visual = {
-					a = { fg = colors.color1, bg = colors.color2, gui = 'bold', separator = colors.color0 },
-				},
-				command = {
-					a = { fg = colors.color1, bg = colors.color3, gui = 'bold', separator = colors.color0 },
-				},
-				replace = {
-					a = { fg = colors.color2, bg = colors.color5, gui = 'bold', separator = colors.color0 },
-				},
-				inactive = {
-					c = { fg = fg, bg = colors.color4 },
-				}
-			},
+			theme = 'nord',
+			-- theme = {
+			-- 	normal = {
+			-- 		a = { fg = colors.color1, bg = colors.color6, gui = 'bold', separator = colors.color0 },
+			-- 		b = { fg = fg, bg = colors.color4 },
+			-- 		c = { fg = fg, bg = colors.color4 },
+			-- 		x = { fg = fg, bg = colors.color4 },
+			-- 		y = { fg = fg, bg = colors.color4 },
+			-- 		z = { fg = colors.color1, bg = colors.color6 },
+			-- 	},
+			-- 	insert = {
+			-- 		a = { fg = colors.color1, bg = colors.color0, gui = 'bold', separator = colors.color0 },
+			-- 	},
+			-- 	visual = {
+			-- 		a = { fg = colors.color1, bg = colors.color2, gui = 'bold', separator = colors.color0 },
+			-- 	},
+			-- 	command = {
+			-- 		a = { fg = colors.color1, bg = colors.color3, gui = 'bold', separator = colors.color0 },
+			-- 	},
+			-- 	replace = {
+			-- 		a = { fg = colors.color2, bg = colors.color5, gui = 'bold', separator = colors.color0 },
+			-- 	},
+			-- 	inactive = {
+			-- 		c = { fg = fg, bg = colors.color4 },
+			-- 	}
+			-- },
 			disabled_filetypes = {}
 		},
 		sections = {
@@ -77,8 +78,11 @@ return function()
 			lualine_x = {
 				{ "vim.g.alma3lol.functions.lsp_client_names()", icon = '', color = { fg = '#e0af68', gui = 'bold' }, },
 				"require'lsp-status'.status()",
-				{ "require('package-info').get_status()", color = { gui = 'bold' },
-					cond = function() return require('package-info').get_status() == '' end },
+				{
+					"require('package-info').get_status()",
+					color = { gui = 'bold' },
+					cond = function() return require('package-info').get_status() == '' end
+				},
 				-- 'encoding',
 				-- 'fileformat',
 				-- 'filetype'
