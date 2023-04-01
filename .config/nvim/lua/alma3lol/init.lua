@@ -72,6 +72,7 @@ vim.g.alma3lol = {
 		legendary = require("alma3lol.plugins.legendary"),
 		lsp_format = require("alma3lol.plugins.lsp-format"),
 		lsp_installer = require("alma3lol.plugins.lsp-installer"),
+		lsp_notify = require("alma3lol.plugins.lsp-notify"),
 		lspconfig = require("alma3lol.plugins.lspconfig"),
 		lspsaga = require("alma3lol.plugins.lspsaga"),
 		lualine = require("alma3lol.plugins.lualine"),

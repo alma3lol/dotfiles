@@ -188,6 +188,10 @@ M.setup = function()
 			'Fymyte/rasi.vim',
 			ft = 'rasi',
 		}
+		use {
+			'mrded/nvim-lsp-notify',
+			requires = { 'rcarriga/nvim-notify' },
+		}
 		if M.packer_bootstrap then
 			require('packer').sync()
 		end
