@@ -1,5 +1,7 @@
 local M = {
-	setup = require('alma3lol.plugins.lualine.setup'),
+	setup = function()
+		require('alma3lol.plugins.lualine.setup')
+	end
 }
 
 M.init = function()

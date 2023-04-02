@@ -105,7 +105,7 @@ M.setup = function()
 		-- use 'tami5/sqlite.lua'
 		use 'nvim-telescope/telescope-frecency.nvim'
 		use 'vim-test/vim-test'
-		use 'shaunsingh/nord.nvim'
+		-- use 'shaunsingh/nord.nvim'
 		use 'AckslD/nvim-neoclip.lua'
 		use 'RRethy/nvim-treesitter-textsubjects'
 		use 'nvim-treesitter/nvim-treesitter-textobjects'
@@ -190,6 +190,8 @@ M.setup = function()
 			'mrded/nvim-lsp-notify',
 			requires = { 'rcarriga/nvim-notify' },
 		}
+		use 'rktjmp/lush.nvim'
+		use '~/.config/nvim/lua/my_theme'
 		if M.packer_bootstrap then
 			require('packer').sync()
 		end

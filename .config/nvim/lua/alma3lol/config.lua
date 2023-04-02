@@ -67,6 +67,6 @@ return function()
 	vim.g.instant_username = "Alma3lol"
 	vim.g.dashboard_default_executive = 'telescope'
 	vim.g["test#strategy"] = "neovim"
-	vim.cmd [[ colorscheme nord ]]
+	vim.cmd [[ colorscheme my_theme ]]
 	vim.g.rnvimr_draw_border = true
 end
