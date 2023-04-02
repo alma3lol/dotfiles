@@ -12,11 +12,7 @@ require('lualine').setup {
 		lualine_a = {
 			{ 'mode', padding = 1 },
 		},
-		lualine_b = {
-			-- 'branch',
-			-- 'diff',
-			-- 'diagnostics'
-		},
+		lualine_b = {},
 		lualine_c = {
 			'filename',
 			{
@@ -32,11 +28,6 @@ require('lualine').setup {
 				end,
 				icon = ''
 			},
-			-- { 'lsp_client_names()', icon = '', color = { fg = '#e0af68', gui = 'bold' }, },
-			-- "require'lsp-status'.status()",
-			-- { "require('package-info').get_status()", color = { gui = 'bold' },
-			-- 	cond = function() return require('package-info').get_status() == '' end },
-			-- { "require('nvim-gps').get_location()", cond = function() return require('nvim-gps').is_available() end },
 		},
 		lualine_x = {
 			{ "vim.g.alma3lol.functions.lsp_client_names()", icon = '', color = { fg = '#e0af68', gui = 'bold' }, },
