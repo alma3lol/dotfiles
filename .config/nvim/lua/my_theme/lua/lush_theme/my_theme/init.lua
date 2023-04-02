@@ -332,6 +332,11 @@ local theme = lush(function(injected_functions)
     BufferLineWarningSelected { BufferLineBufferSelected, gui = "bold,italic" },
     BufferLineWarningVisible { BufferLineWarningDiagnostic },
 
+    ------------------------
+    -- Notify:
+    ------------------------
+    NotifyBackground { bg = hsluv("#000000") }
+
   }
 end)
 
