@@ -4,7 +4,8 @@ alsactl init &
 pgrep -x pulseaudio > /dev/null || pulseaudio --start &
 pgrep -x picom > /dev/null || picom -b --config $HOME/.config/picom/picom.jonaburg.conf &
 # nitrogen --set-scaled ~/Pictures/WallPapers/ocean/ocean.png
-pgrep -x variety > /dev/null || variety &
+# pgrep -x variety > /dev/null || variety &
+feh --bg-fill $HOME/.config/eww/assets/wallpapers/powermenu.jpg
 setxkbmap us,ar -option "grp:alt_shift_toggle" &
 pgrep -x mpris-proxy > /dev/null || mpris-proxy &
 pgrep -x sxhkd > /dev/null || sxhkd &
