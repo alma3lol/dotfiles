@@ -1,9 +1,15 @@
-return function()
-  require('neo-minimap').set("<leader><leader>m", "typescriptreact", {
-    query = [[
+local nm = require('neo-minimap')
+nm.set("<leader>nm", "typescriptreact", {
+  query = [[
     ((function_declaration) @cap)
     ((arrow_function) @cap)
     ((identifier) @cap (#vim-match? @cap "^use.*"))
-  ]] ,
-  })
-end
+  ]],
+})
+
+nm.set("<leader>nm", "lua", {
+  query = [[
+    ((function_declaration) @cap)
+    ((assignment_statement(expression_list(function_definition))) @cap)
+  ]],
+})

@@ -1,5 +1,7 @@
 local M = {
-  setup = require('alma3lol.plugins.neo-minimap.setup'),
+  setup = function()
+    require('alma3lol.plugins.neo-minimap.setup')
+  end,
 }
 
 M.init = function()

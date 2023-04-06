@@ -1,6 +1,10 @@
 local M = {
-	setup = require('alma3lol.plugins.telescope.setup'),
-	bindings = require('alma3lol.plugins.telescope.bindings'),
+	setup = function()
+		require('alma3lol.plugins.telescope.setup')
+	end,
+	bindings = function()
+		require('alma3lol.plugins.telescope.bindings')
+	end,
 }
 
 M.init = function()
