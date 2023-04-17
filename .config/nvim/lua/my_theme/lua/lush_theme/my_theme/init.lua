@@ -53,64 +53,64 @@ local hsluv = lush.hsluv
 local theme = lush(function(injected_functions)
   local sym = injected_functions.sym
   return {
-    Normal { fg = hsluv("#A3CFF5") },                                    -- Normal text
-    NormalFloat { fg = hsl(170, 70, 30) },                               -- Normal text in floating windows.
-    NormalNC { fg = Normal.fg.darken(40) },                              -- normal text in non-current windows
-    Whitespace { fg = Normal.fg.darken(40) },                            -- "nbsp", "space", "tab" and "trail" in 'listchars'
+    Normal { fg = hsluv("#A3CFF5") },                             -- Normal text
+    NormalFloat { fg = hsl(170, 70, 30) },                        -- Normal text in floating windows.
+    NormalNC { fg = Normal.fg.da(40) },                           -- normal text in non-current windows
+    Whitespace { fg = Normal.fg.da(40) },                         -- "nbsp", "space", "tab" and "trail" in 'listchars'
 
-    ColorColumn {},                                                      -- Columns set with 'colorcolumn'
-    Conceal {},                                                          -- Placeholder characters substituted for concealed text (see 'conceallevel')
-    Cursor { fg = Normal.fg.darken(40) },                                -- Character under the cursor
-    lCursor { Cursor },                                                  -- Character under the cursor when |language-mapping| is used (see 'guicursor')
-    CursorIM {},                                                         -- Like Cursor, but used when in IME mode |CursorIM|
-    CursorColumn {},                                                     -- Screen-column at the cursor, when 'cursorcolumn' is set.
-    CursorLine {},                                                       -- Screen-line at the cursor, when 'cursorline' is set. Low-priority if foreground (ctermfg OR guifg) is not set.
-    Directory { fg = hsl(200, 90, 50) },                                 -- Directory names (and other special names in listings)
-    DiffAdd { NormalFloat },                                             -- Diff mode: Added line |diff.txt|
-    DiffChange {},                                                       -- Diff mode: Changed line |diff.txt|
-    DiffDelete {},                                                       -- Diff mode: Deleted line |diff.txt|
-    DiffText {},                                                         -- Diff mode: Changed text within a changed line |diff.txt|
-    EndOfBuffer {},                                                      -- Filler lines (~) after the end of the buffer. By default, this is highlighted like |hl-NonText|.
-    TermCursor { bg = Whitespace.fg },                                   -- Cursor in a focused terminal
-    TermCursorNC { bg = TermCursor.bg.darken(80) },                      -- Cursor in an unfocused terminal
-    ErrorMsg {},                                                         -- Error messages on the command line
-    VertSplit {},                                                        -- Column separating vertically split windows
-    Folded { fg = Normal.fg.darken(20) },                                -- Line used for closed folds
-    FoldColumn { fg = Normal.fg.darken(70) },                            -- 'foldcolumn'
-    SignColumn {},                                                       -- Column where |signs| are displayed
-    IncSearch {},                                                        -- 'incsearch' highlighting; also used for the text replaced with ":s///c"
-    Substitute {},                                                       -- |:substitute| replacement text highlighting
-    LineNr { fg = Normal.fg.darken(75) },                                -- Line number for ":number" and ":#" commands, and when 'number' or 'relativenumber' option is set.
-    CursorLineNr { NormalNC },                                           -- Like LineNr when 'cursorline' or 'relativenumber' is set for the cursor line.
-    MatchParen {},                                                       -- Character under the cursor or just before it, if it is a paired bracket, and its match. |pi_paren.txt|
-    ModeMsg {},                                                          -- 'showmode' message (e.g., "-- INSERT -- ")
-    MsgArea {},                                                          -- Area for messages and cmdline
-    MsgSeparator {},                                                     -- Separator for scrolled messages, `msgsep` flag of 'display'
-    MoreMsg {},                                                          -- |more-prompt|
-    NonText { NormalNC },                                                -- '@' at the end of the window, characters from 'showbreak' and other characters that do not really exist in the text (e.g., ">" displayed when a double-wide character doesn't fit at the end of the line). See also |hl-EndOfBuffer|.
-    Pmenu { NormalNC },                                                  -- Popup menu: Normal item.
-    PmenuSel { fg = hsl(180, 70, 50) },                                  -- Popup menu: Selected item.
-    PmenuSbar { bg = NormalNC.fg },                                      -- Popup menu: Scrollbar.
-    PmenuThumb {},                                                       -- Popup menu: Thumb of the scrollbar.
-    Question { Normal },                                                 -- |hit-enter| prompt and yes/no questions
-    QuickFixLine { fg = NormalFloat.fg.darken(30) },                     -- Current |quickfix| item in the quickfix window. Combined with |hl-CursorLine| when the cursor is there.
-    Search {},                                                           -- Last search pattern highlighting (see 'hlsearch'). Also used for similar items that need to stand out.
-    SpecialKey {},                                                       -- Unprintable characters: text displayed differently from what it really is. But not 'listchars' whitespace. |hl-Whitespace|
-    SpellBad {},                                                         -- Word that is not recognized by the spellchecker. |spell| Combined with the highlighting used otherwise.
-    SpellCap {},                                                         -- Word that should start with a capital. |spell| Combined with the highlighting used otherwise.
-    SpellLocal {},                                                       -- Word that is recognized by the spellchecker as one that is used in another region. |spell| Combined with the highlighting used otherwise.
-    SpellRare {},                                                        -- Word that is recognized by the spellchecker as one that is hardly ever used. |spell| Combined with the highlighting used otherwise.
-    StatusLine { bg = Normal.fg.darken(50), fg = Normal.fg.darken(30) }, -- Status line of current window
-    StatusLineNC { bg = NormalFloat.fg },                                -- Status lines of not-current windows. Note: If this is equal to "StatusLine" Vim will use "^^^" in the status line of the current window.
-    TabLine {},                                                          -- Tab pages line, not active tab page label
-    TabLineFill {},                                                      -- Tab pages line, where there are no labels
-    TabLineSel {},                                                       -- Tab pages line, active tab page label
-    Title {},                                                            -- Titles for output from ":set all", ":autocmd" etc.
-    Visual { bg = Normal.fg.darken(60) },                                -- Visual mode selection
-    VisualNOS {},                                                        -- Visual mode selection when vim is "Not Owning the Selection".
-    WarningMsg { fg = hsl(30, 100, 50) },                                -- Warning messages
-    Winseparator { fg = Normal.fg.darken(25) },                          -- Separator between window splits. Inherts from |hl-VertSplit| by default, which it will replace eventually.
-    WildMenu {},                                                         -- Current match in 'wildmenu' completion
+    ColorColumn {},                                               -- Columns set with 'colorcolumn'
+    Conceal {},                                                   -- Placeholder characters substituted for concealed text (see 'conceallevel')
+    Cursor { fg = Normal.fg.da(40) },                             -- Character under the cursor
+    lCursor { Cursor },                                           -- Character under the cursor when |language-mapping| is used (see 'guicursor')
+    CursorIM {},                                                  -- Like Cursor, but used when in IME mode |CursorIM|
+    CursorColumn {},                                              -- Screen-column at the cursor, when 'cursorcolumn' is set.
+    CursorLine {},                                                -- Screen-line at the cursor, when 'cursorline' is set. Low-priority if foreground (ctermfg OR guifg) is not set.
+    Directory { fg = hsl(200, 90, 50) },                          -- Directory names (and other special names in listings)
+    DiffAdd { NormalFloat },                                      -- Diff mode: Added line |diff.txt|
+    DiffChange { fg = hsl(60, 100, 50) },                         -- Diff mode: Changed line |diff.txt|
+    DiffDelete { fg = hsl(0, 100, 50) },                          -- Diff mode: Deleted line |diff.txt|
+    DiffText { fg = hsl(30, 100, 50) },                           -- Diff mode: Changed text within a changed line |diff.txt|
+    EndOfBuffer {},                                               -- Filler lines (~) after the end of the buffer. By default, this is highlighted like |hl-NonText|.
+    TermCursor { bg = Whitespace.fg },                            -- Cursor in a focused terminal
+    TermCursorNC { bg = TermCursor.bg.da(80) },                   -- Cursor in an unfocused terminal
+    ErrorMsg { fg = hsl(0, 100, 50) },                            -- Error messages on the command line
+    VertSplit {},                                                 -- Column separating vertically split windows
+    Folded { fg = Normal.fg.da(20) },                             -- Line used for closed folds
+    FoldColumn { fg = Normal.fg.da(70) },                         -- 'foldcolumn'
+    SignColumn {},                                                -- Column where |signs| are displayed
+    IncSearch { fg = hsl(0, 100, 50), bg = Normal.fg.da(70) },    -- 'incsearch' highlighting; also used for the text replaced with ":s///c"
+    Substitute { fg = hsl(100, 100, 50), bg = Normal.fg.da(70) }, -- |:substitute| replacement text highlighting
+    LineNr { fg = Normal.fg.da(75) },                             -- Line number for ":number" and ":#" commands, and when 'number' or 'relativenumber' option is set.
+    CursorLineNr { NormalNC },                                    -- Like LineNr when 'cursorline' or 'relativenumber' is set for the cursor line.
+    MatchParen { bg = hsl(30, 100, 50), fg = hsl(0, 0, 100) },    -- Character under the cursor or just before it, if it is a paired bracket, and its match. |pi_paren.txt|
+    ModeMsg {},                                                   -- 'showmode' message (e.g., "-- INSERT -- ")
+    MsgArea { fg = hsl(100, 100, 50) },                           -- Area for messages and cmdline
+    MsgSeparator {},                                              -- Separator for scrolled messages, `msgsep` flag of 'display'
+    MoreMsg {},                                                   -- |more-prompt|
+    NonText { NormalNC },                                         -- '@' at the end of the window, characters from 'showbreak' and other characters that do not really exist in the text (e.g., ">" displayed when a double-wide character doesn't fit at the end of the line). See also |hl-EndOfBuffer|.
+    Pmenu { NormalNC },                                           -- Popup menu: Normal item.
+    PmenuSel { fg = hsl(180, 70, 50) },                           -- Popup menu: Selected item.
+    PmenuSbar { bg = NormalNC.fg },                               -- Popup menu: Scrollbar.
+    PmenuThumb { bg = PmenuSel.fg },                              -- Popup menu: Thumb of the scrollbar.
+    Question { NormalNC },                                        -- |hit-enter| prompt and yes/no questions
+    QuickFixLine { fg = NormalFloat.fg.da(30) },                  -- Current |quickfix| item in the quickfix window. Combined with |hl-CursorLine| when the cursor is there.
+    Search { fg = hsl(60, 100, 50), bg = Normal.fg.da(70) },      -- Last search pattern highlighting (see 'hlsearch'). Also used for similar items that need to stand out.
+    SpecialKey {},                                                -- Unprintable characters: text displayed differently from what it really is. But not 'listchars' whitespace. |hl-Whitespace|
+    SpellBad {},                                                  -- Word that is not recognized by the spellchecker. |spell| Combined with the highlighting used otherwise.
+    SpellCap {},                                                  -- Word that should start with a capital. |spell| Combined with the highlighting used otherwise.
+    SpellLocal {},                                                -- Word that is recognized by the spellchecker as one that is used in another region. |spell| Combined with the highlighting used otherwise.
+    SpellRare {},                                                 -- Word that is recognized by the spellchecker as one that is hardly ever used. |spell| Combined with the highlighting used otherwise.
+    StatusLine { bg = Normal.fg.da(50), fg = Normal.fg.da(30) },  -- Status line of current window
+    StatusLineNC { bg = NormalFloat.fg },                         -- Status lines of not-current windows. Note: If this is equal to "StatusLine" Vim will use "^^^" in the status line of the current window.
+    TabLine {},                                                   -- Tab pages line, not active tab page label
+    TabLineFill {},                                               -- Tab pages line, where there are no labels
+    TabLineSel {},                                                -- Tab pages line, active tab page label
+    Title {},                                                     -- Titles for output from ":set all", ":autocmd" etc.
+    Visual { bg = Normal.fg.da(60) },                             -- Visual mode selection
+    VisualNOS {},                                                 -- Visual mode selection when vim is "Not Owning the Selection".
+    WarningMsg { fg = hsl(30, 100, 50) },                         -- Warning messages
+    Winseparator { fg = Normal.fg.da(25) },                       -- Separator between window splits. Inherts from |hl-VertSplit| by default, which it will replace eventually.
+    WildMenu {},                                                  -- Current match in 'wildmenu' completion
 
     -- Common vim syntax groups used for all kinds of code and markup.
     -- Commented-out groups should chain up to their preferred (*) group
@@ -123,7 +123,7 @@ local theme = lush(function(injected_functions)
     Comment { fg = hsl(math.random(0, 360), 90, 80) },
     Constant { fg = hsl(360, 50, 50) },                  -- (*) Any constant
     String { fg = hsl(50, 90, 50) },                     --   A string constant: "this is a string"
-    Character {},                                        --   A character constant: 'c', '\n'
+    Character { bg = Normal.fg.da(70) },                 --   A character constant: 'c', '\n'
     Number { fg = hsl(180, 50, 50) },                    --   A number constant: 234, 0xff
     Boolean { fg = hsl(200, 100, 50) },                  --   A boolean constant: TRUE, false
     Float { Number },                                    --   A floating point constant: 2.3e10
@@ -131,7 +131,7 @@ local theme = lush(function(injected_functions)
     Identifier { Normal },                               -- (*) Any variable name
     Function { fg = hsl(30, 100, 50) },                  --   Function name (also: methods for classes)
 
-    Statement {},                                        -- (*) Any statement
+    Statement { Function },                              -- (*) Any statement
     Conditional { Function },                            --   if, then, else, endif, switch, etc.
     Repeat { Boolean },                                  --   for, do, while, etc.
     Label { Comment },                                   --   case, default, etc.
@@ -153,13 +153,13 @@ local theme = lush(function(injected_functions)
     Special {},                                          -- (*) Any special symbol
     SpecialChar {},                                      --   Special character in a constant
     Tag {},                                              --   You can use CTRL-] on this
-    Delimiter {},                                        --   Character that needs attention
+    Delimiter { fg = hsl(30, 100, 50) },                 --   Character that needs attention
     SpecialComment { String },                           --   Special things inside a comment (e.g. '\n')
     Debug { Constant },                                  --   Debugging statements
 
     Underlined { gui = "underline" },                    -- Text that stands out, HTML links
-    Ignore {},                                           -- Left blank, hidden |hl-Ignore| (NOTE: May be invisible here in template)
-    Error {},                                            -- Any erroneous construct
+    Ignore { fg = Normal.fg.da(80) },                    -- Left blank, hidden |hl-Ignore| (NOTE: May be invisible here in template)
+    Error { fg = hsl(0, 100, 50) },                      -- Any erroneous construct
     Todo { bg = hsl(200, 75, 50), fg = hsl(0, 0, 100) }, -- Anything that needs extra attention; mostly the keywords TODO FIXME and XXX
 
     -- These groups are for the native LSP client and diagnostic system. Some
@@ -215,51 +215,51 @@ local theme = lush(function(injected_functions)
     --
     -- For more information see https://github.com/rktjmp/lush.nvim/issues/109
 
-    sym "@text.literal" {},            -- Comment
-    sym "@text.reference" {},          -- Identifier
-    sym "@text.title" {},              -- Title
-    sym "@text.uri" {},                -- Underlined
-    sym "@text.underline" {},          -- Underlined
-    sym "@text.todo" {},               -- Todo
-    sym "@comment" {},                 -- Comment
-    sym "@punctuation" {},             -- Delimiter
-    sym "@constant" {},                -- Constant
-    sym "@constant.builtin" {},        -- Special
-    sym "@constant.macro" {},          -- Define
-    sym "@define" {},                  -- Define
-    sym "@macro" {},                   -- Macro
-    sym "@string" {},                  -- String
-    sym "@string.escape" {},           -- SpecialChar
-    sym "@string.special" {},          -- SpecialChar
-    sym "@character" {},               -- Character
-    sym "@character.special" {},       -- SpecialChar
-    sym "@number" {},                  -- Number
-    sym "@boolean" {},                 -- Boolean
-    sym "@float" {},                   -- Float
-    sym "@function" { fg = "yellow" }, -- Function
-    sym "@function.builtin" {},        -- Special
-    sym "@function.macro" {},          -- Macro
-    sym "@parameter" {},               -- Identifier
-    sym "@method" {},                  -- Function
-    sym "@field" {},                   -- Identifier
-    sym "@property" {},                -- Identifier
-    sym "@constructor" {},             -- Special
-    sym "@conditional" {},             -- Conditional
-    sym "@repeat" {},                  -- Repeat
-    sym "@label" {},                   -- Label
-    sym "@operator" {},                -- Operator
-    sym "@keyword" {},                 -- Keyword
-    sym "@exception" {},               -- Exception
-    sym "@variable" {},                -- Identifier
-    sym "@type" {},                    -- Type
-    sym "@type.definition" {},         -- Typedef
-    sym "@storageclass" {},            -- StorageClass
-    sym "@structure" {},               -- Structure
-    sym "@namespace" {},               -- Identifier
-    sym "@include" {},                 -- Include
-    sym "@preproc" {},                 -- PreProc
-    sym "@debug" {},                   -- Debug
-    sym "@tag" {},                     -- Tag
+    sym "@text.literal" {},                   -- Comment
+    sym "@text.reference" {},                 -- Identifier
+    sym "@text.title" {},                     -- Title
+    sym "@text.uri" {},                       -- Underlined
+    sym "@text.underline" {},                 -- Underlined
+    sym "@text.todo" {},                      -- Todo
+    sym "@comment" { Comment },               -- Comment
+    sym "@punctuation" {},                    -- Delimiter
+    sym "@constant" { Constant },             -- Constant
+    sym "@constant.builtin" {},               -- Special
+    sym "@constant.macro" {},                 -- Define
+    sym "@define" {},                         -- Define
+    sym "@macro" {},                          -- Macro
+    sym "@string" { String },                 -- String
+    sym "@string.escape" {},                  -- SpecialChar
+    sym "@string.special" { SpecialChar },    -- SpecialChar
+    sym "@character" { Character },           -- Character
+    sym "@character.special" { SpecialChar }, -- SpecialChar
+    sym "@number" { Number },                 -- Number
+    sym "@boolean" { Boolean },               -- Boolean
+    sym "@float" { Float },                   -- Float
+    sym "@function" { Function },             -- Function
+    sym "@function.builtin" {},               -- Special
+    sym "@function.macro" {},                 -- Macro
+    sym "@parameter" {},                      -- Identifier
+    sym "@method" {},                         -- Function
+    sym "@field" {},                          -- Identifier
+    sym "@property" {},                       -- Identifier
+    sym "@constructor" {},                    -- Special
+    sym "@conditional" { Conditional },       -- Conditional
+    sym "@repeat" { Repeat },                 -- Repeat
+    sym "@label" { Label },                   -- Label
+    sym "@operator" { Operator },             -- Operator
+    sym "@keyword" { Keyword },               -- Keyword
+    sym "@exception" { Exception },           -- Exception
+    sym "@variable" { Constant },             -- Identifier
+    sym "@type" {},                           -- Type
+    sym "@type.definition" {},                -- Typedef
+    sym "@storageclass" {},                   -- StorageClass
+    sym "@structure" { Structure },           -- Structure
+    sym "@namespace" {},                      -- Identifier
+    sym "@include" { Include },               -- Include
+    sym "@preproc" { PreProc },               -- PreProc
+    sym "@debug" { Debug },                   -- Debug
+    sym "@tag" { Tag },                       -- Tag
 
     ------------------------------
     -- BufferLine:
@@ -269,7 +269,7 @@ local theme = lush(function(injected_functions)
     BufferLineBuffer { NormalNC },
     BufferLineBufferSelected { NormalFloat, gui = "bold,italic" },
     BufferLineBufferVisible { NormalNC },
-    BufferLineCloseButton { fg = Normal.fg.darken(70) },
+    BufferLineCloseButton { fg = Normal.fg.da(70) },
     BufferLineCloseButtonSelected {},
     BufferLineCloseButtonVisible {},
     BufferLineDevIconLua {},
@@ -307,7 +307,7 @@ local theme = lush(function(injected_functions)
     BufferLineInfoDiagnosticVisible { BufferLineInfoDiagnostic },
     BufferLineInfoSelected { BufferLineBufferSelected, gui = "bold,italic" },
     BufferLineInfoVisible { BufferLineInfoDiagnostic },
-    BufferLineModified { fg = "orange" },
+    BufferLineModified { fg = hsl(30, 100, 50) },
     BufferLineModifiedSelected { BufferLineModified },
     BufferLineModifiedVisible { BufferLineModified },
     BufferLineNumbers { fg = hsl(210, 100, 50) },
@@ -326,7 +326,7 @@ local theme = lush(function(injected_functions)
     BufferLineTabSeparator {},
     BufferLineTabSeparatorSelected {},
     BufferLineWarning { BufferLineBuffer },
-    BufferLineWarningDiagnostic { fg = hsl(20, 100, 50) },
+    BufferLineWarningDiagnostic { fg = hsl(30, 100, 50) },
     BufferLineWarningDiagnosticSelected { BufferLineWarningDiagnostic },
     BufferLineWarningDiagnosticVisible { BufferLineWarningDiagnostic },
     BufferLineWarningSelected { BufferLineBufferSelected, gui = "bold,italic" },
