@@ -122,7 +122,7 @@ local theme = lush(function(injected_functions)
 
     Comment { fg = hsl(math.random(0, 360), 90, 80) },
     Constant { fg = hsl(360, 50, 50) },                  -- (*) Any constant
-    String { fg = hsl(50, 90, 50) },                     --   A string constant: "this is a string"
+    String { fg = hsl(90, 90, 50) },                     --   A string constant: "this is a string"
     Character { bg = Normal.fg.da(70) },                 --   A character constant: 'c', '\n'
     Number { fg = hsl(180, 50, 50) },                    --   A number constant: 234, 0xff
     Boolean { fg = hsl(200, 100, 50) },                  --   A boolean constant: TRUE, false
@@ -136,7 +136,7 @@ local theme = lush(function(injected_functions)
     Repeat { Boolean },                                  --   for, do, while, etc.
     Label { Comment },                                   --   case, default, etc.
     Operator { fg = Function.fg.da(30) },                --   "sizeof", "+", "*", etc.
-    Keyword { Operator },                                --   any other keyword
+    Keyword { fg = hsl(260, 50, 50) },                   --   any other keyword
     Exception { Function },                              --   try, catch, throw
 
     PreProc {},                                          -- (*) Generic Preprocessor
@@ -146,11 +146,11 @@ local theme = lush(function(injected_functions)
     PreCondit {},                                        --   Preprocessor #if, #else, #endif, etc.
 
     Type { NormalNC },                                   -- (*) int, long, char, etc.
-    StorageClass {},                                     --   static, register, volatile, etc.
-    Structure {},                                        --   struct, union, enum, etc.
-    Typedef {},                                          --   A typedef
+    StorageClass { Type },                               --   static, register, volatile, etc.
+    Structure { Type },                                  --   struct, union, enum, etc.
+    Typedef { Type },                                    --   A typedef
 
-    Special {},                                          -- (*) Any special symbol
+    Special { Keyword },                                 -- (*) Any special symbol
     SpecialChar {},                                      --   Special character in a constant
     Tag {},                                              --   You can use CTRL-] on this
     Delimiter { fg = hsl(30, 100, 50) },                 --   Character that needs attention
@@ -215,14 +215,14 @@ local theme = lush(function(injected_functions)
     --
     -- For more information see https://github.com/rktjmp/lush.nvim/issues/109
 
-    sym "@text.literal" {},                   -- Comment
+    sym "@text.literal" { String },           -- Comment
     sym "@text.reference" {},                 -- Identifier
     sym "@text.title" {},                     -- Title
     sym "@text.uri" {},                       -- Underlined
-    sym "@text.underline" {},                 -- Underlined
+    sym "@text.underline" { Underlined },     -- Underlined
     sym "@text.todo" {},                      -- Todo
     sym "@comment" { Comment },               -- Comment
-    sym "@punctuation" {},                    -- Delimiter
+    sym "@punctuation" { Delimiter },         -- Delimiter
     sym "@constant" { Constant },             -- Constant
     sym "@constant.builtin" {},               -- Special
     sym "@constant.macro" {},                 -- Define
@@ -249,8 +249,9 @@ local theme = lush(function(injected_functions)
     sym "@label" { Label },                   -- Label
     sym "@operator" { Operator },             -- Operator
     sym "@keyword" { Keyword },               -- Keyword
+    sym "@symbol" { Keyword },                -- Symbol
     sym "@exception" { Exception },           -- Exception
-    sym "@variable" { Constant },             -- Identifier
+    sym "@variable" { fg = hsl(0, 0, 100) },  -- Identifier
     sym "@type" {},                           -- Type
     sym "@type.definition" {},                -- Typedef
     sym "@storageclass" {},                   -- StorageClass

@@ -85,6 +85,19 @@ require('legendary').setup({
 					description = 'Lushify current file'
 				}
 			}
+		},
+		{
+			itemgroup = "Treesitter",
+			commands = {
+				{
+					':TSPlaygroundToggle',
+					description = 'Toggle Treesitter\'s playground'
+				},
+				{
+					':TSHighlightCapturesUnderCursor',
+					description = 'Highlight captures under cursor'
+				}
+			}
 		}
 	},
 	funcs = {},
