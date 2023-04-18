@@ -1,3 +1,1 @@
-return function()
-	require('mason-lspconfig').setup()
-end
+require('mason-lspconfig').setup()

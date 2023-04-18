@@ -1,5 +1,7 @@
 local M = {
-	setup = require('alma3lol.plugins.mason-lspconfig.setup'),
+	setup = function()
+		require('alma3lol.plugins.mason-lspconfig.setup')
+	end,
 }
 
 M.init = function()

@@ -1,6 +1,10 @@
 local M = {
-	setup = require('alma3lol.plugins.treesitter.setup'),
-	bindings = require('alma3lol.plugins.treesitter.bindings'),
+	setup = function()
+		require('alma3lol.plugins.treesitter.setup')
+	end,
+	bindings = function()
+		require('alma3lol.plugins.treesitter.bindings')
+	end,
 }
 
 M.init = function()

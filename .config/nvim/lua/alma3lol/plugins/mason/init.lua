@@ -1,6 +1,10 @@
 local M = {
-	setup = require('alma3lol.plugins.mason.setup'),
-	bindings = require('alma3lol.plugins.mason.bindings'),
+	setup = function()
+		require('alma3lol.plugins.mason.setup')
+	end,
+	bindings = function()
+		require('alma3lol.plugins.mason.bindings')
+	end,
 }
 
 M.init = function()

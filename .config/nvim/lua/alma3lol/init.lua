@@ -1,6 +1,79 @@
 vim.env.CWD = vim.fn.expand("<sfile>:p:h")
 
 vim.g.alma3lol = {
+	pluginsOrder = {
+		"alternate",
+		"autosession",
+		"bufferline",
+		"chafa",
+		"colorizer",
+		"comment",
+		"compe",
+		"custom_theme",
+		"dap",
+		"dap_ui",
+		"dap_virtual_text",
+		"denite",
+		"emmet",
+		"flashcards",
+		"floaterm",
+		"fugitive",
+		"gitsigns",
+		"gomove",
+		"gps",
+		"harpoon",
+		"indent_blankline",
+		"jqxlist",
+		"jupyter_ascending",
+		"keymenu",
+		"lazygit",
+		"legendary",
+		"mason",
+		"mason_lspconfig",
+		"lspconfig",
+		"lsp_format",
+		"lsp_installer",
+		"lspsaga",
+		"lualine",
+		"luasnip",
+		"maximizer",
+		"mind",
+		"neo_minimap",
+		"neoclip",
+		"nerdtree",
+		"notify",
+		"lsp_notify",
+		"octo",
+		"package_info",
+		"prettier",
+		"renamestate",
+		"rnvimr",
+		"runinblender",
+		"sessionlens",
+		"sideways",
+		"signify",
+		"silicon",
+		"sj",
+		"sneak",
+		"snippetgenie",
+		"spectre",
+		"ssr",
+		"substitute",
+		"surround",
+		"symbols_outline",
+		"tagbar",
+		"telescope",
+		"terminal",
+		"todo_comments",
+		"toggleterm",
+		"transparent",
+		"treesitter",
+		"treesitter_context",
+		"trouble",
+		"twilight",
+		"undotree",
+		"workspaces",
+	},
 	init = function()
 		vim.g.alma3lol.config()
 		vim.g.alma3lol.packer.setup()
@@ -9,8 +82,8 @@ vim.g.alma3lol = {
 				if k == "init" then f() end
 			end
 		end
-		for _, p in pairs(vim.g.alma3lol.plugins) do
-			for k, f in pairs(p) do
+		for _, p in pairs(vim.g.alma3lol.pluginsOrder) do
+			for k, f in pairs(vim.g.alma3lol.plugins[p]) do
 				if k == "init" then f() end
 			end
 		end
@@ -21,8 +94,8 @@ vim.g.alma3lol = {
 				if k == "setup" then f() end
 			end
 		end
-		for _, p in pairs(vim.g.alma3lol.plugins) do
-			for k, f in pairs(p) do
+		for _, p in pairs(vim.g.alma3lol.pluginsOrder) do
+			for k, f in pairs(vim.g.alma3lol.plugins[p]) do
 				if k == "setup" then f() end
 			end
 		end
@@ -70,14 +143,14 @@ vim.g.alma3lol = {
 		keymenu = require("alma3lol.plugins.keymenu"),
 		lazygit = require("alma3lol.plugins.lazygit"),
 		legendary = require("alma3lol.plugins.legendary"),
+		mason = require("alma3lol.plugins.mason"),
+		mason_lspconfig = require("alma3lol.plugins.mason-lspconfig"),
+		lspconfig = require("alma3lol.plugins.lspconfig"),
 		lsp_format = require("alma3lol.plugins.lsp-format"),
 		lsp_installer = require("alma3lol.plugins.lsp-installer"),
-		lspconfig = require("alma3lol.plugins.lspconfig"),
 		lspsaga = require("alma3lol.plugins.lspsaga"),
 		lualine = require("alma3lol.plugins.lualine"),
 		luasnip = require("alma3lol.plugins.luasnip"),
-		mason = require("alma3lol.plugins.mason"),
-		mason_lspconfig = require("alma3lol.plugins.mason-lspconfig"),
 		maximizer = require("alma3lol.plugins.maximizer"),
 		mind = require("alma3lol.plugins.mind"),
 		neo_minimap = require("alma3lol.plugins.neo-minimap"),
@@ -125,8 +198,8 @@ vim.g.alma3lol.bindings.setup = function()
 			if k == "bindings" then f() end
 		end
 	end
-	for _, p in pairs(vim.g.alma3lol.plugins) do
-		for k, f in pairs(p) do
+	for _, p in pairs(vim.g.alma3lol.pluginsOrder) do
+		for k, f in pairs(vim.g.alma3lol.plugins[p]) do
 			if k == "bindings" then f() end
 		end
 	end

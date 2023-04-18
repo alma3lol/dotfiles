@@ -1,3 +1,1 @@
-return function()
-	require('mason').setup()
-end
+require('mason').setup()

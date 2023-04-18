@@ -1,6 +1,10 @@
 local M = {
-	setup = require('alma3lol.plugins.lspconfig.setup'),
-	bindings = require('alma3lol.plugins.lspconfig.bindings'),
+	setup = function()
+		require('alma3lol.plugins.lspconfig.setup')
+	end,
+	bindings = function()
+		require('alma3lol.plugins.lspconfig.bindings')
+	end,
 }
 
 M.init = function()
