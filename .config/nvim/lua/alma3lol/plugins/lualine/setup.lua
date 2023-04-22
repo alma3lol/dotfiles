@@ -15,6 +15,7 @@ require('lualine').setup {
 		lualine_b = {},
 		lualine_c = {
 			'filename',
+			"require('NeoComposer.ui').status_recording()",
 			{
 				function()
 					local search = vim.fn.searchcount({ maxcount = 0 }) -- maxcount = 0 makes the number not be capped at 99

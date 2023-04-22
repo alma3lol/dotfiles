@@ -192,6 +192,7 @@ M.setup = function()
 		}
 		use 'rktjmp/lush.nvim'
 		use '~/.config/nvim/lua/my_theme'
+		use 'ecthelionvi/NeoComposer.nvim'
 		if M.packer_bootstrap then
 			require('packer').sync()
 		end
