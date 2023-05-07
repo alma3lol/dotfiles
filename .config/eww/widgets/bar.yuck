@@ -1,13 +1,13 @@
 (defwidget wifi []
 (eventbox :onhover "eww update wifi_rev=true"
     :onhoverlost "eww update wifi_rev=false"
-    (box :vexpand "false" :hexpand "false" :space-evenly "false"
-      (button :class "module-wif" :onclick "~/.config/rofi/wifi-launcher.sh" :wrap "false" :limit-width 12 :style "color: ${COL_WLAN};" WLAN_ICON)
-      (revealer :transition "slideright"
+  (box :vexpand "false" :hexpand "false" :space-evenly "false"
+    (button :class "module-wif" :onclick "~/.config/rofi/wifi-launcher.sh" :wrap "false" :limit-width 12 :style "color: ${COL_WLAN};" WLAN_ICON)
+    (revealer :transition "slideright"
         :reveal wifi_rev
         :duration "350ms"
-        (button :class "module_essid" :onclick "~/.config/rofi/wifi-launcher.sh" ESSID_WLAN)
-))))
+      (button :class "module_essid" :onclick "~/.config/rofi/wifi-launcher.sh" ESSID_WLAN)
+      ))))
 
 
 (defwidget workspaces []
@@ -15,10 +15,10 @@
 
 
 (defwidget bat []
-  (box :class "bat_module" :vexpand "false" :hexpand "false"
-    (eventbox
-        :onhover "eww open system"
-        :onhoverlost "eww close system"
+(box :class "bat_module" :vexpand "false" :hexpand "false"
+  (eventbox
+      :onhover "eww open system"
+      :onhoverlost "eww close system"
     (circular-progress :value battery
         :class "batbar"
         :thickness 4
@@ -32,19 +32,19 @@
 
 
 (defwidget mem []
-  (box :class "mem_module" :vexpand "false" :hexpand "false" 
-    (eventbox
-        :onhover "eww open system"
-        :onhoverlost "eww close system"
-        (circular-progress :value memory
-            :class "membar"
-            :thickness 4
-            (label
-                :class "iconmem"
-                :tooltip "Using ${memory}% ram"
-                :show_truncated false
-                :wrap false
-                :text "")))))
+(box :class "mem_module" :vexpand "false" :hexpand "false" 
+  (eventbox
+      :onhover "eww open system"
+      :onhoverlost "eww close system"
+    (circular-progress :value memory
+        :class "membar"
+        :thickness 4
+      (label
+          :class "iconmem"
+          :tooltip "Using ${memory}% ram"
+          :show_truncated false
+          :wrap false
+          :text "")))))
 
 
 
@@ -52,37 +52,36 @@
 (box :class "module-2" :vexpand "false" :hexpand "false"
   (label :class "separ" :text "|")))
 
+(defwidget sep_keyboard []
+(box :class "module-2" :vexpand "false" :hexpand "false"
+  (label :class "separ keyboard" :text "|")))
+
 (defwidget clock_module []
-  (eventbox :onhover "eww update time_rev=true"
-    :onhoverlost "eww update time_rev=false"
+(eventbox
+    :onhover "eww open calendar"
+    :onhoverlost "eww close calendar"
   (box :class "module" :space-evenly "false" :orientation "h" :spacing "3" 
     (label :text clock_time :class "clock_time_class" )
     (label :text "" :class "clock_time_sep" )
     (label :text clock_minute :class "clock_time_class")
     (label :text "" :class "clock_time_sep" )
     (label :text clock_second :class "clock_time_class")
-      (revealer :transition "slideleft"
-        :reveal time_rev
-        :duration "350ms"
-      (eventbox
-          :onhover "eww open calendar"
-          :onhoverlost "eww close calendar"
-          (label :class "clock_date_class" :text clock_date)
-        )
-      ))))
+    (label :class "clock_date_class" :text clock_date)
+    )
+  ))
 
 (defwidget power []
-  (button :onclick "~/.config/sxhkd/powermenu/start-rc.sh" :class "power-btn" ""))
+(button :onclick "~/.config/sxhkd/powermenu/start-rc.sh" :class "power-btn" ""))
 
 (defwidget volume_bar []
 (eventbox :onhover "eww update vol_reveal=true"
     :onhoverlost "eww update vol_reveal=false"
   (box :class "module-2" :space-evenly "false" :orientation "h" :spacing "3" 
-      (button   :onclick "scripts/pop audio"   :class "volume_icon" "")
-      (revealer :transition "slideleft"
+    (button   :onclick "scripts/pop audio"   :class "volume_icon" "")
+    (revealer :transition "slideleft"
         :reveal vol_reveal
         :duration "350ms"
-        (scale    :class "volbar"
+      (scale    :class "volbar"
           :value volume_percent
           :orientation "h"
           :tooltip "${volume_percent}%"
@@ -94,10 +93,10 @@
 (eventbox :onhover "eww update br_reveal=true" :onhoverlost "eww update br_reveal=false"
   (box :class "module-2" :space-evenly "false" :orientation "h" :spacing "3" 
     (label :text "" :class "bright_icon" :tooltip "Brightness")
-      (revealer :transition "slideleft"
+    (revealer :transition "slideleft"
         :reveal br_reveal
         :duration "350ms"
-        (scale    :class "brightbar"
+      (scale    :class "brightbar"
           :value brightness_percent
           :orientation "h"
           :tooltip "${brightness_percent}%"
@@ -105,9 +104,20 @@
           :min 0
           :onchange "brightnessctl set {}%" )))))
 
+(defwidget keyboard []
+  (box :orientation "h"
+    :space-evenly false
+    :spacing "10"
+    :halign "end"
+    :class "left_modules"
+    (label :text "🖮" :class "keyboard_icon")
+    (label :text keyboard_layout :class "keyboard_layout" :tooltip "Keyboard Layout")
+  )
+)
+
 (defwidget left []
-  (box :orientation "h" 
-    :space-evenly false  
+(box :orientation "h"
+    :space-evenly false
     :halign "end"
     :class "left_modules"
   (bright)
@@ -122,30 +132,34 @@
 
 
 (defwidget right []
-  (box :orientation "h" 
-    :space-evenly false  
+(box :orientation "h"
+    :space-evenly false
     :halign "start"
     :class "right_modules"
-  (workspaces)))
+  (workspaces)
+  (sep_keyboard)
+  (keyboard)
+  )
+)
 
 
 (defwidget center []
-  (box :orientation "h" 
-    :space-evenly false  
+(box :orientation "h"
+    :space-evenly false
     :halign "center"
     :class "center_modules"
-      (revealer :transition "slideright"
-        :reveal hig_rev
-        :duration "300ms"
-        (hig))
-      (revealer :transition "slideright"
-        :reveal weather_rev
-        :duration "300ms"
-        (weather))
-      (revealer :transition "slideright"
-        :reveal music_controls_rev
-        :duration "300ms"
-        (music_controls))
+  (revealer :transition "slideright"
+      :reveal hig_rev
+      :duration "300ms"
+    (hig))
+  (revealer :transition "slideright"
+      :reveal weather_rev
+      :duration "300ms"
+    (weather))
+  (revealer :transition "slideright"
+      :reveal music_controls_rev
+      :duration "300ms"
+    (music_controls))
   ))
 
 (defwidget weather []
@@ -164,24 +178,24 @@
   ))
 
 (defwidget music_controls []
-  (box
+(box
     :orientation "h"
     :space-evenly false
     :halign "center"
     :class "music_controls"
-    (button
+  (button
       :onclick "playerctl prev"
       ""
     )
-    (button
+  (button
       :onclick "playerctl play-pause"
-      {music_status == "Paused" ? "" : ""}
+    {music_status == "Paused" ? "" : ""}
     )
-    (button
+  (button
       :onclick "playerctl next"
       ""
     )
-    (label :text song :limit-width 50)
+  (label :text song :limit-width 50)
   )
 )
 
@@ -191,7 +205,8 @@
   (right)
   (center)
   (left)
-  ))
+  )
+)
 
 (defwindow bar
   :geometry (geometry :x "0%"
@@ -266,56 +281,56 @@
           :wrap false)))))
 
 (defwidget cal []
-    (box :class "cal" :orientation "v"
-      (box :class "cal-in"
-        (calendar :class "cal" 
-          :day calendar_day 
-          :year calendar_year))))
+(box :class "cal" :orientation "v"
+  (box :class "cal-in"
+    (calendar :class "cal" 
+        :day calendar_day
+        :year calendar_year))))
 
 (defwindow calendar
   :geometry (geometry :x "-20px" 
     :y "7%" 
     :anchor "top right"
     :width "270px" 
-  :height "60px")
+    :height "60px")
 (cal))
 
 
 
 (defwidget audio []
-  (box :class "audio-box" :orientation "v" :space-evenly "false" :vexpand "false" :hexpand "false"
-    (box :halign "v" :space-evenly "false" :hexpand "false" :vexpand "false"
-      (box :class "speaker_icon" :orientation "v")
-      (box :orientation "v" :halign "center" :vexpand "false" :hexpand "false"
+(box :class "audio-box" :orientation "v" :space-evenly "false" :vexpand "false" :hexpand "false"
+  (box :halign "v" :space-evenly "false" :hexpand "false" :vexpand "false"
+    (box :class "speaker_icon" :orientation "v")
+    (box :orientation "v" :halign "center" :vexpand "false" :hexpand "false"
       (label :class "speaker_text" :text "speaker" :valign "center" :halign "left" )
-        (box :class "speaker_bar" :halign "center" :vexpand "false" :hexpand "false"
-          (scale    :value volume_percent
+      (box :class "speaker_bar" :halign "center" :vexpand "false" :hexpand "false"
+        (scale    :value volume_percent
             :space-evenly "false"
             :orientation "h"
             :onchange "amixer -D pulse sset Master {}%" 
             :tooltip "Volume on ${volume_percent}%"
             :max 100
-    :min 0))))
+            :min 0))))
   (label :text "" :class "audio_sep" :halign "center")
-    (box :halign "v" :space-evenly "false" :hexpand "false" :vexpand "false"
-      (box :class "mic_icon" :orientation "v")
-      (box :orientation "v" :halign "center" :vexpand "false" :hexpand "false"
+  (box :halign "v" :space-evenly "false" :hexpand "false" :vexpand "false"
+    (box :class "mic_icon" :orientation "v")
+    (box :orientation "v" :halign "center" :vexpand "false" :hexpand "false"
       (label :class "mic_text" :text "mic" :valign "center" :halign "left" )
-        (box :class "mic_bar" :halign "center" :vexpand "false" :hexpand "false"
-          (scale    :value mic_percent
+      (box :class "mic_bar" :halign "center" :vexpand "false" :hexpand "false"
+        (scale    :value mic_percent
             :space-evenly "false"
             :orientation "h"
             :tooltip "Mic on ${mic_percent}%"
             :onchange "amixer -D pulse sset Capture {}%" 
             :max 100
-    :min 0))))))
+            :min 0))))))
 
 (defwindow audio_ctl
   :geometry (geometry :x "-20px" 
     :y "7%" 
     :anchor "top right"
     :width "280px" 
-  :height "60px")
+    :height "60px")
 (audio))
 
 
@@ -324,5 +339,5 @@
     :y "7%" 
     :anchor "top right"
     :width "290px" 
-  :height "120px")
+    :height "120px")
 (system))

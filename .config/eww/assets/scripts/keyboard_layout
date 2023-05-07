@@ -1,0 +1,8 @@
+#!/bin/bash
+layout_mask=`xset -q | grep LED | awk '{ print $10 }'`
+
+if [[ "$layout_mask" == "00000002" ]]; then
+	echo "English (US)";
+else
+	echo "Arabic";
+fi;

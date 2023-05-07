@@ -128,6 +128,12 @@ tooltip label {
   font-weight: bold;
   font-size: 22px;
   margin: 0px 8px 0px 8px;
+  &:first-child {
+    margin: 0px 8px 0px 0px;
+  }
+  &.keyboard {
+    margin: 0px 8px 0px -12px;
+  }
 }
 
 .mem_module {
@@ -337,4 +343,13 @@ calendar:indeterminate {
   label {
     margin-left: 10px;
   }
+}
+
+.keyboard_icon {
+  color: $surface-green;
+}
+
+.keyboard_layout {
+  color: $surface-blue;
+  font-weight: bold;
 }
