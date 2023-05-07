@@ -92,8 +92,8 @@ alt + Tab
 super + {_,shift + }{1-9,0}
 	bspc {desktop -f,node -d} '^{1-9,10}'
 
-super + o; {b,t,o,n}
-	{brave,kitty,obs,obsidian}
+super + o; {b,t,o,n,e,s}
+	{brave,kitty,obs,obsidian,microsoft-edge-stable,~/.config/sxhkd/screenkey.sh}
 
 #
 # preselect
