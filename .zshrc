@@ -94,3 +94,5 @@ PERL_MM_OPT="INSTALL_BASE=$HOME/perl5"; export PERL_MM_OPT;
 
 # Fig post block. Keep at the bottom of this file.
 [[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.post.zsh"
+
+[[ -f "/opt/miniconda3/etc/profile.d/conda.sh" ]] && source "/opt/miniconda3/etc/profile.d/conda.sh"
