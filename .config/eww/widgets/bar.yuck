@@ -1,6 +1,6 @@
 (defwidget wifi []
-(eventbox :onhover "eww update wifi_rev=true"
-    :onhoverlost "eww update wifi_rev=false"
+(eventbox :onhover "eww open wifi_status"
+    :onhoverlost "eww close wifi_status"
   (box :vexpand "false" :hexpand "false" :space-evenly "false"
     (button :class "module-wif" :onclick "~/.config/rofi/wifi-launcher.sh" :wrap "false" :limit-width 12 :style "color: ${COL_WLAN};" WLAN_ICON)
     (revealer :transition "slideright"
@@ -8,6 +8,20 @@
         :duration "350ms"
       (button :class "module_essid" :onclick "~/.config/rofi/wifi-launcher.sh" ESSID_WLAN)
       ))))
+
+(defwidget wifi_status []
+  (box :class "wifi_win" :orientation "v" :space-evenly "false" :hexpand "false" :vexpand "false" :spacing 0
+    (label :text ESSID_WLAN)
+  )
+)
+
+(defwindow wifi_status
+  :geometry (geometry :x "-250px" 
+    :y "6%" 
+    :anchor "top right"
+    :width "290px" 
+    :height "30px")
+(wifi_status))
 
 
 (defwidget workspaces []

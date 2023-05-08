@@ -353,3 +353,12 @@ calendar:indeterminate {
   color: $surface-blue;
   font-weight: bold;
 }
+
+.wifi_win {
+  background: $surface-darkgrey;
+  border: 2px solid $surface-green;
+  border-radius: 15px;
+  > label {
+    padding: 5px;
+  }
+}
