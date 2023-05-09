@@ -6,10 +6,12 @@ echo $1 > $last_command_file
 if [[ "$1" == "open" ]]; then
 	eww open audio_ctl;
 else
-	sleep 1;
-	last_command=`[[ -f $last_command_file ]] && cat $last_command_file`
-	if [[ "$last_command" == "open" ]]; then
-		exit
+	if [[ "$2" != "now" ]]; then
+		sleep 1;
+		last_command=`[[ -f $last_command_file ]] && cat $last_command_file`
+		if [[ "$last_command" == "open" ]]; then
+			exit
+		fi
 	fi
 	eww close audio_ctl;
 fi;

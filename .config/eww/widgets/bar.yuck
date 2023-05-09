@@ -350,7 +350,7 @@
 )
 
 (defwidget audio []
-  (eventbox :onhover "./assets/scripts/audio_ctrl open &" :onhoverlost "./assets/scripts/audio_ctrl close &"
+  (eventbox :onhover "./assets/scripts/audio_ctrl open &" :onhoverlost "./assets/scripts/audio_ctrl close now &"
     (box :class "audio-box" :orientation "v" :space-evenly "false" :vexpand "false" :hexpand "false"
       (box :halign "v" :space-evenly "false" :hexpand "false" :vexpand "false"
         (box :class "speaker_icon" :orientation "v" :style "background-image: url('./assets/images/speaker.png');")
