@@ -1,122 +1,136 @@
 (defwidget wifi []
-(eventbox :onhover "eww open wifi_status"
+  (eventbox :onhover "eww open wifi_status"
     :onhoverlost "eww close wifi_status"
-  (box :vexpand "false" :hexpand "false" :space-evenly "false"
-    (button :class "module-wif" :onclick "~/.config/rofi/wifi-launcher.sh" :wrap "false" :limit-width 12 :style "color: ${COL_WLAN};" WLAN_ICON)
-    (revealer :transition "slideright"
-        :reveal wifi_rev
-        :duration "350ms"
-      (button :class "module_essid" :onclick "~/.config/rofi/wifi-launcher.sh" ESSID_WLAN)
-      ))))
+    (box :vexpand "false" :hexpand "false" :space-evenly "false"
+      (button :class "module-wif" :onclick "~/.config/rofi/wifi-launcher.sh" :wrap "false" :limit-width 12 :style "color: ${COL_WLAN};" WLAN_ICON)
+    )
+  )
+)
 
 (defwidget wifi_status []
   (box :class "wifi_win" :orientation "v" :space-evenly "false" :hexpand "false" :vexpand "false" :spacing 0
-    (label :text ESSID_WLAN)
+    (label :text {ESSID_WLAN == "" ? "Disconnected" : ESSID_WLAN})
   )
 )
 
 (defwindow wifi_status
-  :geometry (geometry :x "-250px" 
-    :y "6%" 
+  :geometry (geometry
+    :x "-250px"
+    :y "6%"
     :anchor "top right"
-    :width "290px" 
-    :height "30px")
-(wifi_status))
+    :width "290px"
+    :height "30px"
+  )
+  (wifi_status)
+)
 
 
 (defwidget workspaces []
-(literal :content workspace))
+  (literal :content workspace)
+)
 
 
 (defwidget bat []
-(box :class "bat_module" :vexpand "false" :hexpand "false"
-  (eventbox
+  (box :class "bat_module" :vexpand "false" :hexpand "false"
+    (eventbox
       :onhover "eww open system"
       :onhoverlost "eww close system"
-    (circular-progress :value battery
+      (circular-progress :value battery
         :class "batbar"
         :thickness 4
-      (label
+        (label
           :class "iconbat"
           :limit-width 2
           :tooltip "Battery on ${battery}%"
           :show_truncated false
           :wrap false
-          :text "󰁹")))))
+          :text "󰁹"
+        )
+      )
+    )
+  )
+)
 
 
 (defwidget mem []
-(box :class "mem_module" :vexpand "false" :hexpand "false" 
-  (eventbox
+  (box :class "mem_module" :vexpand "false" :hexpand "false" 
+    (eventbox
       :onhover "eww open system"
       :onhoverlost "eww close system"
-    (circular-progress :value memory
-        :class "membar"
-        :thickness 4
-      (label
-          :class "iconmem"
-          :tooltip "Using ${memory}% ram"
-          :show_truncated false
-          :wrap false
-          :text "")))))
-
+      (circular-progress :value memory
+          :class "membar"
+          :thickness 4
+        (label
+            :class "iconmem"
+            :tooltip "Using ${memory}% ram"
+            :show_truncated false
+            :wrap false
+            :text "")
+        )
+      )
+  )
+)
 
 
 (defwidget sep []
-(box :class "module-2" :vexpand "false" :hexpand "false"
-  (label :class "separ" :text "|")))
+  (box :class "module-2" :vexpand "false" :hexpand "false"
+    (label :class "separ" :text "|")
+  )
+)
 
 (defwidget sep_keyboard []
-(box :class "module-2" :vexpand "false" :hexpand "false"
-  (label :class "separ keyboard" :text "|")))
+  (box :class "module-2" :vexpand "false" :hexpand "false"
+    (label :class "separ keyboard" :text "|")
+  )
+)
 
 (defwidget clock_module []
-(eventbox
+  (eventbox
     :onhover "eww open calendar"
     :onhoverlost "eww close calendar"
-  (box :class "module" :space-evenly "false" :orientation "h" :spacing "3" 
-    (label :text clock_time :class "clock_time_class" )
-    (label :text "" :class "clock_time_sep" )
-    (label :text clock_minute :class "clock_time_class")
-    (label :text "" :class "clock_time_sep" )
-    (label :text clock_second :class "clock_time_class")
-    (label :class "clock_date_class" :text clock_date)
+    (box :class "module" :space-evenly "false" :orientation "h" :spacing "3"
+      (label :text clock_time :class "clock_time_class" )
+      (label :text "" :class "clock_time_sep" )
+      (label :text clock_minute :class "clock_time_class")
+      (label :text "" :class "clock_time_sep" )
+      (label :text clock_second :class "clock_time_class")
+      (label :class "clock_date_class" :text clock_date)
     )
-  ))
+  )
+)
 
 (defwidget power []
-(button :onclick "~/.config/sxhkd/powermenu/start-rc.sh" :class "power-btn" ""))
+  (button :onclick "~/.config/sxhkd/powermenu/start-rc.sh" :class "power-btn" "")
+)
 
 (defwidget volume_bar []
-(eventbox :onhover "eww update vol_reveal=true"
-    :onhoverlost "eww update vol_reveal=false"
-  (box :class "module-2" :space-evenly "false" :orientation "h" :spacing "3" 
-    (button   :onclick "scripts/pop audio"   :class "volume_icon" "")
-    (revealer :transition "slideleft"
-        :reveal vol_reveal
-        :duration "350ms"
-      (scale    :class "volbar"
-          :value volume_percent
-          :orientation "h"
-          :tooltip "${volume_percent}%"
-          :max 100
-          :min 0
-          :onchange "amixer -D pulse sset Master {}%" )))))
+  (eventbox
+    :onhover "./assets/scripts/audio_ctrl open &"
+    :onhoverlost "./assets/scripts/audio_ctrl close &"
+    (box :class "module-2" :space-evenly "false" :orientation "h" :spacing 0
+      (label :class "volume_icon" :text "")
+    )
+  )
+)
 
 (defwidget bright []
-(eventbox :onhover "eww update br_reveal=true" :onhoverlost "eww update br_reveal=false"
-  (box :class "module-2" :space-evenly "false" :orientation "h" :spacing "3" 
-    (label :text "" :class "bright_icon" :tooltip "Brightness")
-    (revealer :transition "slideleft"
-        :reveal br_reveal
-        :duration "350ms"
-      (scale    :class "brightbar"
-          :value brightness_percent
-          :orientation "h"
-          :tooltip "${brightness_percent}%"
-          :max 100
-          :min 0
-          :onchange "brightnessctl set {}%" )))))
+  (eventbox :onhover "eww update br_reveal=true" :onhoverlost "eww update br_reveal=false"
+    (box :class "module-2" :space-evenly "false" :orientation "h" :spacing "3"
+      (label :text "" :class "bright_icon" :tooltip "Brightness")
+      (revealer :transition "slideleft"
+          :reveal br_reveal
+          :duration "350ms"
+        (scale    :class "brightbar"
+            :value brightness_percent
+            :orientation "h"
+            :tooltip "${brightness_percent}%"
+            :max 100
+            :min 0
+            :onchange "brightnessctl set {}%" )
+      )
+    )
+  )
+)
 
 (defwidget keyboard []
   (box :orientation "h"
@@ -130,228 +144,272 @@
 )
 
 (defwidget left []
-(box :orientation "h"
+  (box
+    :orientation "h"
     :space-evenly false
     :halign "end"
     :class "left_modules"
-  (bright)
-  (volume_bar)
-  (wifi)
-  (sep)
-  (bat)
-  (mem)
-  (sep)
-  (clock_module)
-  (power)))
+    (bright)
+    (volume_bar)
+    (wifi)
+    (sep)
+    (bat)
+    (mem)
+    (sep)
+    (clock_module)
+    (power)
+  )
+)
 
 
 (defwidget right []
-(box :orientation "h"
+  (box
+    :orientation "h"
     :space-evenly false
     :halign "start"
     :class "right_modules"
-  (workspaces)
-  (sep_keyboard)
-  (keyboard)
+    (workspaces)
+    (sep_keyboard)
+    (keyboard)
   )
 )
 
 
 (defwidget center []
-(box :orientation "h"
+  (box
+    :orientation "h"
     :space-evenly false
     :halign "center"
     :class "center_modules"
-  (revealer :transition "slideright"
+    (revealer
+      :transition "slideright"
       :reveal hig_rev
       :duration "300ms"
-    (hig))
-  (revealer :transition "slideright"
+      (hig)
+    )
+    (revealer
+      :transition "slideright"
       :reveal weather_rev
       :duration "300ms"
-    (weather))
-  (revealer :transition "slideright"
+      (weather)
+    )
+    (revealer
+      :transition "slideright"
       :reveal music_controls_rev
       :duration "300ms"
-    (music_controls))
-  ))
+      (music_controls)
+    )
+  )
+)
 
 (defwidget weather []
-(box :orientation "h"
+  (box
+    :orientation "h"
     :space-evenly false
     :halign "center"
     :class "weather"
-  (label :text "  ")
-  (label :text weather)))
+    (label :text "  ")
+    (label :text weather)
+  )
+)
 
 (defwidget hig []
-(box :orientation "h"
+  (box
+    :orientation "h"
     :space-evenly false
     :halign "center"
-  (label :text "🏳️‍🌈 Hamza is GAY 🏳️‍🌈")
-  ))
+    (label :text "🏳️‍🌈 Hamza is GAY 🏳️‍🌈")
+  )
+)
 
 (defwidget music_controls []
-(box
+  (box
     :orientation "h"
     :space-evenly false
     :halign "center"
     :class "music_controls"
-  (button
-      :onclick "playerctl prev"
-      ""
-    )
-  (button
-      :onclick "playerctl play-pause"
-    {music_status == "Paused" ? "" : ""}
-    )
-  (button
-      :onclick "playerctl next"
-      ""
-    )
-  (label :text song :limit-width 50)
+    (button :onclick "playerctl prev" "")
+    (button :onclick "playerctl play-pause" {music_status == "Paused" ? "" : ""})
+    (button :onclick "playerctl next" "")
+    (label :text song :limit-width 50)
   )
 )
 
 (defwidget bar_1 []
-(box :class "bar_class"
+  (box
+    :class "bar_class"
     :orientation "h"
-  (right)
-  (center)
-  (left)
+    (right)
+    (center)
+    (left)
   )
 )
 
 (defwindow bar
-  :geometry (geometry :x "0%"
+  :geometry (geometry
+    :x "0%"
     :y "5px"
     :width "99%"
     :height "50px"
-    :anchor "top center")
+    :anchor "top center"
+  )
   :stacking "bg"
   :wm-ignore true
   :windowtype "dock"
-(bar_1))
+  (bar_1)
+)
 
 (defwidget system []
-(box :class "sys_win" :orientation "v" :space-evenly "false" :hexpand "false" :vexpand "false" :spacing 0
-  (box :class "sys_bat_box" :orientation "h" :space-evenly "false"
-    (circular-progress :value battery
-        :class "sys_bat"
-        :thickness 9
-      (label :text "󰁹"
-          :class "sys_icon_bat"
-          :limit-width 2
-          :show_truncated false
-          :wrap false))
-    (box :orientation "v" :space-evenly "false" :spacing 0 :hexpand "false" :vexpand "false"
-      (label :text "battery"
-          :halign "start"
-          :class "sys_text_bat"
-          :limit-width 9
-          :show_truncated false
-          :wrap false)
-      (label :text "${battery}%"
-          :halign "start"
-          :class "sys_text_bat_sub"
-          :limit-width 22
-          :show_truncated false
-          :wrap false)
-      (label :text "${battery_status}"
-          :halign "start"
-          :class "sys_text_bat_sub"
-          :limit-width 22
-          :show_truncated false
-          :wrap false)))
-  (label :text "" :class "sys_sep" :halign "center")
-  (box :class "sys_mem_box" :orientation "h" :space-evenly "false" :halign "start"
-    (circular-progress :value memory
-        :class "sys_mem"
-        :thickness 9
-      (label :text ""
-          :class "sys_icon_mem"
-          :limit-width 2
-          :show_truncated false
-          :wrap false
-          :angle 0.0))
-    (box :orientation "v" :space-evenly "false" :spacing 0 :hexpand "false" :vexpand "false"
-      (label :text "memory"
-          :halign "start"
-          :class "sys_text_mem"
-          :limit-width 9
-          :show_truncated false
-          :wrap false)
-      (label :text "${memory_used_mb} | ${memory_total_mb}mb "
-          :halign "start"
-          :class "sys_text_mem_sub"
-          :limit-width 22
-          :show_truncated false
-          :wrap false)
-      (label :text "${memory_free_mb}mb free"
-          :halign "start"
-          :class "sys_text_mem_sub"
-          :limit-width 22
-          :show_truncated false
-          :wrap false)))))
+  (box :class "sys_win" :orientation "v" :space-evenly "false" :hexpand "false" :vexpand "false" :spacing 0
+    (box :class "sys_bat_box" :orientation "h" :space-evenly "false"
+      (circular-progress :value battery
+          :class "sys_bat"
+          :thickness 9
+        (label :text "󰁹"
+            :class "sys_icon_bat"
+            :limit-width 2
+            :show_truncated false
+            :wrap false)
+      )
+      (box :orientation "v" :space-evenly "false" :spacing 0 :hexpand "false" :vexpand "false"
+        (label :text "battery"
+            :halign "start"
+            :class "sys_text_bat"
+            :limit-width 9
+            :show_truncated false
+            :wrap false)
+        (label :text "${battery}%"
+            :halign "start"
+            :class "sys_text_bat_sub"
+            :limit-width 22
+            :show_truncated false
+            :wrap false)
+        (label :text "${battery_status}"
+            :halign "start"
+            :class "sys_text_bat_sub"
+            :limit-width 22
+            :show_truncated false
+            :wrap false)
+      )
+    )
+    (label :text "" :class "sys_sep" :halign "center")
+    (box :class "sys_mem_box" :orientation "h" :space-evenly "false" :halign "start"
+      (circular-progress :value memory
+          :class "sys_mem"
+          :thickness 9
+        (label :text ""
+            :class "sys_icon_mem"
+            :limit-width 2
+            :show_truncated false
+            :wrap false
+            :angle 0.0)
+      )
+      (box :orientation "v" :space-evenly "false" :spacing 0 :hexpand "false" :vexpand "false"
+        (label :text "memory"
+            :halign "start"
+            :class "sys_text_mem"
+            :limit-width 9
+            :show_truncated false
+            :wrap false)
+        (label :text "${memory_used_mb} | ${memory_total_mb}mb "
+            :halign "start"
+            :class "sys_text_mem_sub"
+            :limit-width 22
+            :show_truncated false
+            :wrap false)
+        (label :text "${memory_free_mb}mb free"
+            :halign "start"
+            :class "sys_text_mem_sub"
+            :limit-width 22
+            :show_truncated false
+            :wrap false)
+      )
+    )
+  )
+)
 
 (defwidget cal []
-(box :class "cal" :orientation "v"
-  (box :class "cal-in"
-    (calendar :class "cal" 
+  (box :class "cal" :orientation "v"
+    (box :class "cal-in"
+      (calendar :class "cal" 
         :day calendar_day
-        :year calendar_year))))
+        :year calendar_year)
+    )
+  )
+)
 
 (defwindow calendar
-  :geometry (geometry :x "-20px" 
+  :geometry (geometry
+    :x "-20px" 
     :y "7%" 
     :anchor "top right"
     :width "270px" 
-    :height "60px")
-(cal))
-
-
+    :height "60px"
+  )
+  (cal)
+)
 
 (defwidget audio []
-(box :class "audio-box" :orientation "v" :space-evenly "false" :vexpand "false" :hexpand "false"
-  (box :halign "v" :space-evenly "false" :hexpand "false" :vexpand "false"
-    (box :class "speaker_icon" :orientation "v")
-    (box :orientation "v" :halign "center" :vexpand "false" :hexpand "false"
-      (label :class "speaker_text" :text "speaker" :valign "center" :halign "left" )
-      (box :class "speaker_bar" :halign "center" :vexpand "false" :hexpand "false"
-        (scale    :value volume_percent
-            :space-evenly "false"
-            :orientation "h"
-            :onchange "amixer -D pulse sset Master {}%" 
-            :tooltip "Volume on ${volume_percent}%"
-            :max 100
-            :min 0))))
-  (label :text "" :class "audio_sep" :halign "center")
-  (box :halign "v" :space-evenly "false" :hexpand "false" :vexpand "false"
-    (box :class "mic_icon" :orientation "v")
-    (box :orientation "v" :halign "center" :vexpand "false" :hexpand "false"
-      (label :class "mic_text" :text "mic" :valign "center" :halign "left" )
-      (box :class "mic_bar" :halign "center" :vexpand "false" :hexpand "false"
-        (scale    :value mic_percent
-            :space-evenly "false"
-            :orientation "h"
-            :tooltip "Mic on ${mic_percent}%"
-            :onchange "amixer -D pulse sset Capture {}%" 
-            :max 100
-            :min 0))))))
+  (eventbox :onhover "./assets/scripts/audio_ctrl open &" :onhoverlost "./assets/scripts/audio_ctrl close &"
+    (box :class "audio-box" :orientation "v" :space-evenly "false" :vexpand "false" :hexpand "false"
+      (box :halign "v" :space-evenly "false" :hexpand "false" :vexpand "false"
+        (box :class "speaker_icon" :orientation "v" :style "background-image: url('./assets/images/speaker.png');")
+        (box :orientation "v" :halign "center" :vexpand "false" :hexpand "false"
+          (label :class "speaker_text" :text "Speaker" :valign "center" :halign "left")
+          (box :class "speaker_bar" :halign "center" :vexpand "false" :hexpand "false"
+            (scale
+              :value volume_percent
+              :space-evenly "false"
+              :orientation "h"
+              :onchange "amixer -D pulse sset Master {}%" 
+              :tooltip "Volume on ${volume_percent}%"
+              :max 100
+              :min 0
+            )
+          )
+        )
+      )
+      (label :text "" :class "audio_sep" :halign "center")
+      (box :halign "v" :space-evenly "false" :hexpand "false" :vexpand "false"
+        (box :class "mic_icon" :orientation "v" :style "background-image: url('./assets/images/mic.png');")
+        (box :orientation "v" :halign "center" :vexpand "false" :hexpand "false"
+          (label :class "mic_text" :text "Microphone" :valign "center" :halign "left")
+          (box :class "mic_bar" :halign "center" :vexpand "false" :hexpand "false"
+            (scale
+              :value mic_percent
+              :space-evenly "false"
+              :orientation "h"
+              :tooltip "Mic on ${mic_percent}%"
+              :onchange "amixer -D pulse sset Capture {}%" 
+              :max 100
+              :min 0
+            )
+          )
+        )
+      )
+    )
+  )
+)
 
 (defwindow audio_ctl
-  :geometry (geometry :x "-20px" 
-    :y "7%" 
+  :geometry (geometry
+    :x "-300px"
+    :y "6%"
     :anchor "top right"
-    :width "280px" 
-    :height "60px")
-(audio))
+    :width "280px"
+    :height "60px"
+  )
+  (audio)
+)
 
 
 (defwindow system
-  :geometry (geometry :x "-20px" 
-    :y "7%" 
+  :geometry (geometry
+    :x "-150px"
+    :y "6%"
     :anchor "top right"
-    :width "290px" 
-    :height "120px")
-(system))
+    :width "290px"
+    :height "120px"
+  )
+  (system)
+)
