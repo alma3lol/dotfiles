@@ -352,6 +352,7 @@ calendar:indeterminate {
 .keyboard_layout {
   color: $surface-blue;
   font-weight: bold;
+  margin-right: 10px;
 }
 
 .wifi_win {
@@ -360,5 +361,11 @@ calendar:indeterminate {
   border-radius: 15px;
   > label {
     padding: 5px;
+  }
+}
+
+.wifi_speed {
+  label {
+    margin: 0px 2px;
   }
 }

@@ -1,0 +1,15 @@
+#!/bin/bash
+
+interface_human_readable_speed() {
+	if [[ "$1" == "" ]]; then
+		echo "0";
+	else
+		echo $1
+	fi;
+}
+
+if [[ "$2" == "up" ]]; then
+	interface_human_readable_speed $(ifstat $1 | grep $1 | awk '{print $6}')
+else
+	interface_human_readable_speed $(ifstat $1 | grep $1 | awk '{print $8}')
+fi

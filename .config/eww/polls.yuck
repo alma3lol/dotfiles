@@ -30,3 +30,5 @@
 (defpoll weather :interval "1m" "assets/scripts/weather")
 (defpoll music_status :interval "1s" "playerctl status")
 (defpoll keyboard_layout :interval "1ms" "assets/scripts/keyboard_layout")
+(defpoll wifi_up_speed :interval "1s" "assets/scripts/network-speed 'wl*' up")
+(defpoll wifi_down_speed :interval "1s" "assets/scripts/network-speed 'wl*' down")

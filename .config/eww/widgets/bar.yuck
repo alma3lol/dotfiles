@@ -1,3 +1,13 @@
+(defwidget wifi_speed []
+  (box :class "wifi_speed" :vexpand "false" :hexpand "false" :space-evenly "false"
+    (label :text " ")
+    (label :text wifi_up_speed)
+    (label :text "/")
+    (label :text wifi_down_speed)
+    (label :text " ")
+  )
+)
+
 (defwidget wifi []
   (eventbox :onhover "eww open wifi_status"
     :onhoverlost "eww close wifi_status"
@@ -171,6 +181,8 @@
     (workspaces)
     (sep_keyboard)
     (keyboard)
+    (sep)
+    (wifi_speed)
   )
 )
 
