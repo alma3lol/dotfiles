@@ -246,7 +246,7 @@ calender {
   color: #bfc9db;
 }
 calendar:selected {
-  color: #a1bdce;
+  color: $surface-green;
 }
 
 calendar.header {
@@ -259,12 +259,12 @@ calendar.button {
 }
 
 calendar.highlight {
-  color: #a1bdce;
+  color: $surface-red;
   font-weight: bold;
 }
 
 calendar:indeterminate {
-  color: #bfc9db;
+  color: $surface-grey;
 }
 
 .sys_sep {

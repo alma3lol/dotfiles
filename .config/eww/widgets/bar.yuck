@@ -343,7 +343,7 @@
 (defwidget cal []
   (box :class "cal" :orientation "v"
     (box :class "cal-in"
-      (calendar :class "cal" 
+      (calendar :class "cal"
         :day calendar_day
         :year calendar_year)
     )
@@ -353,7 +353,7 @@
 (defwindow calendar
   :geometry (geometry
     :x "-20px" 
-    :y "7%" 
+    :y "6%" 
     :anchor "top right"
     :width "270px" 
     :height "60px"
