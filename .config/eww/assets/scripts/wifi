@@ -3,14 +3,19 @@
 status=$(nmcli d | grep -E "wl*" | awk '{print $3}')
 essid=$(nmcli d | grep -E "wl*" | awk '{print $4}')
 
-if [[ $status == "disconnected" ]] ; then
+if [[ $status == "disconnected" || $status == "unavailable" ]] ; then
     icon=""
     text=""
     col="#575268"
-
+    if [[ $status == "unavailable" ]]; then
+        text="Wifi is disabled"
+    fi;
 else
     icon=""
     text="${essid}"
+    if [[ $essid == "(getting" ]]; then
+        text="Connecting..."
+    fi;
     col="#a1bdce"
 fi
 
