@@ -96,3 +96,4 @@ PERL_MM_OPT="INSTALL_BASE=$HOME/perl5"; export PERL_MM_OPT;
 [[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.post.zsh"
 
 [[ -f "/opt/miniconda3/etc/profile.d/conda.sh" ]] && source "/opt/miniconda3/etc/profile.d/conda.sh"
+PATH="$HOME/.mix/escripts${PATH:+:${PATH}}"; export PATH;
