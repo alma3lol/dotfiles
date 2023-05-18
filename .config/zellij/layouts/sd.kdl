@@ -6,7 +6,6 @@ layout {
         children
     }
     tab focus=true
-    tab
 }
 session_name "Stable Diffusion"
 attach_to_session true
