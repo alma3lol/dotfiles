@@ -1,0 +1,86 @@
+(defwindow openmenu
+  :stacking "fg"
+  :windowtype "normal"
+  :wm-ignore true
+  :geometry (geometry :width "100%" :height "100%")
+  (openmenu_widget)
+)
+
+(defwidget openmenu_widget []
+  (box
+    :class "openmenu"
+    :space-evenly false
+    :orientation "v"
+    :style "background-image: url('./assets/wallpapers/powermenu.jpg')"
+    (openmenu_buttons)
+  )
+)
+
+(defwidget openmenu_buttons []
+  (box :class "btns-box" :spacing 5
+       :vexpand true :hexpand true
+       :valign "center" :halign "center"
+       :space-evenly false
+    (openmenu_btn
+      :action "~/.config/sxhkd/openmenu-rc.sh brave"
+      :tooltip "Brave"
+      :shortcut "B"
+      :icon ""
+    )
+    (openmenu_btn
+      :action "~/.config/sxhkd/openmenu-rc.sh microsoft-edge-stable"
+      :tooltip "Edge"
+      :shortcut "E"
+      :icon ""
+    )
+    (openmenu_btn
+      :action "~/.config/sxhkd/openmenu-rc.sh kitty"
+      :tooltip "Kitty"
+      :shortcut "K"
+      :icon ""
+    )
+    (openmenu_btn
+      :action "~/.config/sxhkd/openmenu-rc.sh obs"
+      :tooltip "OBS"
+      :shortcut "O"
+      :icon ""
+    )
+    (openmenu_btn
+      :action "~/.config/sxhkd/openmenu-rc.sh obsidian"
+      :tooltip "Obsidian"
+      :shortcut "N"
+      :icon ""
+    )
+    (openmenu_btn
+      :action "~/.config/sxhkd/openmenu-rc.sh screenkey"
+      :tooltip "Screenkey"
+      :shortcut "S"
+      :icon ""
+    )
+    (openmenu_btn
+      :action "~/.config/sxhkd/openmenu-rc.sh pulseaudio"
+      :tooltip "Pulseaudio"
+      :shortcut "P"
+      :icon ""
+    )
+  )
+)
+
+
+(defwidget openmenu_btn [action tooltip icon shortcut]
+  (box
+    :space-evenly false
+    :orientation "v"
+    :class "openmenu_btn"
+    (button
+      :tooltip tooltip
+      :onclick action
+      (centerbox
+        :orientation "v"
+        (label :text icon)
+        (label :text tooltip)
+        (label :text "(${shortcut})")
+      )
+    )
+  )
+)
