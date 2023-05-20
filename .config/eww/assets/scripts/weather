@@ -14,21 +14,24 @@
 
 
 import requests
+import subprocess
 
-CITY = "2210247"
-API_KEY = "756edce7e9d4c385ef9499a53492678c"
-UNITS = "Metric"
-UNIT_KEY = "C"
-LANG = "en"
+LAT="32.8752"
+LON="13.1875"
+API_KEY="4dc8be206b516756ba8680b666bc5599"
+UNITS="Metric"
+UNIT_KEY="C"
+LANG="en"
 
 try:
-    REQ = requests.get("http://api.openweathermap.org/data/2.5/weather?id={}&lang={}&appid={}&units={}".format(CITY, LANG,  API_KEY, UNITS))
+    REQ = requests.get("http://api.openweathermap.org/data/2.5/weather?lat={}&lon={}&lang={}&appid={}&units={}".format(LAT, LON, LANG,  API_KEY, UNITS))
     # HTTP CODE = OK
     if REQ.status_code == 200:
         CURRENT = REQ.json()["weather"][0]["description"].capitalize()
         TEMP = int(float(REQ.json()["main"]["temp"]))
         print("{}, {} °{}".format(CURRENT, TEMP, UNIT_KEY))
     else:
+        subprocess.run(["notify-send", "Weather API error", REQ.json()['message']])
         print("STATUS CODE: " + str(REQ.status_code))
 except:
     print("Probably nice :)")
