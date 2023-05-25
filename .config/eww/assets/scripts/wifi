@@ -9,6 +9,9 @@ if [[ $status == "disconnected" || $status == "unavailable" ]] ; then
     col="#575268"
     if [[ $status == "unavailable" ]]; then
         text="Wifi is disabled"
+    else
+        nmcli radio wifi off
+        nmcli radio wifi on
     fi;
 else
     icon=""
