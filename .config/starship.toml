@@ -1,6 +1,6 @@
 format = """
 [┌───────\\[ $time \\]────────────\\[ $battery$os$username[@](yellow)$hostname\\($localip\\) \\]](bold green)
-[│](bold green)$directory$git_branch$git_status$rust$elixir$Erlang$nodejs$lua$php$python$terraform$package
+[│](bold green)$directory$git_branch$git_status$rust$elixir$Erlang$nodejs$lua$php$python$terraform$package$conda
 [└─ $jobs$status ${custom.boltIfRoot}$character](bold green)
 """
 # right_format = """[$time](red)"""
@@ -74,3 +74,9 @@ disabled = false
 command = 'whoami'
 when = ''' test "$USERNAME" = "root" '''
 format = '[](#FFA500) '
+
+[conda]
+format = "[ \\($environment\\)](dimmed blue) "
+
+[python]
+symbol = ' '
