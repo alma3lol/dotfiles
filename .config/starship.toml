@@ -80,3 +80,6 @@ format = "[ \\($environment\\)](dimmed blue) "
 
 [python]
 symbol = ' '
+
+[package]
+symbol = ' '
