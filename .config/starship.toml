@@ -83,3 +83,6 @@ symbol = ' '
 
 [package]
 symbol = ' '
+
+[elixir]
+symbol = ' '
