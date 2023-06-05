@@ -71,7 +71,9 @@ export BROWSER=brave
 alias n=nvim
 alias p=pnpm
 alias px=pnpx
-alias zl=zellij
+alias ze=zellij
+alias zl=zlayouts
+alias zs=zsessions
 alias m=mix
 
 export PATH=$HOME/.cache/rebar3/bin:$PATH
