@@ -67,20 +67,13 @@ super + {t,shift + t,shift + f,f}
 super + ctrl + {m,x,y,z}
 	bspc node -g {marked,locked,sticky,private}
 
-# focus the node in the given direction
+# focus/move the node in the given direction
 super + {_,shift + }{h,j,k,l}
 	bspc node -{f,s} {west,south,north,east}
 
 # focus the node for the given path jump
 super + {p,s,comma,period}
 	bspc node -f @{parent,brother,first,second}
-
-# focus the next/previous desktop in the current monitor
-super + bracket{left,right}
-	bspc desktop -f {prev,next}.local
-
-super + shift + brace{left,right}
-	bspc node -f {prev,next}.window
 
 super + Tab
 	rofi -show window
@@ -127,8 +120,18 @@ super + alt + {h,j,k,l}
 super + alt + ctrl + {h,j,k,l}
 	bspc node -z {right -20 0,top 0 20,bottom 0 -20,left 20 0}
 
+# move to prev/next desktop
+super + {Left,Right}
+	bspc desktop -f {prev,next}.local
+
+super + alt + {Left,Right}
+	bspc node -d {prev,next}.local -f
+
+super + ctrl + {Left,Right}
+	bspc desktop -f {prev,next}.occupied
+
 # move a floating window
-super + {Left,Down,Up,Right}
+super + shift + {Left,Down,Up,Right}
 	bspc node -v {-20 0,0 20,0 -20,20 0}
 
 super + alt + n
