@@ -57,12 +57,6 @@
       :shortcut "S"
       :icon ""
     )
-    (openmenu_btn
-      :action "~/.config/sxhkd/openmenu-rc.sh pulseaudio"
-      :tooltip "Pulseaudio"
-      :shortcut "P"
-      :icon ""
-    )
   )
 )
 

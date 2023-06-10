@@ -1,18 +1,12 @@
 #!/bin/sh
 
-alsactl init &
-pulseaudio -k
-pulseaudio --start
 pgrep -x picom > /dev/null || picom -b --config $HOME/.config/picom/picom.jonaburg.conf &
-# nitrogen --set-scaled ~/Pictures/WallPapers/ocean/ocean.png
-# pgrep -x variety > /dev/null || variety &
 feh --bg-fill $HOME/.config/eww/assets/wallpapers/powermenu.jpg
 setxkbmap us,ar -option "grp:alt_shift_toggle" &
 pgrep -x mpris-proxy > /dev/null || mpris-proxy &
 pgrep -x sxhkd > /dev/null || sxhkd &
 pgrep -x eww > /dev/null || eww daemon &
 pgrep -x dunst > /dev/null || dunst &
-# $HOME/.config/polybar/ocean/launch.sh &
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 numlockx on &
 xset -dpms &

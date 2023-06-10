@@ -12,5 +12,3 @@ e
 	~/.config/sxhkd/openmenu-rc.sh microsoft-edge-stable
 s
 	~/.config/sxhkd/openmenu-rc.sh screenkey
-p
-	~/.config/sxhkd/openmenu-rc.sh pulseaudio

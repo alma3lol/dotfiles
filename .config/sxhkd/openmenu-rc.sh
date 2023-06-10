@@ -26,8 +26,4 @@ elif [[ "$1" == "obs" ]]; then
 elif [[ "$1" == "kitty" ]]; then
 	kitty &
 	~/.config/sxhkd/openmenu-rc.sh close
-elif [[ "$1" == "pulseaudio" ]]; then
-	pulseaudio -k
-	pulseaudio --start
-	~/.config/sxhkd/openmenu-rc.sh close
 fi
