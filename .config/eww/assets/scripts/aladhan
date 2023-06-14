@@ -1,7 +1,7 @@
 #!/bin/bash
 
 function hoursAndMinutes2Seconds() {
-	awk -F: '{print ($1 * 3600) + ($2 * 60)}'
+	awk -F: '{print ($1 * 3600) + ($2 * 60) + $3}'
 }
 
 function seconds2HoursAndMinutes() {
@@ -24,11 +24,11 @@ else
 	echo $prayer_data > "/tmp/$current_date.json"
 fi
 prayer_timings=`echo $prayer_data | jq -r '.data.timings'`
-current_seconds=$((`date "+%R" | hoursAndMinutes2Seconds`+`date "+%S"`))
+current_seconds=`date "+%H:%M:%S" | hoursAndMinutes2Seconds`
 # echo $prayer_timings | jq
 fajr_seconds=`echo $prayer_timings | jq -r '.Fajr' | hoursAndMinutes2Seconds`
 sunrise_seconds=`echo $prayer_timings | jq -r '.Sunrise' | hoursAndMinutes2Seconds`
-dhuhr_time=`echo $prayer_timings | jq -r '.Sunrise'`
+dhuhr_time=`echo $prayer_timings | jq -r '.Dhuhr'`
 dhuhr_seconds=`echo $prayer_timings | jq -r '.Dhuhr' | hoursAndMinutes2Seconds`
 dhuhr_time=`echo $prayer_timings | jq -r '.Dhuhr'`
 if [[ $current_seconds -gt $fajr_seconds ]]; then
@@ -47,7 +47,7 @@ if [[ $current_seconds -gt $fajr_seconds ]]; then
 		else
 			if [[ $current_seconds -lt $dhuhr_seconds ]]; then
 				minutes_before_dhuhr=`seconds2Minutes $(($dhuhr_seconds-$current_seconds))`
-				if [[ $minutes_before_dhuhr -lt 20 ]]; then
+				if [[ $minutes_before_dhuhr -gt 20 ]]; then
 					time_before_dhuhr=`seconds2HoursAndMinutes $(($dhuhr_seconds-$current_seconds))`
 					echo "Dhuhr in $dhuhr_time (-$time_before_dhuhr)"
 				else

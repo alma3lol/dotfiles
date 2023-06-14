@@ -211,6 +211,12 @@
       :duration "300ms"
       (music_controls)
     )
+    (revealer
+      :transition "slideright"
+      :reveal prayer_rev
+      :duration "300ms"
+      (prayer)
+    )
   )
 )
 
@@ -222,6 +228,17 @@
     :class "weather"
     (label :text "  ")
     (label :text weather)
+  )
+)
+
+(defwidget prayer []
+  (box
+    :orientation "h"
+    :space-evenly false
+    :halign "center"
+    :class "weather"
+    (label :text "🕋  ")
+    (label :text prayer)
   )
 )
 
