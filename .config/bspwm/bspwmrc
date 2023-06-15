@@ -2,7 +2,7 @@
 
 pgrep -x picom > /dev/null || picom -b --config $HOME/.config/picom/picom.jonaburg.conf &
 feh --bg-fill $HOME/.config/eww/assets/wallpapers/powermenu.jpg
-setxkbmap us,ar -option "grp:alt_shift_toggle" &
+setxkbmap us,ara -option "grp:alt_shift_toggle" &
 pgrep -x mpris-proxy > /dev/null || mpris-proxy &
 pgrep -x sxhkd > /dev/null || sxhkd &
 pgrep -x eww > /dev/null || eww daemon &
