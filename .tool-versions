@@ -2,3 +2,6 @@ lazygit 0.38.2
 neovim 0.9.1
 zellij 0.36.0
 java openjdk-17
+vim 9.0.1633
+elixir 1.14.5-otp-26
+erlang 26.0.1
