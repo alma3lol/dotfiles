@@ -42,6 +42,7 @@ bspc rule -a Microsoft-edge desktop='^3' follow=on
 bspc rule -a Slack desktop='^4' follow=on
 bspc rule -a obs desktop='^5' follow=on
 bspc rule -a TelegramDesktop desktop='^6' follow=on
+bspc rule -a Virt-manager desktop='^7' follow=on
 bspc rule -a Gimp desktop='^8' follow=on
 bspc rule -a Gimp-2.10 desktop='^8' follow=on
 bspc rule -a Blender desktop='^8' follow=on
