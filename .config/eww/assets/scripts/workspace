@@ -2,29 +2,27 @@
 workspaces() {
 	workspaces_arr=(I II III IV V VI VII VIII IX X)
 	workspaces_icons_arr=(         )
-	# Unoccupied
-	un="0"
-result='(box :class "works" :orientation "h" :spacing 5 :space-evenly "false"'
-for i in ${!workspaces_arr[@]}; do
-	w=${workspaces_arr[$i]}
-	o=$(bspc query -D -d .occupied --names | grep -E "^$w$" )
-	f=$(bspc query -D -d focused --names | grep -E "^$w$" )
-	ic=${workspaces_icons_arr[$i]}
-	if [ $f ]; then
-		f=$i
-	fi
-	if [ $o ]; then
-		o=$i
-	fi
-	w_btn=$(cat << EOF
-(button :onclick "bspc desktop -f $w" :class "$un$o$f" "$ic")
-EOF
-)
-	result="$result$w_btn"
-done
-result="$result)"
-echo $result
-
+	result='(box :class "works" :orientation "h" :spacing 5 :space-evenly "false"'
+	for i in ${!workspaces_arr[@]}; do
+		w=${workspaces_arr[$i]}
+		o=$(bspc query -D -d .occupied --names | grep -E "^$w$" )
+		f=$(bspc query -D -d .focused --names | grep -E "^$w$" )
+		ic=${workspaces_icons_arr[$i]}
+		if [ $f ]; then
+			f="1"
+		else
+			f="0"
+		fi
+		if [ $o ]; then
+			o="1"
+		else
+			o="0"
+		fi
+		w_btn="(button :onclick \"bspc desktop -f $w\" :class \"w-btn $o$f$i\" \"$ic\")"
+		result="$result$w_btn"
+	done
+	result="$result)"
+	echo $result
 }
 workspaces
 bspc subscribe desktop node_transfer | while read -r _ ; do

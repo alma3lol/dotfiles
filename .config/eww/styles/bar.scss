@@ -164,61 +164,72 @@ scale trough {
   padding: 2px;
 }
 
-.0,
-.00,
-.01,
-.02,
-.03,
-.04,
-.05,
-.06,
-.07,
-.08,
-.09,
-.000,
-.011,
-.022,
-.033,
-.044,
-.055,
-.066,
-.077,
-.088,
-.099 {
-  margin: 0px 10px 0px 0px;
+.w-btn {
+  margin: 0px 5px;
 }
 
-/* Unoccupied */
-.0 {
+/* Unocupied & unfocused */
+.000,
+.001,
+.002,
+.003,
+.004,
+.005,
+.006,
+.007,
+.008,
+.009 {
   color: #3e424f;
 }
 
 /* Occupied */
-.00,
-.01,
-.02,
-.03,
-.04,
-.05,
-.06,
-.07,
-.08,
-.09 {
+.100,
+.101,
+.102,
+.103,
+.104,
+.105,
+.106,
+.107,
+.108,
+.109 {
   color: $surface-blue;
 }
 
 /* Focused */
-.000,
+.010,
 .011,
-.022,
-.033,
-.044,
-.055,
-.066,
-.077,
-.088,
-.099 {
-  color: $surface-green;
+.012,
+.013,
+.014,
+.015,
+.016,
+.017,
+.018,
+.019 {
+  margin: 0px;
+  padding: 0 10px;
+  border-radius: 5px;
+  background-color: $surface-blue;
+  color: $surface-darkgrey;
+}
+
+/* Focused & Occupied */
+.110,
+.111,
+.112,
+.113,
+.114,
+.115,
+.116,
+.117,
+.118,
+.119 {
+  margin: 0px;
+  padding: 0 10px;
+  border-radius: 5px;
+  background-color: $surface-green;
+  color: $surface-darkgrey;
 }
 // Calendar
 .cal {
@@ -323,10 +334,12 @@ calendar:indeterminate {
 }
 
 .power-btn {
-  border-radius: 0px 5px 5px 0px;
-  margin-right: 0px;
-  padding: 10px 10px 10px 10px;
+  border-radius: 50px;
+  margin: 10px;
+  margin-left: 0;
+  padding: 5px;
   background: $surface-green;
+  color: $surface-darkgrey;
 }
 
 .weather {
