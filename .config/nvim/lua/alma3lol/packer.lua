@@ -21,6 +21,7 @@ M.setup = function()
 		}
 	})
 	require('packer').startup(function(use)
+		use '~/.config/nvim/lua/my_theme'
 		use 'wbthomason/packer.nvim'
 		use 'lambdalisue/battery.vim'
 		use 'preservim/nerdtree'
@@ -191,7 +192,6 @@ M.setup = function()
 			requires = { 'rcarriga/nvim-notify' },
 		}
 		use 'rktjmp/lush.nvim'
-		use '~/.config/nvim/lua/my_theme'
 		use 'ecthelionvi/NeoComposer.nvim'
 		use 'folke/flash.nvim'
 		if M.packer_bootstrap then
