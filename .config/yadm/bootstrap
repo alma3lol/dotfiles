@@ -28,8 +28,7 @@ clone_if_not_exists() {
 	fi
 }
 install_package_if_not_installed() {
-	result=$(which $1 2>&1)
-	if [[ "$result" == *"no $1"* ]]; then
+	if !command -v $1 >/dev/null 2>&1; then
 		`sudo $package_manager_command $1`;
 	fi
 }
@@ -97,6 +96,6 @@ if command -v vim >/dev/null 2>&1; then
 	vim +PlugUpdate +PlugClean +PlugUpdate +qa
 fi
 
-if command -v vim >/dev/null 2>&1; then
+if command -v nvim >/dev/null 2>&1; then
 	nvim --headless '+lua vim.g.alma3lol.packer.setup()' +qa
 fi
