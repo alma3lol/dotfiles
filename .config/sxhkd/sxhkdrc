@@ -3,7 +3,7 @@
 #
 
 # terminal emulator
-super + Return
+super + {KP_Enter,Return}
 	kitty
 
 # Selected/full screenshot
