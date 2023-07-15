@@ -1,64 +1,7 @@
 #!/bin/bash
 
-function hoursAndMinutes2Seconds() {
-	awk -F: '{print ($1 * 3600) + ($2 * 60) + $3}'
-}
-
-function seconds2HoursAndMinutes() {
-	date -ud "@$1" "+%H:%M"
-}
-
-function seconds2Minutes() {
-	echo $(($1/60%60))
-}
-
-current_date=`date "+%d-%m-%+4Y"`
-if [[ -f "/tmp/$current_date.json" ]]; then
-	prayer_data=`cat "/tmp/$current_date.json"`
+if command -v node >/dev/null 2>&1; then
+	node "$PWD/aladhan.mjs"
 else
-	location_data=`curl -s http://ip-api.com/json`
-	country=`echo $location_data | jq -r '.countryCode'`
-	city=`echo $location_data | jq -r '.city' | sed 's/ /%20/g'`
-	aladhan_url=`echo http://api.aladhan.com/v1/timingsByCity/$current_date?city=$city\&country=$country\&method=8`
-	prayer_data=`curl -sL $aladhan_url`
-	echo $prayer_data > "/tmp/$current_date.json"
-fi
-prayer_timings=`echo $prayer_data | jq -r '.data.timings'`
-current_seconds=`date "+%H:%M:%S" | hoursAndMinutes2Seconds`
-# echo $prayer_timings | jq
-fajr_seconds=`echo $prayer_timings | jq -r '.Fajr' | hoursAndMinutes2Seconds`
-sunrise_seconds=`echo $prayer_timings | jq -r '.Sunrise' | hoursAndMinutes2Seconds`
-dhuhr_time=`echo $prayer_timings | jq -r '.Dhuhr'`
-dhuhr_seconds=`echo $prayer_timings | jq -r '.Dhuhr' | hoursAndMinutes2Seconds`
-dhuhr_time=`echo $prayer_timings | jq -r '.Dhuhr'`
-if [[ $current_seconds -gt $fajr_seconds ]]; then
-	if [[ $current_seconds -lt $sunrise_seconds ]]; then
-		minutes_before_sunrise=`seconds2Minutes $(($sunrise_seconds-$current_seconds))`
-		if [[ $minutes_before_sunrise -lt 21 ]]; then
-			echo "Sunrise in $sunrise_time (-$minutes_before_sunrise minutes)"
-		else
-			time_before_sunrise=`seconds2HoursAndMinutes $(($sunrise_seconds-$current_seconds))`
-			echo "Sunrise in $sunrise_time (-$time_before_sunrise)"
-		fi
-	else
-		minutes_after_sunrise=`seconds2Minutes $(($current_seconds-$sunrise_seconds))`
-		if [[ $minutes_after_sunrise -lt 21 ]]; then
-			echo "Past Sunrise (+$minutes_after_sunrise minutes)"
-		else
-			if [[ $current_seconds -lt $dhuhr_seconds ]]; then
-				minutes_before_dhuhr=`seconds2Minutes $(($dhuhr_seconds-$current_seconds))`
-				if [[ $minutes_before_dhuhr -gt 20 ]]; then
-					time_before_dhuhr=`seconds2HoursAndMinutes $(($dhuhr_seconds-$current_seconds))`
-					echo "Dhuhr in $dhuhr_time (-$time_before_dhuhr)"
-				else
-					echo "Dhuhr in $dhuhr_time (-$minutes_before_dhuhr minutes)"
-				fi
-			else
-				minutes_after_dhuhr=`seconds2Minutes $(($current_seconds-$dhuhr_seconds))`
-				echo "Past Dhuhr (+$minutes_after_dhuhr minutes)"
-			fi
-		fi
-	fi
-else
-	echo "Past Isha"
+	echo "You need to install NodeJS & fetch node modules"
 fi

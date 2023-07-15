@@ -1,0 +1,13 @@
+{
+  "name": "scripts",
+  "version": "1.0.0",
+  "description": "Scripts folder that does the functionality with JS",
+  "main": "index.js",
+  "scripts": {},
+  "author": "Omar Almalol",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^1.4.0",
+    "moment": "^2.29.4"
+  }
+}
