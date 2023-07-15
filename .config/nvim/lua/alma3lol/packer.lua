@@ -194,6 +194,7 @@ M.setup = function()
 		use 'rktjmp/lush.nvim'
 		use 'ecthelionvi/NeoComposer.nvim'
 		use 'folke/flash.nvim'
+		use { 'eraserhd/parinfer-rust', run = ':!cargo build --release' }
 		if M.packer_bootstrap then
 			require('packer').sync()
 		end
