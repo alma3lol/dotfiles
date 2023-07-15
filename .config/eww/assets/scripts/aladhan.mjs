@@ -39,11 +39,9 @@ const times = [
 	"Isha",
 	"Firstthird",
 ];
-let last_past_prayer = "";
 for (var i = 0; i < times.length; i++) {
 	const time = moment(prayer_timings[times[i]], "HH:mm");
 	if (now > time) {
-		last_past_prayer = times[i];
 		if (now <= time.clone().add(20, "m")) {
 			console.log(
 				`Past ${times[i]} (+${now.diff(time, "minutes")} minutes)`
@@ -61,6 +59,6 @@ for (var i = 0; i < times.length; i++) {
 				`${times[i]} in (-${diff.format("HH")}:${diff.format("mm")})`
 			);
 		}
-		if (last_past_prayer === times[i - 1]) break;
+		break;
 	}
 }
