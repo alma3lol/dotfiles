@@ -8,5 +8,5 @@ layout {
     tab focus=true
     tab
 }
-session_name "Kast"
+session_name "Kastly"
 attach_to_session true
