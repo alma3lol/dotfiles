@@ -48,6 +48,7 @@ for (var i = 0; i < times.length; i++) {
 			console.log(
 				`Past ${times[i]} (+${now.diff(time, "minutes")} minutes)`
 			);
+			break;
 		}
 	} else {
 		if (time <= now.clone().add(20, "m")) {
