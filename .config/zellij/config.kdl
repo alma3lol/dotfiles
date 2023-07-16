@@ -260,6 +260,8 @@ keybinds clear-defaults=true {
         bind "x" { SwitchToMode "normal"; CloseFocus; }
         bind "X" { SwitchToMode "normal"; CloseTab; }
         bind "d" { SwitchToMode "normal"; Detach; }
+        bind "f" { SwitchToMode "normal"; ToggleFloatingPanes; }
+        bind "F" { SwitchToMode "normal"; TogglePaneEmbedOrFloating; }
     }
 }
 
