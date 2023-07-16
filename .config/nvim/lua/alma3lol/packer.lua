@@ -36,7 +36,6 @@ M.setup = function()
 		use 'szw/vim-maximizer'
 		use 'sheerun/vim-polyglot'
 		use 'jremmen/vim-ripgrep'
-		use 'tpope/vim-surround'
 		use 'mg979/vim-visual-multi'
 		use 'mhinz/vim-signify'
 		use 'tpope/vim-rhubarb'
@@ -195,6 +194,7 @@ M.setup = function()
 		use 'ecthelionvi/NeoComposer.nvim'
 		use 'folke/flash.nvim'
 		use { 'eraserhd/parinfer-rust', run = ':!cargo build --release' }
+		use 'kylechui/nvim-surround'
 		if M.packer_bootstrap then
 			require('packer').sync()
 		end
