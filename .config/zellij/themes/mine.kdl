@@ -1,7 +1,7 @@
 themes {
 	mine {
 		fg "#3f3f3f" // status bar fg & inactive tab bar bg
-		bg "#00ffff" // Surface2
+		bg "#000000" // Surface2
 		red "#fa5050" // status shortcut bar text
 		green "#89ca78" // active tab bg
 		blue "#89cafa"
