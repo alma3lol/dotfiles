@@ -22,6 +22,8 @@ keybinds clear-defaults=true {
     }
     locked {
         bind "Alt l" { SwitchToMode "normal"; }
+        bind "Alt 1" { GoToPreviousTab; }
+        bind "Alt 2" { GoToNextTab; }
     }
     pane {
         bind "Alt l" { SwitchToMode "locked"; }
