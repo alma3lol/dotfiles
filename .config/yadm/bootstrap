@@ -1,9 +1,11 @@
 #!/bin/bash
 
 # Variables
+CWD=`pwd`
 ZSH="$HOME/.oh-my-zsh"
 ZSH_CUSTOM="$HOME/zsh"
 RANGER="$HOME/.config/ranger"
+ZELLIJ_CONFIG="$HOME/.config/zellij"
 package_manager_command=''
 
 # Checks
@@ -73,6 +75,7 @@ install_package_if_not_installed openrgb
 # Dirs
 mkdir_if_not_exists $ZSH_CUSTOM/plugins
 mkdir_if_not_exists $RANGER/plugins
+mkdir_if_not_exists $ZELLIJ_CONFIG/plugins
 
 # ZSH plugins
 clone_if_not_exists https://github.com/zsh-users/zsh-syntax-highlighting $ZSH_CUSTOM/plugins/zsh-syntax-highlighting
@@ -87,6 +90,21 @@ clone_if_not_exists https://github.com/Aloxaf/fzf-tab $ZSH_CUSTOM/plugins/fzf-ta
 # Ranger plugins
 clone_if_not_exists https://github.com/SL-RU/ranger_udisk_menu.git $RANGER/ranger_udisk_menu
 download_if_not_exists https://raw.githubusercontent.com/gsamokovarov/jump-ranger/master/jump.py $RANGER/plugins/jump.py
+
+# Zellij
+
+# Plugins
+clone_if_not_exists https://github.com/alma3lol/zellij-bar $ZELLIJ_CONFIG/plugins/zellij-bar
+
+# Build
+if command -v cargo >/dev/null 2>&1; then
+	cd $ZELLIJ_CONFIG/plugins/zellij-bar
+	rustup target add wasm32-wasi
+	cargo build --release
+	cp target/wasm32-wasi/release/zellij-bar.wasm .
+	cd $CWD
+fi
+
 
 # Oh-my-zsh
 sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
