@@ -25,7 +25,7 @@ M.SourceCurrentFile = function()
 end
 
 M.QuickFixToggle = function()
-	for i in vim.fn.range(1, vim.fn.winnr('$')) do
+	for i = 1, vim.fn.winnr('$') do
 		local bnum = vim.fn.winbufnr(i)
 		if vim.fn.getbufvar(bnum, '&buftype') == 'quickfix' then
 			vim.cmd [[ cclose ]]
@@ -83,7 +83,8 @@ M.GenerateCTagsForCurrentFile = function()
 			vim.fn.shellescape(vim.env.CTAGS_DIR .. M.UrlEncode(vim.fn.expand('%:p')), 1) ..
 			' --options=' .. vim.fn.shellescape(currentProjectCTagsFile, 1) .. ' "%"')
 	else
-		vim.execute("!ctags -f " .. vim.fn.shellescape(vim.env.CTAGS_DIR .. M.UrlEncode(vim.fn.expand('%:p')), 1) .. ' "%"')
+		vim.execute("!ctags -f " ..
+			vim.fn.shellescape(vim.env.CTAGS_DIR .. M.UrlEncode(vim.fn.expand('%:p')), 1) .. ' "%"')
 	end
 end
 
