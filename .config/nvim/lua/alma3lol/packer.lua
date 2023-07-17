@@ -195,6 +195,8 @@ M.setup = function()
 		use 'folke/flash.nvim'
 		use { 'eraserhd/parinfer-rust', run = ':!cargo build --release' }
 		use 'kylechui/nvim-surround'
+		use { 'kevinhwang91/nvim-bqf', ft = 'qf' }
+		use { 'junegunn/fzf', run = 'fzf#install()' }
 		if M.packer_bootstrap then
 			require('packer').sync()
 		end
