@@ -1,6 +1,7 @@
 -- Credits: ThePrimeagen
 
 local actions = require('telescope.actions')
+local action_layout = require("telescope.actions.layout")
 require('telescope').setup {
 	defaults = {
 		vimgrep_arguments = {
@@ -37,7 +38,11 @@ require('telescope').setup {
 						actions.select_default(prompt_bufnr)
 					end
 				end,
+				["<M-p>"] = action_layout.toggle_preview
 			},
+			n = {
+				["<M-p>"] = action_layout.toggle_preview
+			}
 		}
 	},
 	extensions = {
