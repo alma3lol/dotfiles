@@ -117,3 +117,6 @@ fi
 if command -v nvim >/dev/null 2>&1; then
 	nvim --headless '+lua vim.g.alma3lol.packer.setup()' +qa
 fi
+
+# BSPWM dual monitor
+sudo echo "ACTION==\"change\", SUBSYSTEM==\"drm\", RUN+=\"/bin/su $USER --command='systemctl --user start bspwm-reload.service'\"" > /etc/udev/rules.d/99-reload-monitor.rules
