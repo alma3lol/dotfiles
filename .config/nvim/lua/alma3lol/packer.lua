@@ -197,6 +197,7 @@ M.setup = function()
 		use 'kylechui/nvim-surround'
 		use { 'kevinhwang91/nvim-bqf', ft = 'qf' }
 		use { 'junegunn/fzf', run = 'fzf#install()' }
+		use "sindrets/diffview.nvim"
 		if M.packer_bootstrap then
 			require('packer').sync()
 		end
