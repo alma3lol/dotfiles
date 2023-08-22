@@ -12,6 +12,7 @@ numlockx on &
 xset -dpms &
 xset s off &
 nm-applet &
+xinput set-prop 11 352 0
 
 bspc config split_ratio               0.52
 bspc config border_width              2
