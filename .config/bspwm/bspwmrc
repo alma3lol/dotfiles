@@ -56,11 +56,14 @@ bspc rule -a rdesktop state=floating
 
 INTERNAL_MONITOR="eDP-1"
 EXTERNAL_MONITOR="DP-1"
+if [[ `xrandr -q | grep "^HDMI-1-0 connected"` ]]; then
+  EXTERNAL_MONITOR="HDMI-1-0"
+fi
 # on first load setup default workspaces
 if [[ "$1" = 0 ]]; then
   if [[ $(xrandr -q | grep "^${EXTERNAL_MONITOR} connected") ]]; then
-    bspc monitor "$EXTERNAL_MONITOR" -d I II III IV V
-    bspc monitor "$INTERNAL_MONITOR" -d VI VII VIII IX X
+    bspc monitor "$EXTERNAL_MONITOR" -d VI VII VIII IX X
+    bspc monitor "$INTERNAL_MONITOR" -d I II III IV V
     bspc wm -O "$EXTERNAL_MONITOR" "$INTERNAL_MONITOR"
   else
     bspc monitor "$INTERNAL_MONITOR" -d I II III IV V VI VII VIII IX X
@@ -77,7 +80,7 @@ monitor_add() {
   bspc desktop Desktop --remove
 
   # reorder monitors
-  bspc wm -O "$EXTERNAL_MONITOR" "$INTERNAL_MONITOR"
+  bspc wm -O "$INTERNAL_MONITOR" "$EXTERNAL_MONITOR"
 }
 
 monitor_remove() {
