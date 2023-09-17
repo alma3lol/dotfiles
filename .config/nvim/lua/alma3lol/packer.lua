@@ -44,7 +44,7 @@ M.setup = function()
 		use 'mhinz/vim-startify'
 		use 'kevinoid/vim-jsonc'
 		use 'voldikss/vim-floaterm'
-		use 'jiangmiao/auto-pairs'
+		use 'windwp/nvim-autopairs'
 		use 'mattn/emmet-vim'
 		use 'easymotion/vim-easymotion'
 		use 'preservim/tagbar'
@@ -52,7 +52,7 @@ M.setup = function()
 		use { 'Shougo/denite.nvim', run = ':UpdateRemotePlugins' }
 		use 'nvim-lua/popup.nvim'
 		use 'nvim-lua/plenary.nvim'
-		use 'nvim-telescope/telescope.nvim'
+		use { 'nvim-telescope/telescope.nvim', requires = { { 'nvim-lua/plenary.nvim' } } }
 		use 'nvim-telescope/telescope-file-browser.nvim'
 		use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
 		use 'nvim-telescope/telescope-symbols.nvim'
