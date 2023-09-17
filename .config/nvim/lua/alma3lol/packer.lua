@@ -85,7 +85,7 @@ M.setup = function()
 		use 'theHamsta/nvim-dap-virtual-text'
 		use 'williamboman/nvim-lsp-installer'
 		use 'editorconfig/editorconfig-vim'
-		use { 'akinsho/nvim-bufferline.lua', tag = 'v3.*' }
+		use { 'akinsho/bufferline.nvim', tag = "*", requires = 'nvim-tree/nvim-web-devicons' }
 		use 'lewis6991/gitsigns.nvim'
 		use 'akinsho/nvim-toggleterm.lua'
 		-- use 'ray-x/aurora'
@@ -144,7 +144,7 @@ M.setup = function()
 		use 'natecraddock/workspaces.nvim'
 		use 'tpope/vim-abolish'
 		use 'nvim-telescope/telescope-ui-select.nvim'
-		use { 'prettier/vim-prettier', run = 'yarn install --frozen-lockfile --production' }
+		use { 'adnan007d/vim-prettier', run = 'yarn install --frozen-lockfile --production' }
 		use { 'phaazon/mind.nvim', branch = 'v2.2' }
 		use 'pantharshit00/vim-prisma'
 		-- use 'haishanh/night-owl.vim'

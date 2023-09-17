@@ -16,7 +16,7 @@ return function()
 	vim.opt.mouse = 'a'
 	vim.opt.modelines = 0
 	vim.opt.wrap = true
-	vim.opt.pastetoggle = '<F2>'
+	-- vim.opt.pastetoggle = '<F2>'
 	vim.opt.formatoptions = 'tcqrn1'
 	vim.opt.errorbells = false
 	vim.opt.autoindent = true
