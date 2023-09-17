@@ -11,7 +11,7 @@ layout {
             cwd "packages/backend"
         }
     }
-    tab name="Code (fronend)" focus=true {
+    tab name="Code (fronend)" {
         pane borderless=true {
             command "nvim"
             cwd "packages/frontend"
