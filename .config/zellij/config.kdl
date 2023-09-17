@@ -1,6 +1,6 @@
 keybinds clear-defaults=true {
     normal {
-        bind "Alt l" { SwitchToMode "locked"; }
+        bind "Insert" { SwitchToMode "locked"; }
         bind "Ctrl p" { SwitchToMode "pane"; }
         bind "Alt R" { SwitchToMode "resize"; }
         bind "Ctrl t" { SwitchToMode "tab"; }
@@ -21,7 +21,7 @@ keybinds clear-defaults=true {
         bind "Alt -" { Resize "Decrease"; }
     }
     locked {
-        bind "Alt l" { SwitchToMode "normal"; }
+        bind "Insert" { SwitchToMode "normal"; }
         bind "Alt 1" { GoToPreviousTab; }
         bind "Alt 2" { GoToNextTab; }
     }
