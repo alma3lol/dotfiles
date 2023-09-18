@@ -3,6 +3,7 @@ vim.env.CWD = vim.fn.expand("<sfile>:p:h")
 vim.g.alma3lol = {
 	pluginsOrder = {
 		"alternate",
+		"autopairs",
 		"autosession",
 		"bufferline",
 		"chafa",
@@ -121,6 +122,7 @@ vim.g.alma3lol = {
 	},
 	plugins = {
 		alternate = require("alma3lol.plugins.alternate"),
+		autopairs = require("alma3lol.plugins.autopairs"),
 		autosession = require("alma3lol.plugins.autosession"),
 		bufferline = require("alma3lol.plugins.bufferline"),
 		chafa = require("alma3lol.plugins.chafa"),
