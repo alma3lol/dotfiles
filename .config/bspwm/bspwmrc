@@ -56,6 +56,9 @@ bspc rule -a "Fig:*:Fig Dashboard" manage=on border=on state=tiled
 bspc rule -a rdesktop state=floating
 
 INTERNAL_MONITOR="eDP-1"
+if [[ `hostname` == "AlMA3lOl-PC" ]]; then
+  INTERNAL_MONITOR="DP-0"
+fi
 EXTERNAL_MONITOR="DP-1"
 if [[ `xrandr -q | grep "^HDMI-1-0 connected"` ]]; then
   EXTERNAL_MONITOR="HDMI-1-0"
