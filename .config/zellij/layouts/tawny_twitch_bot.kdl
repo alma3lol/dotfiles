@@ -23,6 +23,9 @@ layout {
             args "start:dev"
         }
     }
+    tab name="Terminal (root)" {
+        pane { }
+    }
 }
 session_name "Tawny Twitch Bot"
 attach_to_session true
