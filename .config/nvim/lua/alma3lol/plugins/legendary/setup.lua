@@ -18,6 +18,13 @@ require('legendary').setup({
 					end,
 					description = 'Live grep current buffer\'s directory'
 				},
+				{
+					':WriteWithoutAutocmd',
+					function()
+						vim.cmd(":noau w!")
+					end,
+					description = 'Writes the changes to the file without autocmds running'
+				}
 			}
 		},
 		{
