@@ -65,6 +65,7 @@ vim.g.alma3lol = {
 		"substitute",
 		"nvim_surround",
 		"symbols_outline",
+		"symbol_usage",
 		"tagbar",
 		"telescope",
 		"terminal",
@@ -107,7 +108,21 @@ vim.g.alma3lol = {
 	bindings = require("alma3lol.bindings"),
 	functions = require("alma3lol.functions"),
 	config = require("alma3lol.config"),
-	packer = require("alma3lol.packer"),
+	packer = {
+		ensure_packer = function()
+			local fn = vim.fn
+			local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
+			if fn.empty(fn.glob(install_path)) > 0 then
+				fn.system({ 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path })
+				vim.cmd [[packadd packer.nvim]]
+				return true
+			end
+			return false
+		end,
+		setup = function()
+			require('alma3lol.packer');
+		end
+	},
 	builtins = {
 		buffers = require("alma3lol.builtins.buffers"),
 		files = require("alma3lol.builtins.files"),
@@ -184,6 +199,7 @@ vim.g.alma3lol = {
 		substitute = require("alma3lol.plugins.substitute"),
 		nvim_surround = require("alma3lol.plugins.nvim-surround"),
 		symbols_outline = require("alma3lol.plugins.symbols-outline"),
+		symbol_usage = require("alma3lol.plugins.symbol-usage"),
 		tagbar = require("alma3lol.plugins.tagbar"),
 		telescope = require("alma3lol.plugins.telescope"),
 		terminal = require("alma3lol.plugins.terminal"),
