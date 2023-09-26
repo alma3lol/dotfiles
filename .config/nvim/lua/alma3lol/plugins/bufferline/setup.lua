@@ -99,25 +99,25 @@ return function()
 						-- },
 						-- auto_close = true,
 						matcher = function(buf)
-							return buf.filename:match('%.model.ts') or buf.path:match('%/models/index.ts')
+							return buf.path:match('%.model.ts') or buf.path:match('%/models/index.ts')
 						end
 					},
 					{
 						name = 'Services',
 						matcher = function(buf)
-							return buf.filename:match('%.service.ts') or buf.path:match('%/services/index.ts')
+							return buf.path:match('%.service.ts') or buf.path:match('%/services/index.ts')
 						end
 					},
 					{
 						name = 'Hooks',
 						matcher = function(buf)
-							return buf.filename:match('%.hook.ts') or buf.path:match('%hooks/index.ts')
+							return buf.path:match('%.hook.ts') or buf.path:match('%hooks/index.ts')
 						end
 					},
 					{
 						name = 'Views',
 						matcher = function(buf)
-							return buf.filename:match('%.view.tsx') or buf.path:match('%views/index.ts')
+							return buf.path:match('%.view.tsx') or buf.path:match('%views/index.ts')
 						end
 					},
 					groups.builtin.ungrouped,

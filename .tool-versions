@@ -1,10 +1,13 @@
 lazygit 0.38.2
-neovim 0.9.1
+neovim nightly
 zellij 0.37.2
 java openjdk-17
 vim 9.0.1633
 elixir 1.14.5-otp-25
 erlang 25.1.2
 nodejs 20.3.0
-pnpm 8.6.2
+pnpm 8.7.6
 rust 1.71.0
+yarn 1.22.19
+bun 1.0.2
+fx 30.0.2

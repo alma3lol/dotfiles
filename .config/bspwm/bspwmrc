@@ -59,7 +59,6 @@ INTERNAL_MONITOR=`xrandr -q | awk '{if (\$2 == "connected") print \$1}' | head -
 INTERNAL_MONITOR_RESOLUTION=`xrandr -q | grep -A1 "$INTERNAL_MONITOR" | tail -n 1 | awk '{print \$1}'`
 EXTERNAL_MONITOR=`xrandr -q | awk '{if (\$2 == "connected") print \$1}' | head -n 2 | tail -n 1`
 EXTERNAL_MONITOR_RESOLUTION=`xrandr -q | grep -A1 "$EXTERNAL_MONITOR" | tail -n 1 | awk '{print \$1}'`
-
 # on first load setup default workspaces
 if [[ "$1" = 0 ]]; then
   if [[ "$INTERNAL_MONITOR" != "$EXTERNAL_MONITOR" ]]; then

@@ -1,4 +1,5 @@
 return function()
+	vim.g.alma3lol.bindings.nnoremap("<leader>nw", "<cmd>noau w!<CR>")
 	vim.g.alma3lol.bindings.nnoremap("<C-k>w", "<cmd>bufdo bd<CR>")
 	vim.g.alma3lol.bindings.nnoremap("<leader>fiw", "<cmd>vimgrep <C-R>=expand(\"<cword>\")<CR> %<CR>")
 	vim.g.alma3lol.bindings.nnoremap("<leader><leader>fm", "<cmd>%s/\r//g<CR>")
