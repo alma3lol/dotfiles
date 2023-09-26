@@ -55,16 +55,16 @@ bspc rule -a Fig state=floating layer=above manage=off border=off
 bspc rule -a "Fig:*:Fig Dashboard" manage=on border=on state=tiled
 bspc rule -a rdesktop state=floating
 
-INTERNAL_MONITOR="eDP-1"
-EXTERNAL_MONITOR="DP-1"
-if [[ `xrandr -q | grep "^HDMI-1-0 connected"` ]]; then
-  EXTERNAL_MONITOR="HDMI-1-0"
-fi
+INTERNAL_MONITOR=`xrandr -q | awk '{if (\$2 == "connected") print \$1}' | head -n 1`
+INTERNAL_MONITOR_RESOLUTION=`xrandr -q | grep -A1 "$INTERNAL_MONITOR" | tail -n 1 | awk '{print \$1}'`
+EXTERNAL_MONITOR=`xrandr -q | awk '{if (\$2 == "connected") print \$1}' | head -n 2 | tail -n 1`
+EXTERNAL_MONITOR_RESOLUTION=`xrandr -q | grep -A1 "$EXTERNAL_MONITOR" | tail -n 1 | awk '{print \$1}'`
+
 # on first load setup default workspaces
 if [[ "$1" = 0 ]]; then
-  if [[ $(xrandr -q | grep "^${EXTERNAL_MONITOR} connected") ]]; then
-    bspc monitor "$EXTERNAL_MONITOR" -d VI VII VIII IX X
-    bspc monitor "$INTERNAL_MONITOR" -d I II III IV V
+  if [[ "$INTERNAL_MONITOR" != "$EXTERNAL_MONITOR" ]]; then
+    bspc monitor "$EXTERNAL_MONITOR" -d I II III IV V
+    bspc monitor "$INTERNAL_MONITOR" -d VI VII VIII IX X
     bspc wm -O "$EXTERNAL_MONITOR" "$INTERNAL_MONITOR"
   else
     bspc monitor "$INTERNAL_MONITOR" -d I II III IV V VI VII VIII IX X
@@ -100,16 +100,16 @@ monitor_remove() {
   bspc monitor "$INTERNAL_MONITOR" -o I II III IV V VI VII VIII IX X
 }
 
-if [[ $(xrandr -q | grep "^${EXTERNAL_MONITOR} connected") ]]; then
+if [[ "$INTERNAL_MONITOR" != "$EXTERNAL_MONITOR" ]]; then
   # set xrandr rules for docked setup
-  xrandr --output "$INTERNAL_MONITOR" --mode 1920x1080 --pos 0x0 --rotate normal --output "$EXTERNAL_MONITOR" --primary --mode 1024x768 --pos 1920x0 --rotate normal
+  xrandr --output "$INTERNAL_MONITOR" --mode $INTERNAL_MONITOR_RESOLUTION --pos 0x0 --rotate normal --output "$EXTERNAL_MONITOR" --primary --mode $EXTERNAL_MONITOR_RESOLUTION --pos 1920x0 --rotate normal
   if [[ $(bspc query -D -m "${EXTERNAL_MONITOR}" | wc -l) -ne 5 ]]; then
     monitor_add
   fi
   bspc wm -O "$EXTERNAL_MONITOR" "$INTERNAL_MONITOR"
 else
   # set xrandr rules for mobile setup
-  xrandr --output "$INTERNAL_MONITOR" --primary --mode 1920x1080 --pos 0x0 --rotate normal --output "$EXTERNAL_MONITOR" --off
+  xrandr --output "$INTERNAL_MONITOR" --primary --mode $INTERNAL_MONITOR_RESOLUTION --pos 0x0 --rotate normal --output "$EXTERNAL_MONITOR" --off
   if [[ $(bspc query -D -m "${INTERNAL_MONITOR}" | wc -l) -ne 10 ]]; then
     monitor_remove
   fi
