@@ -25,8 +25,14 @@
              :height "30px")
   (wifi_status))
 
-(defwidget workspaces []
-  (literal :content workspace))
+(defwidget workspaces0 []
+  (literal :content workspaces0))
+
+(defwidget workspaces1 []
+  (literal :content workspaces1))
+
+(defwidget workspaces2 []
+  (literal :content workspaces2))
 
 (defwidget bat []
   (box :class "bat_module" :vexpand "false" :hexpand "false"
@@ -129,13 +135,37 @@
     (clock_module)
     (power)))
 
-(defwidget right []
+(defwidget right0 []
   (box
     :orientation "h"
     :space-evenly false
     :halign "start"
     :class "right_modules"
-    (workspaces)
+    (workspaces0)
+    (sep_keyboard)
+    (keyboard)
+    (sep)
+    (wifi_speed)))
+
+(defwidget right1 []
+  (box
+    :orientation "h"
+    :space-evenly false
+    :halign "start"
+    :class "right_modules"
+    (workspaces1)
+    (sep_keyboard)
+    (keyboard)
+    (sep)
+    (wifi_speed)))
+
+(defwidget right2 []
+  (box
+    :orientation "h"
+    :space-evenly false
+    :halign "start"
+    :class "right_modules"
+    (workspaces2)
     (sep_keyboard)
     (keyboard)
     (sep)
@@ -204,15 +234,32 @@
     (button :onclick "playerctl next" "")
     (label :text song :limit-width 50)))
 
-(defwidget bar_1 []
+(defwidget bar0 []
   (box
     :class "bar_class"
     :orientation "h"
-    (right)
+    (right0)
     (center)
     (left)))
 
-(defwindow bar
+(defwidget bar1 []
+  (box
+    :class "bar_class"
+    :orientation "h"
+    (right1)
+    (center)
+    (left)))
+
+(defwidget bar2 []
+  (box
+    :class "bar_class"
+    :orientation "h"
+    (right2)
+    (center)
+    (left)))
+
+(defwindow bar0
+  :monitor 0
   :geometry (geometry
              :x "0%"
              :y "5px"
@@ -222,7 +269,33 @@
   :stacking "bg"
   :wm-ignore true
   :windowtype "dock"
-  (bar_1))
+  (bar0))
+
+(defwindow bar1
+  :monitor 1
+  :geometry (geometry
+             :x "0%"
+             :y "5px"
+             :width "99%"
+             :height "50px"
+             :anchor "top center")
+  :stacking "bg"
+  :wm-ignore true
+  :windowtype "dock"
+  (bar1))
+
+(defwindow bar2
+  :monitor 2
+  :geometry (geometry
+             :x "0%"
+             :y "5px"
+             :width "99%"
+             :height "50px"
+             :anchor "top center")
+  :stacking "bg"
+  :wm-ignore true
+  :windowtype "dock"
+  (bar2))
 
 (defwidget system []
   (box :class "sys_win" :orientation "v" :space-evenly "false" :hexpand "false" :vexpand "false" :spacing 0

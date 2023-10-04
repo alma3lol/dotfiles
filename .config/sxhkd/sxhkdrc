@@ -122,10 +122,10 @@ super + alt + ctrl + {h,j,k,l}
 
 # move to prev/next desktop
 super + {Left,Right}
-	bspc desktop -f {prev,next}.local
+	bspc desktop -f {prev,next}
 
 super + alt + {Left,Right}
-	bspc node -d {prev,next}.local -f
+	bspc node -d {prev,next} -f
 
 super + ctrl + {Left,Right}
 	bspc desktop -f {prev,next}.occupied

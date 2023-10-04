@@ -1,6 +1,12 @@
 #!/bin/sh
 workspaces() {
 	workspaces_arr=(I II III IV V VI VII VIII IX X)
+	if [[ $1 == 1 ]]; then
+		workspaces_arr=(XI XII XIII XIV XV XVI XVII XVIII XIX XX)
+	fi
+	if [[ $1 == 2 ]]; then
+		workspaces_arr=(XXI XXII XXIII XXIV XXV XXVI XXVII XXVIII XXIX XXX)
+	fi
 	workspaces_icons_arr=(         )
 	result='(box :class "works" :orientation "h" :spacing 5 :space-evenly "false"'
 	for i in ${!workspaces_arr[@]}; do
@@ -24,7 +30,7 @@ workspaces() {
 	result="$result)"
 	echo $result
 }
-workspaces
+workspaces $1
 bspc subscribe desktop node_transfer | while read -r _ ; do
-workspaces
+workspaces $1
 done

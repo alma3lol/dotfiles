@@ -7,7 +7,7 @@ pgrep -x mpris-proxy > /dev/null || mpris-proxy &
 pgrep -x sxhkd > /dev/null || sxhkd &
 pgrep -x eww > /dev/null || eww daemon &
 pgrep -x dunst > /dev/null || dunst &
-/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
+/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 2>/dev/null &
 numlockx on &
 xset -dpms &
 xset s off &
@@ -26,11 +26,15 @@ for side in top right bottom left ; do
 	bspc config ${side}_padding 5
 done
 
+if [[ `eww windows | grep "*bar"` != "" ]]; then
+  bspc config top_padding 60
+fi
+
 bspc config normal_border_color         "#51576d"
 bspc config active_border_color         "#9ece6a"
 bspc config focused_border_color        "#9ece6a"
 bspc config presel_feedback_color       "#d5a4b5"
-bspc config urgent_border_color         "#d5a4b5"
+# bspc config urgent_border_color         "#d5a4b5"
 
 bspc config external_rules_command "$HOME/.config/bspwm/external_rules"
 
@@ -57,59 +61,90 @@ bspc rule -a rdesktop state=floating
 
 INTERNAL_MONITOR=`xrandr -q | awk '{if (\$2 == "connected") print \$1}' | head -n 1`
 INTERNAL_MONITOR_RESOLUTION=`xrandr -q | grep -A1 "$INTERNAL_MONITOR" | tail -n 1 | awk '{print \$1}'`
-EXTERNAL_MONITOR=`xrandr -q | awk '{if (\$2 == "connected") print \$1}' | head -n 2 | tail -n 1`
-EXTERNAL_MONITOR_RESOLUTION=`xrandr -q | grep -A1 "$EXTERNAL_MONITOR" | tail -n 1 | awk '{print \$1}'`
-# on first load setup default workspaces
-if [[ "$1" = 0 ]]; then
-  if [[ "$INTERNAL_MONITOR" != "$EXTERNAL_MONITOR" ]]; then
-    bspc monitor "$EXTERNAL_MONITOR" -d I II III IV V
-    bspc monitor "$INTERNAL_MONITOR" -d VI VII VIII IX X
-    bspc wm -O "$EXTERNAL_MONITOR" "$INTERNAL_MONITOR"
-  else
-    bspc monitor "$INTERNAL_MONITOR" -d I II III IV V VI VII VIII IX X
-  fi
-fi
 
 monitor_add() {
-  # Move first 5 desktops to external monitor
-  for desktop in $(bspc query -D --names -m "$INTERNAL_MONITOR" | sed 5q); do
-    bspc desktop "$desktop" --to-monitor "$EXTERNAL_MONITOR"
-  done
+  monitors_count=`bspc query -M | wc -l`
+  if [[ `bspc query -M --names | grep "$1"` == "$1" ]]; then
+    monitors_count=$monitors_count-1;
+  fi
+  if [[ $monitors_count -gt 2 ]]; then
+    notify-send -t 3000 BSPWM "You already have more than 2 monitors"
+    return;
+  fi
+  MONITORS_ORDER="$INTERNAL_MONITOR $1"
+  desktops="XI XII XIII XIV XV XVI XVII XVIII XIX XX"
+  if [[ $monitors_count -gt 1 ]]; then
+    desktops="XXI XXII XXIII XXIV XXV XXVI XXVII XXVIII XXIX XXX"
+    SECOND_MONITOR=`bspc query -M --names | tail -n 1`
+    MONITORS_ORDER="$INTERNAL_MONITOR $SECOND_MONITOR $1"
+  fi
+  bspc monitor "$1" -d $desktops
 
   # Remove default desktop created by bspwm
   bspc desktop Desktop --remove
 
+
   # reorder monitors
-  bspc wm -O "$INTERNAL_MONITOR" "$EXTERNAL_MONITOR"
+  bspc wm -O "$MONITORS_ORDER"
 }
 
 monitor_remove() {
   # Add default temp desktop because a minimum of one desktop is required per monitor
-  bspc monitor "$EXTERNAL_MONITOR" -a Desktop
+  if [[ `bspc query -D --names -m "$1" | grep "Desktop"` == "Desktop" ]]; then bspc monitor "$1" -a Desktop; fi
 
-  # Move all desktops except the last default desktop to internal monitor
-  for desktop in $(bspc query -D -m "$EXTERNAL_MONITOR");	do
+  for desktop in $(bspc query -D --names -m "$1"); do
+    to_desktop="I"
+    case "$desktop" in
+      XII | XXII) to_desktop="II";;
+      XIII | XXIII) to_desktop="III";;
+      XIV | XXIV) to_desktop="IV";;
+      XV | XXV) to_desktop="V";;
+      XVI | XXVI) to_desktop="VI";;
+      XVII | XXVII) to_desktop="VII";;
+      XVIII | XXVIII) to_desktop="VIII";;
+      XIX | XXIX) to_desktop="IX";;
+      XX | XXX) to_desktop="X";;
+    esac
     bspc desktop "$desktop" --to-monitor "$INTERNAL_MONITOR"
+    for node in `bspc query -N -d $desktop`; do
+      bspc node "$node" -d "$to_desktop"
+    done
+    # bspc desktop "$desktop" -r
   done
 
   # delete default desktops
   bspc desktop Desktop --remove
+  # bspc monitor "$1" --remove
 
   # reorder desktops
-  bspc monitor "$INTERNAL_MONITOR" -o I II III IV V VI VII VIII IX X
+  bspc monitor "$INTERNAL_MONITOR" -d I II III IV V VI VII VIII IX X
 }
 
-if [[ "$INTERNAL_MONITOR" != "$EXTERNAL_MONITOR" ]]; then
-  # set xrandr rules for docked setup
-  xrandr --output "$INTERNAL_MONITOR" --mode $INTERNAL_MONITOR_RESOLUTION --pos 0x0 --rotate normal --output "$EXTERNAL_MONITOR" --primary --mode $EXTERNAL_MONITOR_RESOLUTION --pos 1920x0 --rotate normal
-  if [[ $(bspc query -D -m "${EXTERNAL_MONITOR}" | wc -l) -ne 5 ]]; then
-    monitor_add
+bspc monitor "$INTERNAL_MONITOR" -d I II III IV V VI VII VIII IX X
+xrandr_cmd="xrandr --output '$INTERNAL_MONITOR' --primary --mode $INTERNAL_MONITOR_RESOLUTION --rotate normal"
+
+for monitor in `bspc query -M --names`; do
+  monitor_disconnected=`xrandr -q | grep "$monitor" | awk '{if (\$2 == "disconnected") print \$1}'`
+  if [[ $monitor_disconnected == $monitor ]]; then
+    monitor_remove $monitor
+    xrandr_cmd="$xrandr_cmd --output $monitor --off"
   fi
-  bspc wm -O "$EXTERNAL_MONITOR" "$INTERNAL_MONITOR"
-else
-  # set xrandr rules for mobile setup
-  xrandr --output "$INTERNAL_MONITOR" --primary --mode $INTERNAL_MONITOR_RESOLUTION --pos 0x0 --rotate normal --output "$EXTERNAL_MONITOR" --off
-  if [[ $(bspc query -D -m "${INTERNAL_MONITOR}" | wc -l) -ne 10 ]]; then
-    monitor_remove
+done
+
+for monitor in `xrandr -q | awk '{if (\$2 == "connected") print \$1}' | head -n 3 | tail -n 2`; do
+  monitor_already_added=`bspc query -M --names | grep "$monitor"`
+  previous_monitor=`xrandr -q | awk '{if (\$2 == "connected") print \$1}' | grep -B1 "$monitor" | head -n 1`
+  monitor_resolution=`xrandr -q | grep -A1 "$monitor" | tail -n 1 | awk '{print \$1}'`
+  if [[ $monitor_already_added != $monitor ]]; then
+    monitor_add $monitor
+    xrandr_cmd="$xrandr_cmd --output $monitor --mode $monitor_resolution --rotate normal --right-of $previous_monitor"
+  else
+    if [[ `bspc query -D -m "$monitor" | wc -l` -lt 10 ]]; then
+      monitor_remove $monitor
+      monitor_add $monitor
+      xrandr_cmd="$xrandr_cmd --output $monitor --mode $monitor_resolution --rotate normal --right-of $previous_monitor"
+    fi
   fi
-fi
+done
+
+eval "$xrandr_cmd"

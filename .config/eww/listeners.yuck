@@ -1,1 +1,3 @@
-(deflisten workspace "assets/scripts/workspace")
+(deflisten workspaces0 "assets/scripts/workspaces 0")
+(deflisten workspaces1 "assets/scripts/workspaces 1")
+(deflisten workspaces2 "assets/scripts/workspaces 2")
