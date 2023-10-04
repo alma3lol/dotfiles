@@ -1,5 +1,7 @@
 local M = {
-	setup = require('alma3lol.plugins.autosession.setup')
+	setup = function ()
+		require('alma3lol.plugins.autosession.setup')
+	end
 }
 
 M.init = function()

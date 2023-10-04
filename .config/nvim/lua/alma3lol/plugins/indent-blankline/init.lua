@@ -1,5 +1,7 @@
 local M = {
-	setup = require('alma3lol.plugins.indent-blankline.setup'),
+	setup = function ()
+		require('alma3lol.plugins.indent-blankline.setup')
+	end
 }
 
 M.init = function()

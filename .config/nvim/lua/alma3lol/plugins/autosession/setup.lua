@@ -1,3 +1,1 @@
-return function()
-	require('auto-session').setup()
-end
+require('auto-session').setup()
