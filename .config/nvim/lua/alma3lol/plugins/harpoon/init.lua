@@ -1,6 +1,10 @@
 local M = {
-	setup = require('alma3lol.plugins.harpoon.setup'),
-	bindings = require('alma3lol.plugins.harpoon.bindings'),
+	setup = function ()
+		require('alma3lol.plugins.harpoon.setup')
+	end,
+	bindings = function ()
+		require('alma3lol.plugins.harpoon.bindings')
+	end,
 }
 
 M.init = function()

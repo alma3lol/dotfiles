@@ -1,3 +1,1 @@
-return function()
-	require("harpoon").setup()
-end
+require("harpoon").setup()

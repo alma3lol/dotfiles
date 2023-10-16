@@ -1,0 +1,8 @@
+#!/bin/bash
+
+xrandr --output HDMI-1-0 --left-of eDP-1
+xrandr --output eDP-1 --primary
+bspc monitor eDP-1 -d I II III IV V VI VII VIII IX X
+bspc monitor DP-1 -d XI XII XIII XIV XV XVI XVII XVIII XIX XX
+bspc monitor HDMI-1-0 -d XXI XXII XXIII XXIV XXV XXVI XXVII XXVIII XXIX XXX
+eww reload
