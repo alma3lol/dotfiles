@@ -1,0 +1,27 @@
+.monitor-btn {
+  font-size: 1.2em;
+  .monitor_container {
+    background-color: rgba($surface-darkgrey, 0.3);
+    border-radius: 0.2em;
+    padding: 0.9em;
+    label:nth-child(2) {
+      font-size: 4em;
+    }
+  }
+  button {
+    padding: 0.6em 0.8em;
+    border-radius: 0.2em;
+    background-color: rgba($surface-darkgrey, 0.3);
+
+    &:hover {
+      transition:
+        200ms linear background-color,
+        border-radius;
+      background-color: rgba($surface-lightgrey, 0.6);
+    }
+
+    label {
+      background-color: transparent;
+    }
+  }
+}

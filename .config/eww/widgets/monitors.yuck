@@ -1,0 +1,56 @@
+(defwindow monitors
+  :stacking "fg"
+  :windowtype "normal"
+  :wm-ignore true
+  :geometry (geometry :width "100%" :height "100%")
+  (monitors_layout))
+
+(defwidget monitors_layout []
+  (box :class "layout-box" :space-evenly false :orientation "v"
+       :style "background-image: url('./assets/wallpapers/powermenu.jpg')"
+    (box
+      (box :valign "start" :class "tm-box" :space-evenly false :spacing 25
+        (label :text "󰥔")
+        (label :text "${time.hour}:${time.min}:${time.sec}"))
+      (box :space-evenly false :spacing 25
+        (_sundial)
+        (_battery :status {EWW_BATTERY.BAT0.status}
+                  :battery {EWW_BATTERY.BAT0.capacity}
+                  :charge "" :one "" :two "" :three "" :four ""
+                  :five "" :six "" :seven "")
+        (_network :strength net :offline "󰤭" :excellent "󰤨" :good "󰤥"
+                  :okay "󰤢" :slow "󰤟")
+        (label :text "|" :class "sep")
+        (box :space-evenly false :orientation "v" :spacing 5
+          (button :onclick "eww close monitors" :tooltip "Close" :class "close-btn" "")
+          (label :text "(Esc)" :style "font-size: 0.8em; opacity: ${show_confirm_logout || show_confirm_poweroff || show_confirm_reboot || show_confirm_lock || show_confirm_suspend ? 0.1 : 1}"))))
+    (_monitors)))
+
+(defwidget _monitors []
+  (box :spacing 5
+       :vexpand true :hexpand true
+       :valign "center" :halign "center"
+       :space-evenly false
+    (literal :content monitors)))
+
+(defwidget _monitor_btn [monitor move_left move_right primary]
+  (box :class "monitor-btn" :spacing 5
+       :orientation "v"
+       :vexpand true :hexpand true
+       :valign "center" :halign "center"
+       :space-evenly false
+    (box :class "monitor_container" :orientation "v"
+         :vexpand true :hexpand true
+         :valign "center" :halign "center"
+         :space-evenly false
+      (label :text {primary ? "(Primary)" : ""})
+      (label :text "🖵")
+      (label :text monitor))
+
+    (box :class ""
+         :vexpand false
+         :spacing 5
+      (button :tooltip "Move left" :active {move_left != ""} :class {move_left == "" ? "inactive" : ""} :onclick move_left
+        (label :text "<"))
+      (button :tooltip move_right :active {move_right != ""} :class {move_right == "" ? "inactive" : ""} :onclick move_right
+        (label :text ">")))))

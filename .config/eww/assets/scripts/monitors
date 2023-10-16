@@ -1,0 +1,39 @@
+#!/bin/bash
+
+output="(box :space_evenly true "
+monitors_count=`xrandr --listmonitors | grep "+" | wc -l`
+monitors_order=`xrandr --listmonitors | grep "+" | awk '{split($3, parts, "+"); print parts[2], $4}' | sort | awk '{print $2}'`
+primary_monitor=`xrandr -q | grep -wi "primary" | awk '{print \$1}'`
+primary_monitor_order=`echo $monitors_order | tr -s ' ' "\n" | grep -n "$primary_monitor" | awk -F ':' '{print \$1}'`
+for monitor in $monitors_order; do
+	monitor_order=`echo $monitors_order | tr -s ' ' "\n" | grep -nw "$monitor" | awk -F ':' '{print \$1}'`
+	primary="false"
+	if [[ "$primary_monitor" == "$monitor" ]]; then
+		primary="true"
+	fi
+	move_left=""
+	move_right=""
+	previous_monitor=`echo $monitors_order | tr -s ' ' "\n" | grep -B1 "$monitor" | awk -F ':' '{print \$1}' | head -n 1`
+	next_monitor=`echo $monitors_order | tr -s ' ' "\n" | grep -A1 "$monitor" | awk -F ':' '{print \$1}' | tail -n 1`
+	if [[ $monitors_count -gt 1 ]]; then
+		monitor_resolution=`xrandr -q | grep -A1 "$monitor" | tail -n 1 | awk '{print \$1}'`
+		previous_monitor_resolution=`xrandr -q | grep -A1 "$previous_monitor" | tail -n 1 | awk '{print \$1}'`
+		next_monitor_resolution=`xrandr -q | grep -A1 "$next_monitor" | tail -n 1 | awk '{print \$1}'`
+		if [[ "$monitor" != "$previous_monitor" ]]; then
+			move_left="xrandr --output $monitor --left-of $previous_monitor";
+			if [[ $monitor_order == $monitors_count ]]; then
+				move_left="xrandr --output $previous_monitor --auto --right-of $monitor";
+			fi
+		fi
+		if [[ "$monitor" != "$next_monitor" ]]; then
+			move_right="xrandr --output $monitor --mode $monitor_resolution --right-of $next_monitor";
+			if [[ $monitor_order -eq 1 ]]; then
+				move_right="xrandr --output $next_monitor --mode $next_monitor_resolution --left-of $monitor";
+			fi
+		fi
+	fi
+	output="$output(_monitor_btn :monitor \"$monitor\" :primary $primary :move_left \"$move_left\" :move_right \"$move_right\")"
+done
+output="$output)"
+
+echo $output

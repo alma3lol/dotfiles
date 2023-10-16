@@ -33,3 +33,4 @@
 (defpoll keyboard_layout :interval "1ms" "assets/scripts/keyboard_layout")
 (defpoll wifi_up_speed :interval "1s" "assets/scripts/network-speed 'wl*' up")
 (defpoll wifi_down_speed :interval "1s" "assets/scripts/network-speed 'wl*' down")
+;; (defpoll monitors :interval "1s" "assets/scripts/monitors")

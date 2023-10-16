@@ -88,6 +88,9 @@ super + {_,shift + }{1-9,0}
 super + o
 	~/.config/sxhkd/openmenu-rc.sh open
 
+super + F3
+	~/.config/sxhkd/monitors-rc.sh open
+
 #
 # preselect
 #
