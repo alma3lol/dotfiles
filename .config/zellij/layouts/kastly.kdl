@@ -5,15 +5,26 @@ layout {
             plugin location="file:~/.config/zellij/plugins/zellij-bar.wasm"
         }
     }
-    tab name="Code" focus=true {
+    tab name="Code (main)" focus=true {
         pane borderless=true {
             command "nvim"
+        }
+    }
+    tab name="Code (meetings)" {
+        pane borderless=true {
+            command "nvim"
+            cwd "meetings"
         }
     }
     tab name="Runtime" {
         pane {
             command "mix"
             args "dev"
+        }
+        pane {
+            cwd "meetings"
+            command "yarn"
+            args "dev" "--host"
         }
     }
 }
