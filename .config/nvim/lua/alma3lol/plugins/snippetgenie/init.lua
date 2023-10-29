@@ -1,6 +1,10 @@
 local M = {
-	bindings = require('alma3lol.plugins.snippetgenie.bindings'),
-	setup = require('alma3lol.plugins.snippetgenie.setup'),
+	bindings = function()
+		require('alma3lol.plugins.snippetgenie.bindings')
+	end,
+	setup = function()
+		require('alma3lol.plugins.snippetgenie.setup')
+	end,
 }
 
 M.init = function()
@@ -9,4 +13,3 @@ M.init = function()
 end
 
 return M
-
