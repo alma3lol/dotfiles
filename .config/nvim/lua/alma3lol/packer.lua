@@ -125,7 +125,7 @@ require('packer').startup(function(use)
 	use 'saadparwaiz1/cmp_luasnip'
 	use 'LinArcX/telescope-command-palette.nvim'
 	-- use 'ilAYAli/scMRU.nvim'
-	use 'linty-org/key-menu.nvim'
+	use 'emmanueltouzery/key-menu.nvim'
 	use 'gbprod/substitute.nvim'
 	use 'natecraddock/workspaces.nvim'
 	use 'tpope/vim-abolish'

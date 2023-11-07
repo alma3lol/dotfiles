@@ -2,6 +2,7 @@ vim.env.CWD = vim.fn.expand("<sfile>:p:h")
 
 vim.g.alma3lol = {
 	pluginsOrder = {
+		"indent_blankline",
 		"alternate",
 		"autopairs",
 		"autosession",
@@ -25,7 +26,6 @@ vim.g.alma3lol = {
 		"gomove",
 		"gps",
 		"harpoon",
-		"indent_blankline",
 		"jqxlist",
 		"jupyter_ascending",
 		"keymenu",
