@@ -61,10 +61,7 @@ export class {cNames0}Resolver {{
   search{cNames2}(@Args('name') name: string) {{
     return this.service.{sName4}.findMany({{
       where: {{
-        OR: [
-          {{ name: {{ contains: name.toLowerCase() }} }},
-          {{ nameAr: {{ contains: name }} }},
-        ],
+        {}
       }},
       include: {{ {include2} }},
     }});
@@ -74,8 +71,6 @@ export class {cNames0}Resolver {{
   async add{cName3}(@Args('{sName5}') {sName6}: New{cName4}) {{
     return this.service.{sName7}.create({{
       data: {{
-        name: {sName8}.name,
-        nameAr: {sName9}.nameAr,
         {}
       }}
     }});
@@ -90,24 +85,41 @@ export class {cNames0}Resolver {{
       cNames0 = i(2),
       cNames1 = r(2),
       cNames2 = r(2),
-        sName0 = lowercaseFirstLetter(1),
-        sName1 = lowercaseFirstLetter(1),
-        sName2 = lowercaseFirstLetter(1),
-        sName3 = lowercaseFirstLetter(1),
-        sName4 = lowercaseFirstLetter(1),
-        sName5 = lowercaseFirstLetter(1),
-        sName6 = lowercaseFirstLetter(1),
-        sName7 = lowercaseFirstLetter(1),
-        sName8 = lowercaseFirstLetter(1),
-        sName9 = lowercaseFirstLetter(1),
-        sNames0 = lowercaseFirstLetter(2),
-        sNames1 = lowercaseFirstLetter(2),
+      sName0 = lowercaseFirstLetter(1),
+      sName1 = lowercaseFirstLetter(1),
+      sName2 = lowercaseFirstLetter(1),
+      sName3 = lowercaseFirstLetter(1),
+      sName4 = lowercaseFirstLetter(1),
+      sName5 = lowercaseFirstLetter(1),
+      sName6 = lowercaseFirstLetter(1),
+      sName7 = lowercaseFirstLetter(1),
+      sNames0 = lowercaseFirstLetter(2),
+      sNames1 = lowercaseFirstLetter(2),
       include0 = i(3),
       include1 = r(3),
       include2 = r(3),
       i(4),
+      i(5),
     })
   ),
-
+  s(
+    "whereOrName",
+    fmt([[
+        OR: [
+          {{ name: {{ contains: name.toLowerCase() }} }},
+          {{ nameAr: {{ contains: name }} }},
+        ],
+    ]], {})
+  ),
+  s(
+    "nameAndNameAr",
+    fmt([[
+        name: {}.name,
+        nameAr: {}.nameAr,
+    ]], {
+      i(1),
+      r(1),
+    })
+  ),
   ------------------------------------------------------ Snippets goes here
 }
