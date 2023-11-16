@@ -185,4 +185,12 @@ require('packer').startup(function(use)
 	use { 'junegunn/fzf', run = 'fzf#install()' }
 	use "sindrets/diffview.nvim"
 	use 'Wansmer/symbol-usage.nvim'
+	use {
+		"jackMort/ChatGPT.nvim",
+		requires = {
+			"MunifTanjim/nui.nvim",
+			"nvim-lua/plenary.nvim",
+			"nvim-telescope/telescope.nvim"
+		}
+	}
 end)
