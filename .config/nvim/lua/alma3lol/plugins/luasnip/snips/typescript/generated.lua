@@ -121,5 +121,14 @@ export class {cNames0}Resolver {{
       r(1),
     })
   ),
+  s(
+    "exportAllFrom",
+    fmt([=[
+export * from '{}';
+]=], {
+      i(1),
+    })
+  ),
+
   ------------------------------------------------------ Snippets goes here
 }
