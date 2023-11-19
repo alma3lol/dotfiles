@@ -122,13 +122,47 @@ export class {cNames0}Resolver {{
     })
   ),
   s(
-    "exportAllFrom",
+    "eaf",
     fmt([=[
-export * from '{}';
+export * from './{}';
 ]=], {
       i(1),
     })
   ),
+
+s(
+	"newgqlquery",
+	fmt([=[
+import {{ gql, TypedDocumentNode }} from "@apollo/client";
+
+type Data = {{
+  {queryName1}: {queryType1}
+}};
+
+type Variables = {{
+  {variables1}
+}};
+
+export const {queryName2}: TypedDocumentNode<Data, Variables> = gql`
+  query {queryName3}({queryVariables1}) {{
+    {queryName4}({queryVariables2}) {queryReturn}
+  }}
+`;
+]=], {
+        queryName1 = i(1),
+        queryType1 = i(2),
+        variables1 = i(3),
+        queryName2 = i(4),
+        queryName3 = r(4),
+        queryVariables1 = i(5),
+        queryName4 = r(1),
+        queryVariables2 = i(6),
+        queryReturn = c(7, {
+          t(''),
+          i(nil, '{  }'),
+        }),
+	})
+),
 
   ------------------------------------------------------ Snippets goes here
 }
