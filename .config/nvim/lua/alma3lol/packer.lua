@@ -193,4 +193,5 @@ require('packer').startup(function(use)
 			"nvim-telescope/telescope.nvim"
 		}
 	}
+	use { "robitx/gp.nvim" }
 end)
