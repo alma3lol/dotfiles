@@ -198,4 +198,5 @@ require('packer').startup(function(use)
 		"MunifTanjim/nui.nvim",
 		"rcarriga/nvim-notify"
 	} }
+	use 'echasnovski/mini.indentscope'
 end)
