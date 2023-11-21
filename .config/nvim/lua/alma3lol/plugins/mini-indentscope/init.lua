@@ -1,6 +1,6 @@
 local M = {
 	setup = function()
-		require('alma3lol.plugins.mini.indentscope.setup')
+		require('alma3lol.plugins.mini-indentscope.setup')
 	end
 }
 
