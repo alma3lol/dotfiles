@@ -69,4 +69,5 @@ return function()
 	vim.g["test#strategy"] = "neovim"
 	vim.cmd [[ colorscheme my_theme ]]
 	vim.g.rnvimr_draw_border = true
+	vim.g.skip_ts_context_commentstring_module = true
 end

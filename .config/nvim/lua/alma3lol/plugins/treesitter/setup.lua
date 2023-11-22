@@ -123,7 +123,7 @@ require('nvim-treesitter.configs').setup {
 	matchup = { enable = true },
 	autopairs = { enable = true },
 	rainbow = { enable = true, extended_mode = true },
-	context_commentstring = { enable = true },
+	-- context_commentstring = { enable = true },
 	query_linter = {
 		enable = true,
 		use_virtual_text = true,
@@ -150,6 +150,8 @@ require('nvim-treesitter.configs').setup {
 		},
 	}
 }
+
+require('ts_context_commentstring').setup {}
 
 local get_root = function(bufnm)
 	local parser = vim.treesitter.get_parser(bufnm, 'tsx', {})
