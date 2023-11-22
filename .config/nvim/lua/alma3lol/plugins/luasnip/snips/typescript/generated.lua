@@ -1,11 +1,15 @@
-local luasnip = require("luasnip")
+local ls = require("luasnip")
 local fmt = require "luasnip.extras.fmt".fmt
-local s = luasnip.snippet
-local i = luasnip.insert_node
-local t = luasnip.text_node
-local f = luasnip.function_node
-local c = luasnip.choice_node
+local s = ls.snippet
+local sn = ls.snippet_node
+local d = ls.dynamic_node
+local i = ls.insert_node
+local t = ls.text_node
+local f = ls.function_node
+local c = ls.choice_node
+local rn = ls.restore_node
 local r = require "luasnip.extras".rep
+local ai = require("luasnip.nodes.absolute_indexer")
 local u = function(index)
   return f(function(args)
     return args[1][1]:upper()
@@ -27,6 +31,75 @@ end
 local uppercaseFirstLetter = function(index)
   return f(function(args)
     return args[1][1]:sub(1, 1):upper() .. args[1][1]:sub(2)
+  end, { index })
+end
+
+local rec_graphql_query_variable = function(_, snip)
+  if not snip.rows then
+    snip.rows = 1
+  end
+  local nodes = {}
+  local ins_indx = 1
+  for j = 1, snip.rows do
+    table.insert(nodes, rn(ins_indx, tostring(j) .. "x1", fmt([[{}: {}]], { i(1), c(2, { t('string'), t('number') }) })))
+    ins_indx = ins_indx + 1
+    table.insert(nodes, t({ "", "\t\t" }))
+  end
+  nodes[#nodes] = t ""
+  return sn(nil, nodes)
+end
+
+local convert_typescript_variable_to_graphql_input = function(input_str)
+  local propery_name, type_name = string.gmatch(input_str, "([^ ]+): (.*)")()
+  if propery_name == nil or type_name == nil then
+    return ""
+  end
+  if type_name == "string" then
+    return "$" .. propery_name .. ": String!"
+  elseif type_name == "number" then
+    return "$" .. propery_name .. ": Int!"
+  else
+    return "$" .. propery_name .. ": " .. type_name .. "!"
+  end
+end
+
+local get_query_variables_from_text = function(index)
+  return f(function(args)
+    local content = {}
+    for _, value in ipairs(args[1]) do
+      local v = convert_typescript_variable_to_graphql_input(value)
+      if v ~= "" then
+        table.insert(content, v)
+      end
+    end
+    if #content == 0 then
+      return ""
+    end
+    return "(" .. table.concat(content, ', ') .. ")"
+  end, { index })
+end
+
+local convert_typescript_variable_to_graphql_query_input = function(input_str)
+  local propery_name = string.gmatch(input_str, "([^ ]+): ")()
+  if propery_name == nil then
+    return ""
+  end
+  return propery_name .. ": $" .. propery_name
+end
+
+local get_query_variables_into_query_input = function(index)
+  return f(function(args)
+    local content = {}
+    for _, value in ipairs(args[1]) do
+      local v = convert_typescript_variable_to_graphql_query_input(value)
+      if v ~= "" then
+        table.insert(content, v)
+      end
+    end
+    if #content == 0 then
+      return ""
+    end
+    return "(" .. table.concat(content, ', ') .. ")"
   end, { index })
 end
 
@@ -130,39 +203,41 @@ export * from './{}';
     })
   ),
 
-s(
-	"newgqlquery",
-	fmt([=[
-import {{ gql, TypedDocumentNode }} from "@apollo/client";
-
-type Data = {{
-  {queryName1}: {queryType1}
-}};
-
-type Variables = {{
-  {variables1}
-}};
-
-export const {queryName2}: TypedDocumentNode<Data, Variables> = gql`
-  query {queryName3}({queryVariables1}) {{
-    {queryName4}({queryVariables2}) {queryReturn}
+  s(
+    "newgqlquery",
+    fmt([=[
+export const {name1}Query: TypedDocumentNode<
+  {{
+    {name2}: {type1}
+  }},
+  {{
+    {variables1}
   }}
+> = gql`
+query {name3}Query{queryVariables1} {{
+  {name4}{queryVariables2}{queryReturn}
+}}
 `;
 ]=], {
-        queryName1 = i(1),
-        queryType1 = i(2),
-        variables1 = i(3),
-        queryName2 = i(4),
-        queryName3 = r(4),
-        queryVariables1 = i(5),
-        queryName4 = r(1),
-        queryVariables2 = i(6),
-        queryReturn = c(7, {
-          t(''),
-          i(nil, '{  }'),
-        }),
-	})
-),
+      name1 = i(1),
+      type1 = i(2),
+      variables1 = d(3, rec_graphql_query_variable, {}, {
+        user_args = {
+          function(snip) snip.rows = snip.rows + 1 end,
+          function(snip) snip.rows = math.max(snip.rows - 1, 1) end
+        }
+      }),
+      name2 = lowercaseFirstLetter(1),
+      name3 = r(1),
+      name4 = lowercaseFirstLetter(1),
+      queryVariables1 = get_query_variables_from_text(3),
+      queryVariables2 = get_query_variables_into_query_input(3),
+      queryReturn = c(4, {
+        t(''),
+        sn(1, { t({ " {", "\t\t" }), i(1), t({ "", "\t}" }) }),
+      }),
+    })
+  ),
 
   ------------------------------------------------------ Snippets goes here
 }

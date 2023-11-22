@@ -1,6 +1,10 @@
 local M = {
-	setup = require('alma3lol.plugins.luasnip.setup'),
-	bindings = require('alma3lol.plugins.luasnip.bindings'),
+	setup = function()
+		require('alma3lol.plugins.luasnip.setup')
+	end,
+	bindings = function()
+		require('alma3lol.plugins.luasnip.bindings')
+	end,
 }
 
 M.init = function()
