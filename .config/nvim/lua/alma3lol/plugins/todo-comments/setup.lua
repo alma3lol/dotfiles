@@ -1,3 +1,1 @@
-return function()
-	require('todo-comments').setup {}
-end
+require('todo-comments').setup {}
