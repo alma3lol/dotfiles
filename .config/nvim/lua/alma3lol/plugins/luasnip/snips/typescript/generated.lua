@@ -41,7 +41,8 @@ local rec_graphql_query_variable = function(_, snip)
   local nodes = {}
   local ins_indx = 1
   for j = 1, snip.rows do
-    table.insert(nodes, rn(ins_indx, tostring(j) .. "x1", fmt([[{}: {}]], { i(1), c(2, { t('string'), t('number') }) })))
+    table.insert(nodes,
+      rn(ins_indx, tostring(j) .. "x1", fmt([[{}: {}]], { i(1), c(2, { t('string'), t('number'), i(1) }) })))
     ins_indx = ins_indx + 1
     table.insert(nodes, t({ "", "\t\t" }))
   end
@@ -236,6 +237,39 @@ query {name3}Query{queryVariables1} {{
         t(''),
         sn(1, { t({ " {", "\t\t" }), i(1), t({ "", "\t}" }) }),
       }),
+    })
+  ),
+
+  s(
+    "newgqlmutation",
+    fmt([=[
+export const {name1}Mutation: TypedDocumentNode<
+  {{
+    {name2}: {type1}
+  }},
+  {{
+    {name3}: New{name4}
+  }}
+> = gql`
+mutation {name5}Mutation(${name6}: New{name7}!) {{
+  {name8}({name9}: ${name10}) {{
+    {final}
+  }}
+}}
+`;
+]=], {
+      name1 = i(1),
+      name2 = lowercaseFirstLetter(1),
+      type1 = i(2),
+      name3 = i(3),
+      name4 = uppercaseFirstLetter(3),
+      name5 = r(1),
+      name6 = r(3),
+      name7 = uppercaseFirstLetter(3),
+      name8 = lowercaseFirstLetter(1),
+      name9 = r(3),
+      name10 = r(3),
+      final = i(0),
     })
   ),
 
