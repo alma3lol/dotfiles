@@ -1,9 +1,15 @@
 local M = {
-	setup = require('alma3lol.plugins.octo.setup'),
+	setup = function ()
+		require('alma3lol.plugins.octo.setup')
+	end,
+	bindings = function ()
+		require('alma3lol.plugins.octo.bindings')
+	end,
 }
 
 M.init = function()
 	M.setup()
+	M.bindings()
 end
 
 return M

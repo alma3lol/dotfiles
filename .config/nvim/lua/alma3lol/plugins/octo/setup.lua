@@ -1,3 +1,1 @@
-return function()
-	require('octo').setup()
-end
+require('octo').setup()
