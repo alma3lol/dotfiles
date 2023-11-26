@@ -101,6 +101,7 @@ export PERL_MM_OPT="INSTALL_BASE=$HOME/perl5"; export PERL_MM_OPT;
 export PATH="$HOME/.mix/escripts${PATH:+:${PATH}}"; export PATH;
 [[ -f "/opt/asdf-vm/asdf.sh" ]] && . /opt/asdf-vm/asdf.sh
 [[ -f "$HOME/.asdf/asdf.sh" ]] && . $HOME/.asdf/asdf.sh
+[ command -v gh &> /dev/null ] && . $(gh completion -s zsh)
 # append completions to fpath
 fpath=(${ASDF_DIR}/completions $fpath)
 # initialise completions with ZSH's compinit
