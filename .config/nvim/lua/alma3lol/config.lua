@@ -59,7 +59,7 @@ return function()
 	vim.opt.foldenable = true
 	vim.opt.foldmethod = "expr"
 	vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
-	vim.opt.foldnestmax = 1
+	vim.opt.foldnestmax = 3
 	vim.o.foldcolumn = '1'
 	vim.o.foldlevel = 99
 	vim.o.foldlevelstart = 99

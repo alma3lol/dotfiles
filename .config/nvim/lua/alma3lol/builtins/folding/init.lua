@@ -1,5 +1,7 @@
 local M = {
-	bindings = require('alma3lol.builtins.folding.bindings'),
+	bindings = function ()
+		require('alma3lol.builtins.folding.bindings')
+	end
 }
 
 M.init = function()
