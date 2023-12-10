@@ -32,6 +32,12 @@ alias g="git"
 alias ll="ls -lAsh"
 alias t="tree -I .git -a"
 
+[[ -f "/opt/asdf-vm/asdf.sh" ]] && . /opt/asdf-vm/asdf.sh
+[[ -f "$HOME/.asdf/asdf.sh" ]] && . $HOME/.asdf/asdf.sh
+
+[[ -f "$ASDF_DIR/asdf.sh" ]] && export PATH="$PATH:$(asdf where golang)/packages/bin"
+
+
 # # >>> conda initialize >>>
 # # !! Contents within this block are managed by 'conda init' !!
 # export CONDA_PREFIX="$HOME/anaconda3"
@@ -81,9 +87,9 @@ export PATH=$HOME/.cache/rebar3/bin:$PATH
 export FZF_ALT_C_COMMAND="rg --hidden --files -g \\!.git --null 2>/dev/null | xargs -0 dirname | uniq"
 export FZF_CTRL_T_COMMAND="rg --hidden --files -g \\!.git 2>/dev/null | uniq"
 
-eval "$(starship init zsh)"
-eval "$(jump shell)"
-eval "$(zoxide init zsh)"
+[[ "$(which starship)" != *"not found" ]] && eval "$(starship init zsh)"
+[[ "$(which jump)" != *"not found" ]] && eval "$(jump shell)"
+[[ "$(which zoxide)" != *"not found" ]] && eval "$(zoxide init zsh)"
 
 autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C /usr/bin/terraform terraform
@@ -99,8 +105,6 @@ export PERL_MM_OPT="INSTALL_BASE=$HOME/perl5"; export PERL_MM_OPT;
 
 [[ -f "$HOME/miniconda3/etc/profile.d/conda.sh" ]] && . "$HOME/miniconda3/etc/profile.d/conda.sh"
 export PATH="$HOME/.mix/escripts${PATH:+:${PATH}}"; export PATH;
-[[ -f "/opt/asdf-vm/asdf.sh" ]] && . /opt/asdf-vm/asdf.sh
-[[ -f "$HOME/.asdf/asdf.sh" ]] && . $HOME/.asdf/asdf.sh
 [ command -v gh &> /dev/null ] && . $(gh completion -s zsh)
 # append completions to fpath
 fpath=(${ASDF_DIR}/completions $fpath)
