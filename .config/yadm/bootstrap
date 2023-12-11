@@ -78,44 +78,20 @@ mkdir_if_not_exists $RANGER/plugins
 mkdir_if_not_exists $ZELLIJ_CONFIG/plugins
 
 # ZSH plugins
-clone_if_not_exists https://github.com/zsh-users/zsh-syntax-highlighting $ZSH_CUSTOM/plugins/zsh-syntax-highlighting
-clone_if_not_exists https://github.com/zsh-users/zsh-history-substring-search $ZSH_CUSTOM/plugins/zsh-history-substring-search
-clone_if_not_exists https://github.com/zsh-users/zsh-autosuggestions $ZSH_CUSTOM/plugins/zsh-autosuggestions
-clone_if_not_exists https://github.com/unixorn/fzf-zsh-plugin.git $ZSH_CUSTOM/plugins/fzf-zsh-plugin
-clone_if_not_exists https://github.com/gsamokovarov/jump-ranger.git $ZSH_CUSTOM/plugins/jump-ranger
-clone_if_not_exists https://github.com/alexanderjeurissen/ranger_devicons.git $ZSH_CUSTOM/plugins/ranger_devicons
-clone_if_not_exists https://github.com/cjbassi/ranger-fzf.git $ZSH_CUSTOM/plugins/ranger-fzf
-clone_if_not_exists https://github.com/Aloxaf/fzf-tab $ZSH_CUSTOM/plugins/fzf-tab
+download_if_not_exists https://git.io/antigen $HOME/antigen.zsh
 
 # Ranger plugins
-clone_if_not_exists https://github.com/SL-RU/ranger_udisk_menu.git $RANGER/ranger_udisk_menu
-download_if_not_exists https://raw.githubusercontent.com/gsamokovarov/jump-ranger/master/jump.py $RANGER/plugins/jump.py
-
-# Zellij
-
-# Plugins
-clone_if_not_exists https://github.com/alma3lol/zellij-bar $ZELLIJ_CONFIG/plugins/zellij-bar
-
-# Build
-if command -v cargo >/dev/null 2>&1; then
-	cd $ZELLIJ_CONFIG/plugins/zellij-bar
-	rustup target add wasm32-wasi
-	cargo build --release
-	cp target/wasm32-wasi/release/zellij-bar.wasm .
-	cd $CWD
-fi
-
-
-# Oh-my-zsh
-sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-# rm $HOME/.zshrc
+clone_if_not_exists https://github.com/SL-RU/ranger_udisk_menu.git $RANGER/plugins/ranger_udisk_menu
+clone_if_not_exists https://github.com/alexanderjeurissen/ranger_devicons.git $RANGER/plugins/ranger_devicons
+clone_if_not_exists https://github.com/jchook/ranger-zoxide.git $RANGER/plugins/ranger-zoxide
+clone_if_not_exists https://github.com/gsamokovarov/jump-ranger.git $RANGER/plugins/jump-ranger
 
 if command -v vim >/dev/null 2>&1; then
 	vim +PlugUpdate +PlugClean +PlugUpdate +qa
 fi
 
 if command -v nvim >/dev/null 2>&1; then
-	nvim --headless '+lua vim.g.alma3lol.packer.setup()' +qa
+	nvim --headless '+lua vim.g.alma3lol.packer.ensure_packer()' '+lua vim.g.alma3lol.packer.setup()' '+PackerSync' +qa
 fi
 
 # BSPWM dual monitor

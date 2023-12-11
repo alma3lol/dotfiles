@@ -1,27 +1,38 @@
 # Fig pre block. Keep at the top of this file.
 [[ -f "$HOME/.fig/shell/zshrc.pre.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.pre.zsh"
 export ZSH=$HOME/.oh-my-zsh
-export ZSH_CUSTOM=$HOME/zsh
 export WORK=$HOME/work
-export TERM="kitty"
+# export TERM="kitty"
 export EDITOR="nvim"
 export VISUAL="nvim"
 
-ZSH_THEME="rkj-repos"
+export ANTIGEN_LOG=$HOME/antigen.log
 
-plugins=(
-	git
-	npm
-	history-substring-search
-	docker
-	zsh-syntax-highlighting
-	fzf-zsh-plugin
-	fzf-tab
-)
+source $HOME/antigen.zsh
+antigen use oh-my-zsh
 
-source $ZSH/oh-my-zsh.sh
-source $ZSH_CUSTOM/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source $ZSH_CUSTOM/plugins/jump-ranger/jump-ranger.zsh
+antigen bundle git
+antigen bundle heroku
+antigen bundle pip
+antigen bundle lein
+antigen bundle command-not-found
+
+antigen bundle zsh-users/zsh-syntax-highlighting
+antigen bundle zsh-users/zsh-history-substring-search
+antigen bundle zsh-users/zsh-autosuggestions
+antigen bundle unixorn/fzf-zsh-plugin@main
+antigen bundle gsamokovarov/jump-ranger
+antigen bundle alexanderjeurissen/ranger_devicons@main
+antigen bundle cjbassi/ranger-fzf
+antigen bundle Aloxaf/fzf-tab
+antigen bundle esc/conda-zsh-completion
+antigen bundle fdw/ranger_autojump@main
+
+antigen theme rkj-repos
+
+antigen apply
+
+export ZSH_CUSTOM=$HOME/zsh
 
 fpath=($ZSH_CUSTOM/functions $ZSH_CUSTOM/completions $fpath)
 # autoload -U $ZSH_CUSTOM/functions/*(:t)
@@ -37,24 +48,6 @@ alias t="tree -I .git -a"
 
 [[ -f "$ASDF_DIR/asdf.sh" ]] && export PATH="$PATH:$(asdf where golang)/packages/bin"
 
-
-# # >>> conda initialize >>>
-# # !! Contents within this block are managed by 'conda init' !!
-# export CONDA_PREFIX="$HOME/anaconda3"
-# __conda_setup="$(\"$CONDA_PREFIX/bin/conda\" 'shell.zsh' 'hook' 2> /dev/null)"
-# if [ $? -eq 0 ]; then
-#     eval "$__conda_setup"
-# else
-#     if [ -f "$CONDA_PREFIX/etc/profile.d/conda.sh" ]; then
-#         . "$CONDA_PREFIX/etc/profile.d/conda.sh"
-#     else
-#         export PATH="$CONDA_PREFIX/bin:$PATH"
-#     fi
-# fi
-# export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$CONDA_PREFIX/lib/
-# unset __conda_setup
-# # <<< conda initialize <<<
-#
 export ANDROID_SDK_ROOT="$HOME/Android/Sdk"
 
 export PATH="$ANDROID_SDK_ROOT/emulator:$ANDROID_SDK_ROOT/platform-tools:/opt/jre/bin:$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$HOME/go/bin:$HOME/.local/bin:$PATH"
@@ -103,7 +96,6 @@ export PERL_MM_OPT="INSTALL_BASE=$HOME/perl5"; export PERL_MM_OPT;
 # Fig post block. Keep at the bottom of this file.
 [[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && . "$HOME/.fig/shell/zshrc.post.zsh"
 
-[[ -f "$HOME/miniconda3/etc/profile.d/conda.sh" ]] && . "$HOME/miniconda3/etc/profile.d/conda.sh"
 export PATH="$HOME/.mix/escripts${PATH:+:${PATH}}"; export PATH;
 [ command -v gh &> /dev/null ] && . $(gh completion -s zsh)
 # append completions to fpath
