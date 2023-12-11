@@ -78,7 +78,7 @@ mkdir_if_not_exists $RANGER/plugins
 mkdir_if_not_exists $ZELLIJ_CONFIG/plugins
 
 # ZSH plugins
-download_if_not_exists https://git.io/antigen $HOME/antigen.zsh
+curl -L https://git.io/antigen > $HOME/antigen.zsh
 
 # Ranger plugins
 clone_if_not_exists https://github.com/SL-RU/ranger_udisk_menu.git $RANGER/plugins/ranger_udisk_menu
