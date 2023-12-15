@@ -1,0 +1,14 @@
+[init]
+	defaultBranch = main
+[user]
+	name = Omar Almalol
+	email = omar.alma3lol@gmail.com
+	signingkey = omar.alma3lol@gmail.com
+[commit]
+	gpgsign = true
+[credential "https://github.com"]
+	helper = 
+	helper = !/usr/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = 
+	helper = !/usr/bin/gh auth git-credential
