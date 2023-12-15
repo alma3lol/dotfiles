@@ -199,6 +199,7 @@ require('packer').startup(function(use)
 		"rcarriga/nvim-notify"
 	} }
 	use 'echasnovski/mini.indentscope'
+	use 'alma3lol/linear.nvim'
 	use({
 		"iamcco/markdown-preview.nvim",
 		run = "cd app && npm install",
