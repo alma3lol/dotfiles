@@ -14,3 +14,4 @@ fx 30.0.2
 ripgrep 13.0.0
 golang 1.21.5
 python miniconda3-latest
+mill 0.11.6
