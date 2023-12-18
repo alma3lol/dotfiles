@@ -44,7 +44,7 @@ alias ll="ls -lAsh"
 alias t="tree -I .git -a"
 
 [[ -f "/opt/asdf-vm/asdf.sh" ]] && . /opt/asdf-vm/asdf.sh
-[[ -f "$HOME/.asdf/asdf.sh" ]] && . $HOME/.asdf/asdf.sh
+[[ -f "$HOME/.asdf/asdf.sh" ]] && . "$HOME/.asdf/asdf.sh"
 
 [[ -f "$ASDF_DIR/asdf.sh" ]] && export PATH="$PATH:$(asdf where golang)/packages/bin"
 
