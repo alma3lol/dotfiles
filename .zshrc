@@ -43,14 +43,13 @@ alias g="git"
 alias ll="ls -lAsh"
 alias t="tree -I .git -a"
 
-[[ -f "/opt/asdf-vm/asdf.sh" ]] && . /opt/asdf-vm/asdf.sh
 [[ -f "$HOME/.asdf/asdf.sh" ]] && . $HOME/.asdf/asdf.sh
 
 [[ -f "$ASDF_DIR/asdf.sh" ]] && export PATH="$PATH:$(asdf where golang)/packages/bin"
 
 export ANDROID_SDK_ROOT="$HOME/Android/Sdk"
 
-export PATH="$ANDROID_SDK_ROOT/emulator:$ANDROID_SDK_ROOT/platform-tools:/opt/jre/bin:$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$HOME/go/bin:$HOME/.local/bin:$PATH"
+export PATH="$PATH:$ANDROID_SDK_ROOT/emulator:$ANDROID_SDK_ROOT/platform-tools:/opt/jre/bin:$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$HOME/go/bin"
 
 # tabtab source for packages
 # uninstall by removing these lines
@@ -58,7 +57,7 @@ export PATH="$ANDROID_SDK_ROOT/emulator:$ANDROID_SDK_ROOT/platform-tools:/opt/jr
 
 # pnpm
 export PNPM_HOME="$HOME/.local/share/pnpm"
-export PATH="$PNPM_HOME:$PATH"
+export PATH="$PATH:$PNPM_HOME"
 # pnpm end
 
 export NVM_DIR="$HOME/.nvm"
@@ -75,7 +74,7 @@ alias zl=zlayouts
 alias zs=zsessions
 alias m=mix
 
-export PATH=$HOME/.cache/rebar3/bin:$PATH
+export PATH=$PATH:$HOME/.cache/rebar3/bin
 
 export FZF_ALT_C_COMMAND="rg --hidden --files -g \\!.git --null 2>/dev/null | xargs -0 dirname | uniq"
 export FZF_CTRL_T_COMMAND="rg --hidden --files -g \\!.git 2>/dev/null | uniq"
@@ -87,7 +86,7 @@ export FZF_CTRL_T_COMMAND="rg --hidden --files -g \\!.git 2>/dev/null | uniq"
 autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C /usr/bin/terraform terraform
 
-export PATH="$HOME/perl5/bin${PATH:+:${PATH}}"; export PATH;
+export PATH="$PATH:$HOME/perl5/bin";
 export PERL5LIB="$HOME/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
 export PERL_LOCAL_LIB_ROOT="$HOME/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
 export PERL_MB_OPT="--install_base \"$HOME/perl5\""; export PERL_MB_OPT;
@@ -96,9 +95,16 @@ export PERL_MM_OPT="INSTALL_BASE=$HOME/perl5"; export PERL_MM_OPT;
 # Fig post block. Keep at the bottom of this file.
 [[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && . "$HOME/.fig/shell/zshrc.post.zsh"
 
-export PATH="$HOME/.mix/escripts${PATH:+:${PATH}}"; export PATH;
 [ command -v gh &> /dev/null ] && . $(gh completion -s zsh)
+
 # append completions to fpath
 fpath=(${ASDF_DIR}/completions $fpath)
 # initialise completions with ZSH's compinit
 autoload -Uz compinit && compinit
+
+export PATH="$PATH:$HOME/.mix/escripts"; export PATH;
+toAdd="$ASDF_DIR/shims:$ASDF_DIR/bin"
+toRemove="$toAdd:"
+export PATH=${PATH#$toRemove}:$toAdd
+
+export PATH=~/.local/bin:$PATH
