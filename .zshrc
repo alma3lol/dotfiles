@@ -73,6 +73,7 @@ alias ze=zellij
 alias zl=zlayouts
 alias zs=zsessions
 alias m=mix
+alias e="exa -bTl"
 
 export PATH=$PATH:$HOME/.cache/rebar3/bin
 
