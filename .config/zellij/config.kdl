@@ -41,6 +41,9 @@ keybinds clear-defaults=true {
         bind "e" { TogglePaneEmbedOrFloating; SwitchToMode "normal"; }
         bind "c" { NewPane; }
         bind "," { SwitchToMode "RenamePane"; PaneNameInput 0; }
+        bind "a" {
+            LaunchOrFocusPlugin "file:~/.config/zellij/plugins/zellij-bar.wasm"
+        }
     }
     tab {
         bind "Ctrl t" "Enter" "Space" "Esc" { SwitchToMode "normal"; }
