@@ -238,6 +238,7 @@
   (box
     :class "bar_class"
     :orientation "h"
+    :visible bar_visible
     (right0)
     (center)
     (left)))
@@ -246,6 +247,7 @@
   (box
     :class "bar_class"
     :orientation "h"
+    :visible bar_visible
     (right1)
     (center)
     (left)))
@@ -254,6 +256,7 @@
   (box
     :class "bar_class"
     :orientation "h"
+    :visible bar_visible
     (right2)
     (center)
     (left)))

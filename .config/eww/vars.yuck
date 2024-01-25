@@ -12,3 +12,4 @@
 (defvar prayer_rev true)
 (defvar hig_rev false)
 (defvar music_controls_rev false)
+(defvar bar_visible true)
