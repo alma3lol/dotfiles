@@ -1,7 +1,7 @@
 #!/bin/sh
 
 pgrep -x picom > /dev/null || picom -b --config $HOME/.config/picom/picom.jonaburg.conf &
-feh --bg-fill $HOME/.config/eww/assets/wallpapers/powermenu.jpg
+feh --bg-fill $HOME/.config/current-wallpaper.png
 setxkbmap us,ara -option "grp:alt_shift_toggle" &
 pgrep -x mpris-proxy > /dev/null || mpris-proxy &
 pgrep -x sxhkd > /dev/null || sxhkd &
@@ -13,6 +13,7 @@ xset -dpms &
 xset s off &
 nm-applet &
 xinput set-prop 11 352 0
+eww open bar0
 
 bspc config split_ratio               0.52
 bspc config border_width              2
@@ -26,7 +27,7 @@ for side in top right bottom left ; do
 	bspc config ${side}_padding 5
 done
 
-if [[ `eww windows | grep "*bar"` != "" ]]; then
+if [[ `eww get bar_visible` == true ]]; then
   bspc config top_padding 60
 fi
 
