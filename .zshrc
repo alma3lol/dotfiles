@@ -109,3 +109,4 @@ toRemove="$toAdd:"
 export PATH=${PATH#$toRemove}:$toAdd
 
 export PATH=~/.local/bin:$PATH
+export PATH=$PATH:/var/lib/snapd/snap/bin
