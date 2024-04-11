@@ -67,6 +67,7 @@ require('packer').startup(function(use)
 	use 'xiyaowong/telescope-emoji.nvim'
 	use { 'glacambre/firenvim', run = function() vim.fn['firenvim#install'](0) end }
 	use 'camgraff/telescope-tmux.nvim'
+	use { "nvim-neotest/nvim-nio" }
 	use 'rcarriga/nvim-dap-ui'
 	use 'theHamsta/nvim-dap-virtual-text'
 	use 'williamboman/nvim-lsp-installer'
@@ -207,4 +208,7 @@ require('packer').startup(function(use)
 		ft = { "markdown" },
 	})
 	use 'folke/neodev.nvim'
+	use 'tpope/vim-dotenv'
+	use 'tpope/vim-dadbod'
+	use 'kristijanhusak/vim-dadbod-ui'
 end)
