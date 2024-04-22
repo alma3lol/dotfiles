@@ -74,6 +74,7 @@ alias zl=zlayouts
 alias zs=zsessions
 alias m=mix
 alias e="exa -bTl"
+alias kp=kprojects
 
 export PATH=$PATH:$HOME/.cache/rebar3/bin
 
