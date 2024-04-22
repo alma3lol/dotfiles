@@ -3,7 +3,7 @@ neovim 0.9.5
 zellij 0.38.2
 java openjdk-17
 vim 9.0.1633
-elixir 1.16.1-otp-26
+elixir 1.16.2-otp-26
 erlang 26.2.1
 nodejs 21.2.0
 pnpm 8.10.5
