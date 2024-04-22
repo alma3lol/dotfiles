@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+set -euo pipefail
+arr=(Stocked IoC NetMon Goshawk)
+tab_title="$(printf '%s\n' "${arr[@]}" | sk)"
+case $tab_title in
+    Stocked)
+        tab_cwd="/work/stocked"
+        tab_cmd="zellij --layout stocked"
+        ;;
+    IoC)
+        tab_cwd="/work/ioc"
+        tab_cmd="zellij --layout ioc"
+        ;;
+    NetMon)
+        tab_cwd="/work/network-monitoring"
+        tab_cmd="n"
+        ;;
+    Goshawk)
+        tab_cwd="/work/goshawk"
+        tab_cmd="n"
+        ;;
+esac
+
+kitty @ launch --type tab --cwd $tab_cwd --title "${tab_title}"
+kitty @ send-text --match "title:${tab_title}" "${tab_cmd}"
+kitty @ send-key --match "title:${tab_title}" Enter
