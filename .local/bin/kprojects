@@ -21,6 +21,4 @@ case $tab_title in
         ;;
 esac
 
-kitty @ launch --type tab --cwd $tab_cwd --title "${tab_title}"
-kitty @ send-text --match "title:${tab_title}" "${tab_cmd}"
-kitty @ send-key --match "title:${tab_title}" Enter
+kitty @ action combine : set_tab_title "${tab_title}" : send_text all cd "${tab_cwd}\r${tab_cmd}\r"
