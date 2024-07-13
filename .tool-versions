@@ -1,5 +1,5 @@
 lazygit 0.38.2
-neovim 0.9.5
+neovim 0.10.0
 zellij 0.38.2
 java openjdk-17
 vim 9.0.1633
@@ -16,3 +16,6 @@ golang 1.21.5
 python miniconda3-3.11-23.11.0-1
 mill 0.11.6
 php 8.3.1
+mill 0.11.6
+nasm 2.16
+ffmpeg 6.1

@@ -115,7 +115,7 @@ monitor_remove() {
 
   # delete default desktops
   bspc desktop Desktop --remove
-  # bspc monitor "$1" --remove
+  bspc monitor "$1" --remove
 
   # reorder desktops
   bspc monitor "$INTERNAL_MONITOR" -d I II III IV V VI VII VIII IX X
@@ -136,6 +136,7 @@ for monitor in `xrandr -q | awk '{if (\$2 == "connected") print \$1}' | head -n 
   monitor_already_added=`bspc query -M --names | grep "$monitor"`
   previous_monitor=`xrandr -q | awk '{if (\$2 == "connected") print \$1}' | grep -B1 "$monitor" | head -n 1`
   monitor_resolution=`xrandr -q | grep -A1 "$monitor" | tail -n 1 | awk '{print \$1}'`
+    echo $monitor
   if [[ $monitor_already_added != $monitor ]]; then
     monitor_add $monitor
     xrandr_cmd="$xrandr_cmd --output $monitor --mode $monitor_resolution --rotate normal --right-of $previous_monitor"
@@ -143,9 +144,11 @@ for monitor in `xrandr -q | awk '{if (\$2 == "connected") print \$1}' | head -n 
     if [[ `bspc query -D -m "$monitor" | wc -l` -lt 10 ]]; then
       monitor_remove $monitor
       monitor_add $monitor
-      xrandr_cmd="$xrandr_cmd --output $monitor --mode $monitor_resolution --rotate normal --right-of $previous_monitor"
     fi
+    xrandr_cmd="$xrandr_cmd --output $monitor --mode $monitor_resolution --rotate normal --right-of $previous_monitor"
   fi
 done
+
+echo $xrandr_cmd
 
 eval "$xrandr_cmd"

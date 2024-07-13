@@ -269,8 +269,9 @@
              :width "99%"
              :height "50px"
              :anchor "top center")
-  :stacking "bg"
-  :wm-ignore true
+  :reserve (struts :distance "50px" :side "top")
+  :stacking "fg"
+  :wm-ignore false
   :windowtype "dock"
   (bar0))
 
