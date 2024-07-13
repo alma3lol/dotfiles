@@ -19,3 +19,4 @@ php 8.3.1
 mill 0.11.6
 nasm 2.16
 ffmpeg 6.1
+github-cli 2.52.0
