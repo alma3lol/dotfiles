@@ -9,7 +9,14 @@ require('legendary').setup({
 					function()
 						vim.cmd(":PackerSync")
 					end,
-					description = 'Search current buffer\'s directory'
+					description = 'Update packages'
+				},
+				{
+					':CheckNotifications',
+					function()
+						vim.cmd(":Telescope notify")
+					end,
+					description = 'Check past notifications'
 				},
 			}
 		},
