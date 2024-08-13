@@ -2,6 +2,18 @@ require('legendary').setup({
 	keymaps = {},
 	commands = {
 		{
+			itemgroup = "Useful Commands",
+			commands = {
+				{
+					':UpdatePackages',
+					function()
+						vim.cmd(":PackerSync")
+					end,
+					description = 'Search current buffer\'s directory'
+				},
+			}
+		},
+		{
 			itemgroup = "Current Buffer",
 			commands = {
 				{
