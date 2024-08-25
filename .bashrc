@@ -424,3 +424,18 @@ neofetch
 
 # Fig post block. Keep at the bottom of this file.
 [[ -f "$HOME/.fig/shell/bashrc.post.bash" ]] && builtin source "$HOME/.fig/shell/bashrc.post.bash"
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/home/alma3lol/.asdf/installs/python/miniconda3-3.11-23.11.0-1/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/home/alma3lol/.asdf/installs/python/miniconda3-3.11-23.11.0-1/etc/profile.d/conda.sh" ]; then
+        . "/home/alma3lol/.asdf/installs/python/miniconda3-3.11-23.11.0-1/etc/profile.d/conda.sh"
+    else
+        export PATH="/home/alma3lol/.asdf/installs/python/miniconda3-3.11-23.11.0-1/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+
