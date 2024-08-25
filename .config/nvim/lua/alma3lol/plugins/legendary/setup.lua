@@ -2,6 +2,25 @@ require('legendary').setup({
 	keymaps = {},
 	commands = {
 		{
+			itemgroup = "Useful Commands",
+			commands = {
+				{
+					':UpdatePackages',
+					function()
+						vim.cmd(":PackerSync")
+					end,
+					description = 'Update packages'
+				},
+				{
+					':CheckNotifications',
+					function()
+						vim.cmd(":Telescope notify")
+					end,
+					description = 'Check past notifications'
+				},
+			}
+		},
+		{
 			itemgroup = "Current Buffer",
 			commands = {
 				{
