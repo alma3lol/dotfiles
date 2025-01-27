@@ -131,7 +131,7 @@ require('packer').startup(function(use)
 	use 'natecraddock/workspaces.nvim'
 	use 'tpope/vim-abolish'
 	use 'nvim-telescope/telescope-ui-select.nvim'
-	use { 'adnan007d/vim-prettier', run = 'yarn install --frozen-lockfile --production' }
+	use 'MunifTanjim/prettier.nvim'
 	use { 'phaazon/mind.nvim', branch = 'v2.2' }
 	use 'pantharshit00/vim-prisma'
 	-- use 'haishanh/night-owl.vim'
