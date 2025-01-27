@@ -1,4 +1,4 @@
-lazygit 0.38.2
+lazygit 0.45.2
 neovim 0.10.3
 zellij 0.38.2
 java openjdk-17
@@ -8,11 +8,11 @@ erlang 26.2.1
 nodejs 23.6.1
 pnpm 8.10.5
 rust 1.84.0
-yarn 1.22.19
+yarn 1.22.22
 bun 1.0.2
 fx 30.0.2
-ripgrep 13.0.0
-golang 1.21.5
+ripgrep 14.1.1
+golang 1.23.5
 python miniconda3-3.11-23.11.0-1
 mill 0.11.6
 php 8.3.1
@@ -20,5 +20,5 @@ mill 0.11.6
 nasm 2.16
 ffmpeg 6.1
 github-cli 2.65.0
-lazydocker 0.23.3
+lazydocker 0.24.1
 act 0.2.64
