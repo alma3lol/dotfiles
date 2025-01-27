@@ -24,8 +24,8 @@ lsp_status.config({
 	status_symbol = '✓',
 })
 
-local on_attach = function(client, bufnr)
-	lsp_status.on_attach(client, bufnr)
+local on_attach = function(client)
+	lsp_status.on_attach(client)
 	if client.server_capabilities.document_symbol --[[  and client.name ~= "elixirls" ]] then
 		vim.api.nvim_command [[autocmd CursorHold  <buffer> lua vim.lsp.buf.document_highlight()]]
 		vim.api.nvim_command [[autocmd CursorHoldI <buffer> lua vim.lsp.buf.document_highlight()]]
@@ -63,7 +63,7 @@ local on_attach = function(client, bufnr)
 	}
 end
 
-nvim_lsp.tsserver.setup {
+nvim_lsp.ts_ls.setup {
 	capabilities = capabilities,
 	on_attach = on_attach,
 }
@@ -76,7 +76,7 @@ nvim_lsp.pyright.setup {
 nvim_lsp.elixirls.setup {
 	capabilities = capabilities,
 	on_attach = on_attach,
-	cmd = { vim.env.HOME .. "/.local/share/nvim/mason/bin/elixir-ls" },
+	-- cmd = { vim.env.HOME .. "/.local/share/nvim/mason/bin/elixir-ls" },
 	settings = {
 		elixirLS = {
 			fetchDeps = false,
@@ -84,14 +84,14 @@ nvim_lsp.elixirls.setup {
 	}
 }
 
-local lua_bin = vim.fn.expand("$HOME/.local/share/nvim/mason/bin/lua-language-server")
+-- local lua_bin = vim.fn.expand("$HOME/.local/share/nvim/mason/bin/lua-language-server")
 
 local runtime_path = vim.split(package.path, ';')
 table.insert(runtime_path, "lua/?.lua")
 table.insert(runtime_path, "lua/?/init.lua")
 
 nvim_lsp.lua_ls.setup {
-	cmd = { lua_bin },
+	-- cmd = { lua_bin },
 	capabilities = capabilities,
 	on_attach = on_attach,
 	settings = {
@@ -119,7 +119,7 @@ nvim_lsp.lua_ls.setup {
 }
 
 nvim_lsp.jsonls.setup {
-	cmd = { "vscode-json-languageserver", "--stdio" },
+	-- cmd = { "vscode-json-languageserver", "--stdio" },
 	capabilities = capabilities,
 	on_attach = on_attach,
 	filetypes = { "json", "jsonc" },
@@ -178,6 +178,7 @@ nvim_lsp.jsonls.setup {
 }
 
 nvim_lsp.solidity_ls.setup {
+	capabilities = capabilities,
 	on_attach = on_attach,
 }
 
@@ -191,7 +192,7 @@ nvim_lsp.tailwindcss.setup {
 	on_attach = on_attach,
 }
 
-nvim_lsp['terraform_lsp'].setup {
+nvim_lsp.terraform_lsp.setup {
 	capabilities = capabilities,
 	on_attach = on_attach,
 }
