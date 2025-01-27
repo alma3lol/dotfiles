@@ -85,7 +85,7 @@ require('packer').startup(function(use)
 	use 'neoclide/jsonc.vim'
 	use 'MunifTanjim/nui.nvim'
 	use 'vuki656/package-info.nvim'
-	use 'simrat39/symbols-outline.nvim'
+	-- use 'simrat39/symbols-outline.nvim'
 	use 'ThePrimeagen/harpoon'
 	use 'mtth/scratch.vim'
 	use 'ctrlpvim/ctrlp.vim'
