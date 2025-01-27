@@ -13,7 +13,7 @@ layout {
     tab name="Runtime" {
         pane {
             command "yarn"
-            args "dev"
+            args "dev" "--host"
         }
     }
 }
