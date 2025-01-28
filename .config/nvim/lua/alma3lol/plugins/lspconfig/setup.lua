@@ -26,14 +26,12 @@ lsp_status.config({
 
 local on_attach = function(client)
 	lsp_status.on_attach(client)
-	if client.server_capabilities.document_symbol --[[  and client.name ~= "elixirls" ]] then
+	if client.server_capabilities.document_symbol then
 		vim.api.nvim_command [[autocmd CursorHold  <buffer> lua vim.lsp.buf.document_highlight()]]
 		vim.api.nvim_command [[autocmd CursorHoldI <buffer> lua vim.lsp.buf.document_highlight()]]
 		vim.api.nvim_command [[autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()]]
 	end
-	-- if client.name ~= "elixirls" then
 	require "lsp-format".on_attach(client)
-	-- end
 	protocol.CompletionItemKind = {
 		'', -- Text
 		'', -- Method

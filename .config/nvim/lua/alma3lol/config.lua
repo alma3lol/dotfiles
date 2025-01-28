@@ -61,7 +61,7 @@ return function()
 	vim.o.foldcolumn = '1'
 	vim.o.foldlevel = 99
 	vim.o.foldlevelstart = 99
-	vim.opt.runtimepath = vim.opt.runtimepath + ',' + vim.fn.expand('$CWD/treesitter')
+	vim.opt.runtimepath = table.insert(vim.opt.runtimepath, 0, vim.fn.expand('$CWD/treesitter'))
 	vim.g.instant_username = "Alma3lol"
 	vim.g.dashboard_default_executive = 'telescope'
 	vim.g["test#strategy"] = "neovim"
