@@ -226,3 +226,6 @@ end, {})
 vim.api.nvim_create_user_command('ChangeComponentName', function()
 	ChangeComponentName()
 end, {})
+
+vim.wo.foldmethod = 'expr'
+vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()'

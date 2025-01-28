@@ -57,8 +57,6 @@ return function()
 	vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal"
 	vim.opt.cursorline = true
 	vim.opt.foldenable = true
-	vim.opt.foldmethod = "expr"
-	vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 	vim.opt.foldnestmax = 3
 	vim.o.foldcolumn = '1'
 	vim.o.foldlevel = 99
