@@ -43,9 +43,7 @@ alias g="git"
 alias ll="ls -lAsh"
 alias t="tree -I .git -a"
 
-[[ -f "$HOME/.asdf/asdf.sh" ]] && . $HOME/.asdf/asdf.sh
-
-[[ -f "$ASDF_DIR/asdf.sh" ]] && export PATH="$PATH:$(asdf where golang)/packages/bin"
+export ASDF_DIR="${ASDF_DATA_DIR:-$HOME/.asdf}"
 
 export ANDROID_SDK_ROOT="$HOME/Android/Sdk"
 
@@ -75,16 +73,12 @@ alias zs=zsessions
 alias m=mix
 alias e="exa -bTl"
 alias kp=kprojects
+alias ifc="ifconfig \$(ifconfig | grep mtu | grep -v br | grep -v veth | grep -vw lo | awk -F: '{print \$1}' | fzf)"
 
 export PATH=$PATH:$HOME/.cache/rebar3/bin
 
 export FZF_ALT_C_COMMAND="rg --hidden --files -g \\!.git --null 2>/dev/null | xargs -0 dirname | uniq"
 export FZF_CTRL_T_COMMAND="rg --hidden --files -g \\!.git 2>/dev/null | uniq"
-
-[[ "$(which starship)" != *"not found" ]] && eval "$(starship init zsh)"
-[[ "$(which jump)" != *"not found" ]] && eval "$(jump shell)"
-[[ "$(which zoxide)" != *"not found" ]] && eval "$(zoxide init zsh)"
-
 autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C /usr/bin/terraform terraform
 
@@ -105,25 +99,14 @@ fpath=(${ASDF_DIR}/completions $fpath)
 autoload -Uz compinit && compinit
 
 export PATH="$PATH:$HOME/.mix/escripts"; export PATH;
-toAdd="$ASDF_DIR/shims:$ASDF_DIR/bin"
+toAdd="$ASDF_DIR/shims:$ASDF_DIR/shims"
 toRemove="$toAdd:"
 export PATH=${PATH#$toRemove}:$toAdd
 
 export PATH=~/.local/bin:$PATH
 export PATH=$PATH:/var/lib/snapd/snap/bin
 
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/home/alma3lol/.asdf/installs/python/miniconda3-3.11-23.11.0-1/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/home/alma3lol/.asdf/installs/python/miniconda3-3.11-23.11.0-1/etc/profile.d/conda.sh" ]; then
-        . "/home/alma3lol/.asdf/installs/python/miniconda3-3.11-23.11.0-1/etc/profile.d/conda.sh"
-    else
-        export PATH="/home/alma3lol/.asdf/installs/python/miniconda3-3.11-23.11.0-1/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
+[[ "$(which starship)" != *"not found" ]] && eval "$(starship init zsh)"
+[[ "$(which jump)" != *"not found" ]] && eval "$(jump shell)"
+[[ "$(which zoxide)" != *"not found" ]] && eval "$(zoxide init zsh)"
 
