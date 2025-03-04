@@ -57,13 +57,11 @@ return function()
 	vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal"
 	vim.opt.cursorline = true
 	vim.opt.foldenable = true
-	vim.opt.foldmethod = "expr"
-	vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 	vim.opt.foldnestmax = 3
 	vim.o.foldcolumn = '1'
 	vim.o.foldlevel = 99
 	vim.o.foldlevelstart = 99
-	vim.opt.runtimepath = vim.opt.runtimepath + ',' + vim.fn.expand('$CWD/treesitter')
+	vim.opt.runtimepath = table.insert(vim.opt.runtimepath, 0, vim.fn.expand('$CWD/treesitter'))
 	vim.g.instant_username = "Alma3lol"
 	vim.g.dashboard_default_executive = 'telescope'
 	vim.g["test#strategy"] = "neovim"

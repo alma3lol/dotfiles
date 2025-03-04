@@ -31,10 +31,14 @@ require('nvim-treesitter.configs').setup {
 		'html',
 		'css',
 		'dockerfile',
-		-- 'norg',
-		-- 'norg_meta',
-		-- 'norg_table',
+		'heex',
+		'elixir',
+		'eex',
 	},
+	auto_install = true,
+	sync_install = false,
+	ignore_install = {},
+	modules = {},
 	highlight = {
 		enable = true,
 		-- use_languagetree = true,
@@ -222,3 +226,6 @@ end, {})
 vim.api.nvim_create_user_command('ChangeComponentName', function()
 	ChangeComponentName()
 end, {})
+
+vim.wo.foldmethod = 'expr'
+vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
