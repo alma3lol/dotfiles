@@ -7,6 +7,7 @@ require('packer').init({
 })
 
 require('packer').startup(function(use)
+	use "olimorris/codecompanion.nvim"
 	use '~/.config/nvim/lua/my_theme'
 	use 'wbthomason/packer.nvim'
 	use 'lambdalisue/battery.vim'

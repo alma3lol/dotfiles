@@ -1,4 +1,5 @@
 local theme = require('lush_theme.my_theme.lualine_theme')
+local CodeCompanion = require('alma3lol.plugins.lualine.codecompantion')
 
 require('lualine').setup {
 	options = {
@@ -31,6 +32,7 @@ require('lualine').setup {
 			},
 		},
 		lualine_x = {
+			{ CodeCompanion },
 			{ "vim.g.alma3lol.functions.lsp_client_names()", icon = '', color = { fg = '#e0af68', gui = 'bold' }, },
 			"require'lsp-status'.status()",
 			{
