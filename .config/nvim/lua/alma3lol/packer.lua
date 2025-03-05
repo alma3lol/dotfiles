@@ -120,7 +120,7 @@ require('packer').startup(function(use)
 	use 'numToStr/Comment.nvim'
 	use 'nvim-lualine/lualine.nvim'
 	use 'folke/todo-comments.nvim'
-	use 'windwp/nvim-spectre'
+	use 'nvim-pack/nvim-spectre'
 	use { 'michaelb/sniprun', run = 'bash install.sh' }
 	use 'L3MON4D3/LuaSnip'
 	use 'rafamadriz/friendly-snippets'
