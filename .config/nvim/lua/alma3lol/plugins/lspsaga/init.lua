@@ -1,6 +1,10 @@
 local M = {
-	setup = require('alma3lol.plugins.lspsaga.setup'),
-	bindings = require('alma3lol.plugins.lspsaga.bindings'),
+	setup = function()
+		require('alma3lol.plugins.lspsaga.setup')
+	end,
+	bindings = function()
+		require('alma3lol.plugins.lspsaga.bindings')
+	end,
 }
 
 M.init = function()
