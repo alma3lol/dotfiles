@@ -26,3 +26,5 @@ require("codecompanion").setup({
 		end,
 	},
 })
+
+require('alma3lol.plugins.codecompanion.fidget-spinner'):init()
