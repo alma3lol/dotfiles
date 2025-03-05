@@ -50,7 +50,7 @@ require('packer').startup(function(use)
 	use 'hrsh7th/cmp-path'
 	use 'hrsh7th/cmp-cmdline'
 	use 'hrsh7th/nvim-cmp'
-	use 'tami5/lspsaga.nvim'
+	use 'nvimdev/lspsaga.nvim'
 	use 'nvim-telescope/telescope-media-files.nvim'
 	use 'mfussenegger/nvim-dap'
 	use 'nvim-telescope/telescope-dap.nvim'
