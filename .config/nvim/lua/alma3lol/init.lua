@@ -87,6 +87,7 @@ vim.g.alma3lol = {
 		"twilight",
 		"undotree",
 		"workspaces",
+		"render_markdown",
 	},
 	init = function()
 		vim.g.alma3lol.config()
@@ -230,6 +231,7 @@ vim.g.alma3lol = {
 		twilight = require("alma3lol.plugins.twilight"),
 		undotree = require("alma3lol.plugins.undotree"),
 		workspaces = require("alma3lol.plugins.workspaces"),
+		render_markdown = require("alma3lol.plugins.render-markdown"),
 	},
 }
 
