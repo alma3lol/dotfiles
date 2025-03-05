@@ -98,13 +98,7 @@ fpath=(${ASDF_DIR}/completions $fpath)
 # initialise completions with ZSH's compinit
 autoload -Uz compinit && compinit
 
-export PATH="$PATH:$HOME/.mix/escripts"; export PATH;
-toAdd="$ASDF_DIR/shims:$ASDF_DIR/shims"
-toRemove="$toAdd:"
-export PATH=${PATH#$toRemove}:$toAdd
-
-export PATH=~/.local/bin:$PATH
-export PATH=$PATH:/var/lib/snapd/snap/bin
+export PATH="$ASDF_DIR/shims:~/.local/bin:$PATH:/var/lib/snapd/snap/bin:$HOME/.mix/escripts"
 
 [[ "$(which starship)" != *"not found" ]] && eval "$(starship init zsh)"
 [[ "$(which jump)" != *"not found" ]] && eval "$(jump shell)"
