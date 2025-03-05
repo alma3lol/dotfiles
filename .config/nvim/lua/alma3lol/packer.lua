@@ -7,7 +7,6 @@ require('packer').init({
 })
 
 require('packer').startup(function(use)
-	use "olimorris/codecompanion.nvim"
 	use '~/.config/nvim/lua/my_theme'
 	use 'wbthomason/packer.nvim'
 	use 'lambdalisue/battery.vim'
@@ -215,6 +214,11 @@ require('packer').startup(function(use)
 	use 'kristijanhusak/vim-dadbod-ui'
 	use 'echasnovski/mini.diff'
 	use {
+		"olimorris/codecompanion.nvim",
+		requires = {
+			"j-hui/fidget.nvim"
+		}
+	}
 	use {
 		'MeanderingProgrammer/render-markdown.nvim',
 		-- after = { 'nvim-treesitter/nvim-treesitter' },
