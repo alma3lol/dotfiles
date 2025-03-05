@@ -213,6 +213,7 @@ require('packer').startup(function(use)
 	use 'tpope/vim-dotenv'
 	use 'tpope/vim-dadbod'
 	use 'kristijanhusak/vim-dadbod-ui'
+	use 'echasnovski/mini.diff'
 	use {
 	use {
 		'MeanderingProgrammer/render-markdown.nvim',
