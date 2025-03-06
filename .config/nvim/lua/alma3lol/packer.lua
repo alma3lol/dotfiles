@@ -232,4 +232,5 @@ require('packer').startup(function(use)
 		-- 	"codecompanion",
 		-- },
 	}
+	use 'github/copilot.vim'
 end)
