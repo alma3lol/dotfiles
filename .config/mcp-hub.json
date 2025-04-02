@@ -1,11 +1,11 @@
 {
+  "nativeMCPServers": [],
   "mcpServers": {
-    "fetch": {
-      "command": "uvx",
-      "args": ["mcp-server-fetch"]
+    "github": {
+      "args": ["-y", "@modelcontextprotocol/server-github"],
+      "command": "npx"
     },
     "neo4j": {
-      "command": "uvx",
       "args": [
         "mcp-neo4j-cypher",
         "--db-url",
@@ -15,23 +15,28 @@
         "--password",
         "1994"
       ],
+      "command": "uvx",
       "disabled": true
     },
-    "github": {
-      "command": "npx",
-      "args": ["-y", "@modelcontextprotocol/server-github"]
-    },
-    "git": {
-      "command": "uvx",
-      "args": ["mcp-server-git"]
-    },
     "linear": {
-      "command": "npx",
-      "args": ["-y", "linear-mcp-server"]
+      "args": ["-y", "linear-mcp-server"],
+      "command": "npx"
     },
     "docker": {
-      "command": "uv",
-      "args": ["run", "mcp-server-docker"]
+      "args": ["run", "mcp-server-docker"],
+      "command": "uv"
+    },
+    "fetch": {
+      "args": ["mcp-server-fetch"],
+      "command": "uvx"
+    },
+    "git": {
+      "args": ["mcp-server-git"],
+      "command": "uvx"
+    },
+    "blender": {
+      "args": ["blender-mcp"],
+      "command": "uvx"
     }
   }
 }
