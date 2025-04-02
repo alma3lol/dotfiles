@@ -2,7 +2,7 @@ vim.g.codecompanion_auto_tool_mode = true
 require("codecompanion").setup({
 	strategies = {
 		chat = {
-			adapter = "deep_seek",
+			adapter = "qwen",
 			tools = {
 				["mcp"] = {
 					-- calling it in a function would prevent mcphub from being loaded before it's needed
@@ -29,12 +29,12 @@ require("codecompanion").setup({
 		},
 	},
 	adapters = {
-		deep_seek = function()
+		qwen = function()
 			return require("codecompanion.adapters").extend("ollama", {
-				name = "deep_seek",
+				name = "qwen",
 				schema = {
 					model = {
-						default = "deepseek-r1:8b",
+						default = "qwen2.5",
 					},
 					num_ctx = {
 						default = 16384,
