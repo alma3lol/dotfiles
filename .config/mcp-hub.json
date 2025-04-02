@@ -29,7 +29,7 @@
       "command": "npx",
       "args": ["-y", "linear-mcp-server"]
     },
-    "mcp-server-docker": {
+    "docker": {
       "command": "uv",
       "args": ["run", "mcp-server-docker"]
     }
