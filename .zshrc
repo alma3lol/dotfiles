@@ -126,4 +126,4 @@ unset __conda_setup
 export GIHUB_TOKEN=$(gpg -d $HOME/.github-token.txt.gpg 2>/dev/null)
 export GITHUB_PERSONAL_ACCESS_TOKEN=$GIHUB_TOKEN
 
-export LINEAR_API_KEY=$(gpg -d $HOME/.linear-api-key.txt.gpg 2>/dev/null)
+export LINEAR_API_KEY=$(gpg -d $HOME/linear-api-key.txt.gpg 2>/dev/null)
