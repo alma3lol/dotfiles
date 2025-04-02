@@ -2,12 +2,36 @@
   "mcpServers": {
     "fetch": {
       "command": "uvx",
-      "args": ["mcp-server-fetch"],
-      "env": {
-        "API_KEY": "",
-        "SERVER_URL": null,
-        "DEBUG": "true"
-      }
+      "args": ["mcp-server-fetch"]
+    },
+    "neo4j": {
+      "command": "uvx",
+      "args": [
+        "mcp-neo4j-cypher",
+        "--db-url",
+        "bolt://localhost",
+        "--username",
+        "neo4j",
+        "--password",
+        "1994"
+      ],
+      "disabled": true
+    },
+    "github": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-github"]
+    },
+    "git": {
+      "command": "uvx",
+      "args": ["mcp-server-git"]
+    },
+    "linear": {
+      "command": "npx",
+      "args": ["-y", "linear-mcp-server"]
+    },
+    "mcp-server-docker": {
+      "command": "uv",
+      "args": ["run", "mcp-server-docker"]
     }
   }
 }
