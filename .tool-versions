@@ -13,7 +13,7 @@ bun 1.0.2
 fx 30.0.2
 ripgrep 14.1.1
 golang 1.23.5
-python miniconda3-3.11-23.11.0-1
+python miniconda3-latest
 mill 0.11.6
 php 8.3.1
 mill 0.11.6
