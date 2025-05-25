@@ -1,15 +1,3 @@
-vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(
-	vim.lsp.diagnostic.on_publish_diagnostics, {
-		underline = true,
-		virtual_text = {
-			spacing = 2,
-			prefix = ' '
-		},
-		signs = true,
-		update_in_insert = true,
-	}
-)
-
 local nvim_lsp = require "lspconfig"
 local lsp_status = require "lsp-status"
 local protocol = require "vim.lsp.protocol"
@@ -25,6 +13,20 @@ lsp_status.config({
 })
 
 local on_attach = function(client)
+	if client:supports_method('textDocument/publishDiagnostic') then
+		local is_pull = false -- true for `textDocument/diagnostic`
+		local ns = vim.lsp.diagnostic.get_namespace(client.id, is_pull)
+
+		vim.diagnostic.config({
+			update_in_insert = true,
+			underline = true,
+			virtual_text = {
+				spacing = 2,
+				prefix = ' '
+			},
+			signs = true,
+		}, ns)
+	end
 	lsp_status.on_attach(client)
 	if client.server_capabilities.document_symbol then
 		vim.api.nvim_command [[autocmd CursorHold  <buffer> lua vim.lsp.buf.document_highlight()]]
