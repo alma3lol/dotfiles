@@ -98,7 +98,7 @@ fpath=(${ASDF_DIR}/completions $fpath)
 # initialise completions with ZSH's compinit
 autoload -Uz compinit && compinit
 
-export PATH="$ASDF_DIR/shims:~/.local/bin:$PATH:/var/lib/snapd/snap/bin:$HOME/.mix/escripts"
+export PATH="$ASDF_DIR/shims:$HOME/.local/bin:$PATH:/var/lib/snapd/snap/bin:$HOME/.mix/escripts"
 
 [[ "$(which starship)" != *"not found" ]] && eval "$(starship init zsh)"
 [[ "$(which jump)" != *"not found" ]] && eval "$(jump shell)"
@@ -121,7 +121,7 @@ unset __conda_setup
 # <<< conda initialize <<<
 
 
-. "$HOME/.local/bin/env"
+[[ -f "$HOME/.local/bin/env" ]] && . "$HOME/.local/bin/env"
 
 export GIHUB_TOKEN=$(gpg -d $HOME/.github-token.txt.gpg 2>/dev/null)
 export GITHUB_PERSONAL_ACCESS_TOKEN=$GIHUB_TOKEN
