@@ -1,0 +1,40 @@
+#!/bin/bash
+
+# This script resizes a Minecraft window for speed running.
+# Usage: ./mcresize --default | --wide | --narrow | --eye
+# Requires xdotool to be installed.
+
+display_width=$(xdpyinfo | grep dimensions | awk '{print $2}' | cut -d'x' -f1)
+display_height=$(xdpyinfo | grep dimensions | awk '{print $2}' | cut -d'x' -f2)
+
+if [ "$1" == "--default" ]; then
+	WIDTH=1920
+	HEIGHT=1080
+	X_POS=0
+	Y_POS=0
+elif [ "$1" == "--wide" ]; then
+	HEIGHT=300
+	WIDTH=1920
+	X_POS=0
+	Y_POS=$((display_height/2 - ($HEIGHT/2)))
+elif [ "$1" == "--narrow" ]; then
+	WIDTH=280
+	HEIGHT=1000
+	X_POS=$((display_width/2 - ($WIDTH/2)))
+	Y_POS=0
+elif [ "$1" == "--eye" ]; then
+	WIDTH=384
+	HEIGHT=16384
+	X_POS=$((display_width/2 - ($WIDTH/2)))
+	Y_POS=0
+else
+	echo "Usage: $0 --default | --wide | --narrow | --eye"
+	exit 1
+fi
+WINDOW_ID=$(xdotool search --name "Minecraft" | head -n 1)
+if [ -z "$WINDOW_ID" ]; then
+	echo "Minecraft window not found!"
+	exit 1
+fi
+xdotool windowsize $WINDOW_ID $WIDTH $HEIGHT
+xdotool windowmove $WINDOW_ID $X_POS $Y_POS
