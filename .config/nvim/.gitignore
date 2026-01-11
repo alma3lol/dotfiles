@@ -1,5 +1,8 @@
-undodir
-backup
-directory
-undodir
-ctags
+tt.*
+.tests
+doc/tags
+debug
+.repro
+foo.*
+*.log
+data

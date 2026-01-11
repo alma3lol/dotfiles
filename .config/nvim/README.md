@@ -1,2 +1,4 @@
-# neovim-config
-My neovim config. Version 5.0 required.
+# 💤 LazyVim
+
+A starter template for [LazyVim](https://github.com/LazyVim/LazyVim).
+Refer to the [documentation](https://lazyvim.github.io/installation) to get started.
