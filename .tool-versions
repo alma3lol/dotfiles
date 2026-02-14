@@ -1,5 +1,5 @@
 lazygit 0.46.0
-neovim 0.11.1
+neovim 0.11.5
 zellij 0.38.2
 java openjdk-17
 vim 9.0.1633
@@ -7,7 +7,7 @@ elixir 1.16.2-otp-26
 erlang 26.2.1
 nodejs 23.6.1
 pnpm 8.10.5
-rust 1.84.1
+rust 1.92.0
 yarn 1.22.19
 bun 1.0.2
 fx 30.0.2
@@ -22,3 +22,5 @@ ffmpeg 6.1
 github-cli 2.65.0
 lazydocker 0.24.1
 act 0.2.64
+dotnet-core 10.0.103
+dotnet 10.0.103
