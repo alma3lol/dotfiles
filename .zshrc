@@ -127,7 +127,7 @@ export GIHUB_TOKEN=$(gpg -d $HOME/.github-token.txt.gpg 2>/dev/null)
 export GITHUB_PERSONAL_ACCESS_TOKEN=$GIHUB_TOKEN
 
 export LINEAR_API_KEY=$(gpg -d $HOME/linear-api-key.txt.gpg 2>/dev/null)
-export PLANE_API_KEY=$(gpg -d $HOME/project.cipher.ly-api-key.txt.gpg 2>/dev/null)
+export PLANE_API_KEY=$(gpg -d $HOME/plane-api-key.txt.gpg 2>/dev/null)
 export PLANE_API_BASE="project.cipher.ly"
 export PLANE_WORKSPACE_SLUG="main"
 
