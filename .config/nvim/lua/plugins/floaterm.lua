@@ -3,6 +3,7 @@ return {
   dependencies = "nvzone/volt",
   opts = {
     border = true,
+    size = { h = 90, w = 90 },
     mappings = {
       term = function(buf)
         vim.keymap.set({ "n", "t" }, "<F1>", function()
