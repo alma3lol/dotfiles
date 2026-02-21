@@ -2,8 +2,7 @@ return {
   "numToStr/Comment.nvim",
   lazy = false,
   keys = {
-    { "<c-/>", "gcc" },
-    { "<c-/>", "gc", mode = { "x" } },
+    { "<c-/>", "<cmd>normal gcc<cr>", mode = { "n", "x" } },
   },
   opts = {},
 }
