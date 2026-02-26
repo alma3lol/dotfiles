@@ -18,23 +18,18 @@ PS1='[\u@\h \W]\$ '
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-
-if [ -d "$HOME/.bin" ] ;
-  then PATH="$HOME/.bin:$PATH"
+if [ -d "$HOME/.bin" ]; then
+  PATH="$HOME/.bin:$PATH"
 fi
 
-if [ -d "$HOME/.local/bin" ] ;
-  then PATH="$HOME/.local/bin:$PATH"
+if [ -d "$HOME/.local/bin" ]; then
+  PATH="$HOME/.local/bin:$PATH"
 fi
 
-[[ -f "$HOME/.asdf/asdf.sh" ]] && . $HOME/.asdf/asdf.sh
-
-[[ -f "$ASDF_DIR/asdf.sh" ]] && export PATH="$PATH:$(asdf where golang)/packages/bin"
-
-export PATH="$PATH:$HOME/.mix/escripts"; export PATH;
-toAdd="$ASDF_DIR/shims:$ASDF_DIR/bin"
-toRemove="$toAdd:"
-export PATH=${PATH#$toRemove}:$toAdd
+export ASDF_DIR="${ASDF_DATA_DIR:-$HOME/.asdf}"
+[[ -f "$HOME/.asdf/asdf.sh" ]] && . "$HOME/.asdf/asdf.sh"
+[[ -f "$HOME/.asdf/completions/asdf.bash" ]] && . "$HOME/.asdf/completions/asdf.bash"
+export PATH="$ASDF_DIR/shims:$HOME/.local/bin:$PATH:/var/lib/snapd/snap/bin:$HOME/.mix/escripts"
 
 #ignore upper and lowercase when TAB completion
 bind "set completion-ignore-case on"
@@ -58,10 +53,10 @@ alias spqo='sudo pacman -Qo'
 alias spsii='sudo pacman -Sii'
 
 # show the list of packages that need this package - depends mpv as example
-function_depends()  {
-    search=$(echo "$1")
-    sudo pacman -Sii $search | grep "Required" | sed -e "s/Required By     : //g" | sed -e "s/  /\n/g"
-    }
+function_depends() {
+  search=$(echo "$1")
+  sudo pacman -Sii $search | grep "Required" | sed -e "s/Required By     : //g" | sed -e "s/  /\n/g"
+}
 
 alias depends='function_depends'
 
@@ -205,11 +200,11 @@ alias vmware-start="sudo systemctl enable --now vmtoolsd.service"
 alias sv="sudo systemctl enable --now vmtoolsd.service"
 
 #shopt
-shopt -s autocd # change to named directory
+shopt -s autocd  # change to named directory
 shopt -s cdspell # autocorrects cd misspellings
 shopt -s cmdhist # save multi-line commands in history as single line
 shopt -s dotglob
-shopt -s histappend # do not overwrite history
+shopt -s histappend     # do not overwrite history
 shopt -s expand_aliases # expand aliases
 
 #youtube download
@@ -331,25 +326,24 @@ alias xdw="ls /usr/share/wayland-sessions"
 
 # # ex = EXtractor for all kinds of archives
 # # usage: ex <file>
-ex ()
-{
-  if [ -f $1 ] ; then
+ex() {
+  if [ -f $1 ]; then
     case $1 in
-      *.tar.bz2)   tar xjf $1   ;;
-      *.tar.gz)    tar xzf $1   ;;
-      *.bz2)       bunzip2 $1   ;;
-      *.rar)       unrar x $1   ;;
-      *.gz)        gunzip $1    ;;
-      *.tar)       tar xf $1    ;;
-      *.tbz2)      tar xjf $1   ;;
-      *.tgz)       tar xzf $1   ;;
-      *.zip)       unzip $1     ;;
-      *.Z)         uncompress $1;;
-      *.7z)        7z x $1      ;;
-      *.deb)       ar x $1      ;;
-      *.tar.xz)    tar xf $1    ;;
-      *.tar.zst)   tar xf $1    ;;
-      *)           echo "'$1' cannot be extracted via ex()" ;;
+    *.tar.bz2) tar xjf $1 ;;
+    *.tar.gz) tar xzf $1 ;;
+    *.bz2) bunzip2 $1 ;;
+    *.rar) unrar x $1 ;;
+    *.gz) gunzip $1 ;;
+    *.tar) tar xf $1 ;;
+    *.tbz2) tar xjf $1 ;;
+    *.tgz) tar xzf $1 ;;
+    *.zip) unzip $1 ;;
+    *.Z) uncompress $1 ;;
+    *.7z) 7z x $1 ;;
+    *.deb) ar x $1 ;;
+    *.tar.xz) tar xf $1 ;;
+    *.tar.zst) tar xf $1 ;;
+    *) echo "'$1' cannot be extracted via ex()" ;;
     esac
   else
     echo "'$1' is not a valid file"
@@ -426,18 +420,21 @@ neofetch
 [[ -f "$HOME/.fig/shell/bashrc.post.bash" ]] && builtin source "$HOME/.fig/shell/bashrc.post.bash"
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/home/alma3lol/.asdf/installs/python/miniconda3-3.11-23.11.0-1/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+__conda_setup="$('/home/alma3lol/.asdf/installs/python/miniconda3-3.11-23.11.0-1/bin/conda' 'shell.bash' 'hook' 2>/dev/null)"
 if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
+  eval "$__conda_setup"
 else
-    if [ -f "/home/alma3lol/.asdf/installs/python/miniconda3-3.11-23.11.0-1/etc/profile.d/conda.sh" ]; then
-        . "/home/alma3lol/.asdf/installs/python/miniconda3-3.11-23.11.0-1/etc/profile.d/conda.sh"
-    else
-        export PATH="/home/alma3lol/.asdf/installs/python/miniconda3-3.11-23.11.0-1/bin:$PATH"
-    fi
+  if [ -f "/home/alma3lol/.asdf/installs/python/miniconda3-3.11-23.11.0-1/etc/profile.d/conda.sh" ]; then
+    . "/home/alma3lol/.asdf/installs/python/miniconda3-3.11-23.11.0-1/etc/profile.d/conda.sh"
+  else
+    export PATH="/home/alma3lol/.asdf/installs/python/miniconda3-3.11-23.11.0-1/bin:$PATH"
+  fi
 fi
 unset __conda_setup
 # <<< conda initialize <<<
 
-
 . "$HOME/.local/bin/env"
+
+export PATH="$PATH:$HOME/.dotnet"
+export PATH="$PATH:$HOME/.dotnet/tools/"
+export DOTNET_ROOT="$HOME/.dotnet"
