@@ -13,7 +13,6 @@ bun 1.0.2
 fx 30.0.2
 ripgrep 14.1.1
 golang 1.23.5
-python miniconda3-latest
 mill 0.11.6
 php 8.3.1
 mill 0.11.6
@@ -22,5 +21,3 @@ ffmpeg 6.1
 github-cli 2.65.0
 lazydocker 0.24.1
 act 0.2.64
-dotnet-core 10.0.103
-dotnet 10.0.103
