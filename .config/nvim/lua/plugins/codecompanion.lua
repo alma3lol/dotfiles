@@ -1,6 +1,5 @@
 return {
   "olimorris/codecompanion.nvim",
-  lazy = false,
   opts = {
     strategies = {
       chat = {
@@ -28,7 +27,8 @@ return {
           },
           {
             role = "user",
-            content = "<user_prompt>Please generate some HTML boilerplate for me. Return the code only and no markdown codeblocks</user_prompt>",
+            content =
+            "<user_prompt>Please generate some HTML boilerplate for me. Return the code only and no markdown codeblocks</user_prompt>",
           },
         },
       },
@@ -49,8 +49,8 @@ return {
     "ravitemer/mcphub.nvim",
   },
   keys = {
-    { "<leader>ccc", "<cmd>CodeCompanionChat<cr>", desc = "CodeCompanion Chat" },
-    { "<leader>cci", "<cmd>CodeCompanion<cr>", desc = "CodeCompanion inline assistant", mode = { "n", "v" } },
+    { "<leader>ccc", "<cmd>CodeCompanionChat<cr>",    desc = "CodeCompanion Chat" },
+    { "<leader>cci", "<cmd>CodeCompanion<cr>",        desc = "CodeCompanion inline assistant", mode = { "n", "v" } },
     { "<leader>cca", "<cmd>CodeCompanionActions<cr>", desc = "CodeCompanion actions" },
   },
 }
