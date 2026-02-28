@@ -103,6 +103,8 @@ export PATH="$ASDF_DIR/shims:$HOME/.local/bin:$PATH:/var/lib/snapd/snap/bin:$HOM
 [[ "$(which starship)" != *"not found" ]] && eval "$(starship init zsh)"
 [[ "$(which jump)" != *"not found" ]] && eval "$(jump shell)"
 [[ "$(which zoxide)" != *"not found" ]] && eval "$(zoxide init zsh)"
+[[ "$(which fzf)" != *"not found" ]] && eval "$(fzf --zsh)"
+[[ "$(which mise)" != *"not found" ]] && eval "$(mise activate zsh)"
 
 
 # # >>> conda initialize >>>
@@ -136,6 +138,6 @@ export PLANE_WORKSPACE_SLUG="main"
 # OpenClaw Completion
 [[ -f "$HOME/.openclaw/completions/openclaw.zsh" ]] && source "$HOME/.openclaw/completions/openclaw.zsh"
 
-export PATH="$PATH:$HOME/.dotnet"
-export PATH="$PATH:$HOME/.dotnet/tools/"
-export DOTNET_ROOT="$HOME/.dotnet"
+# export PATH="$PATH:$HOME/.dotnet"
+# export PATH="$PATH:$HOME/.dotnet/tools/"
+# export DOTNET_ROOT="$HOME/.dotnet"
