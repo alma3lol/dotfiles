@@ -107,20 +107,20 @@ export PATH="$ASDF_DIR/shims:$HOME/.local/bin:$PATH:/var/lib/snapd/snap/bin:$HOM
 [[ "$(which mise)" != *"not found" ]] && eval "$(mise activate zsh)"
 
 
-# # >>> conda initialize >>>
-# # !! Contents within this block are managed by 'conda init' !!
-# __conda_setup="$('conda' 'shell.zsh' 'hook' 2> /dev/null)"
-# if [ $? -eq 0 ]; then
-#     eval "$__conda_setup"
-# else
-#     if [ -f "$(asdf which conda | sed 's/\/bin\/conda//g')/etc/profile.d/conda.sh" ]; then
-#         . "$(asdf which conda | sed 's/\/bin\/conda//g')/etc/profile.d/conda.sh"
-#     else
-#         export PATH="$(asdf which conda | sed 's/\/bin\/conda//g')/bin:$PATH"
-#     fi
-# fi
-# unset __conda_setup
-# # <<< conda initialize <<<
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/usr/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/usr/etc/profile.d/conda.sh" ]; then
+        . "/usr/etc/profile.d/conda.sh"
+    else
+        export PATH="/usr/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
 
 
 [[ -f "$HOME/.local/bin/env" ]] && . "$HOME/.local/bin/env"
@@ -141,3 +141,9 @@ export PLANE_WORKSPACE_SLUG="main"
 # export PATH="$PATH:$HOME/.dotnet"
 # export PATH="$PATH:$HOME/.dotnet/tools/"
 # export DOTNET_ROOT="$HOME/.dotnet"
+
+# OpenFang
+export PATH=/home/alma3lol/.openfang/bin:$PATH
+
+# Cargo
+export PATH=/home/alma3lol/.cargo/bin:$PATH
