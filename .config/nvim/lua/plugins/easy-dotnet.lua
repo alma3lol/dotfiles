@@ -4,4 +4,9 @@ return {
   config = function()
     require("easy-dotnet").setup()
   end,
+  opts = {
+    lsp = {
+      enabled = false,
+    },
+  }
 }
