@@ -36,7 +36,7 @@ s(
     -- Here're the suggested mappings:
     vim.keymap.set("x", "<CR>", function()
       genie.create_new_snippet_or_add_placeholder()
-      vim.cmd("norm! �") -- exit Visual Mode, go back to Normal Mode
+      vim.api.nvim_input("<Esc>")
     end, {})
 
     vim.keymap.set("n", "<CR>", function()
