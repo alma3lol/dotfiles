@@ -5,7 +5,12 @@ layout {
             plugin location="file:~/.config/zellij/plugins/zellij-bar.wasm"
         }
     }
-    tab name="Code" focus=true {
+    tab name="Code (API)" cwd="DarAlmazadAPI" focus=true {
+        pane borderless=true {
+            command "nvim"
+        }
+    }
+    tab name="Code (Admin)" cwd="DarAlmazadAdmin" {
         pane borderless=true {
             command "nvim"
         }
@@ -13,13 +18,13 @@ layout {
     tab name="Runtime (API)" {
         pane {
             command "dotnet"
-            args "run" "--project" "DarAlmazadAPI"
+            args "watch" "--project" "DarAlmazadAPI"
         }
     }
     tab name="Runtime (Admin)" {
         pane {
             command "dotnet"
-            args "run" "--project" "DarAlmazadAdmin"
+            args "watch" "--project" "DarAlmazadAdmin"
         }
     }
 }
