@@ -8,4 +8,26 @@ return {
       end,
     },
   },
+  keys = function(_, keys)
+    table.insert(keys, {
+      "<C-,>",
+      function()
+        local ls = require("luasnip")
+        if ls.choice_active() then
+          ls.change_choice(1)
+        end
+      end,
+      mode = { "i", "n" }
+    })
+    table.insert(keys, {
+      "<C-.>",
+      function()
+        local ls = require("luasnip")
+        if ls.choice_active() then
+          ls.change_choice(-1)
+        end
+      end,
+      mode = { "i", "n" }
+    })
+  end
 }
