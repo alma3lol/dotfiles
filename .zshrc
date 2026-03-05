@@ -138,9 +138,9 @@ export PLANE_WORKSPACE_SLUG="main"
 # OpenClaw Completion
 [[ -f "$HOME/.openclaw/completions/openclaw.zsh" ]] && source "$HOME/.openclaw/completions/openclaw.zsh"
 
-# export PATH="$PATH:$HOME/.dotnet"
-# export PATH="$PATH:$HOME/.dotnet/tools/"
-# export DOTNET_ROOT="$HOME/.dotnet"
+export PATH="$PATH:$HOME/.dotnet"
+export PATH="$PATH:$HOME/.dotnet/tools/"
+export DOTNET_ROOT="$HOME/.dotnet"
 
 # OpenFang
 export PATH=/home/alma3lol/.openfang/bin:$PATH

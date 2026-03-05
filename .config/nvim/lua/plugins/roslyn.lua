@@ -3,8 +3,8 @@ return {
   ---@module 'roslyn.config'
   ---@type RoslynNvimConfig
   opts = {
-    -- your configuration comes here; leave empty for default settings
     filewatching = "off",
     lock_target = true,
+    debug = true,
   },
 }

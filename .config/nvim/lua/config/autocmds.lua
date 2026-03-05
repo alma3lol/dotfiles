@@ -7,65 +7,70 @@
 -- Or remove existing autocmds by their group name (which is prefixed with `lazyvim_` for the defaults)
 -- e.g. vim.api.nvim_del_augroup_by_name("lazyvim_wrap_spell")
 vim.api.nvim_create_autocmd("FileChangedShell", {
-  pattern = "*razor__virtual.html",
+  pattern = "*__virtual.html",
   callback = function()
     vim.v.fcs_choice = "" -- do nothing (ignore change)
   end,
 })
 
 vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
-  pattern = "*razor__virtual.html",
-  callback = function()
+  pattern = "*__virtual.html",
+  callback = function(args)
     vim.opt_local.autoread = false
+    vim.diagnostic.enable(false, { bufnr = args.buf })
+
+    -- Make virtual Razor html buffers disposable so nvim never prompts to save them
+    vim.bo[args.buf].buftype = "nofile"
+    vim.bo[args.buf].bufhidden = "wipe"
+    vim.bo[args.buf].swapfile = false
+    vim.bo[args.buf].undofile = false
+    vim.bo[args.buf].modified = false
+  end,
+})
+
+vim.api.nvim_create_autocmd({ "BufEnter" }, {
+  pattern = "*__virtual.html",
+  callback = function(args)
+    vim.bo[args.buf].modified = false
+    for _, client in ipairs(vim.lsp.get_clients({ bufnr = args.buf })) do
+      vim.lsp.buf_detach_client(args.buf, client.id)
+    end
   end,
 })
 
 vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter", "CursorHold", "CursorHoldI" }, {
   callback = function()
-    if vim.fn.expand("%:t"):match("razor__virtual%.html$") then return end
+    if vim.fn.expand("%:t"):match("__virtual%.html$") then return end
     vim.cmd("checktime")
-  end,
-})
-
--- Razor performance tuning for Roslyn
-vim.api.nvim_create_autocmd("FileType", {
-  pattern = "razor",
-  callback = function(args)
-    -- Reduce redraw cost from diagnostics in very “busy” Razor buffers
-    vim.diagnostic.config({
-      virtual_text = false,
-      update_in_insert = false,
-      severity_sort = true,
-    }, args.buf)
   end,
 })
 
 vim.api.nvim_create_autocmd("LspAttach", {
   callback = function(args)
     local bufnr = args.buf
-    if vim.bo[bufnr].filetype ~= "razor" then return end
-
     local client = vim.lsp.get_client_by_id(args.data.client_id)
     if not client then return end
 
-    -- 1) Keep only Roslyn attached to Razor buffers (optional but often huge)
-    if client.name ~= "roslyn" then
+    -- Keep only Roslyn on Razor buffers
+    if vim.bo[bufnr].filetype == "razor" and client.name ~= "roslyn" then
       client.stop(true)
       return
     end
 
-    -- 2) Semantic tokens can be a big perf hit in mixed Razor docs.
-    -- Also note: semantic tokens + debounce has caused input lag in Neovim before. :contentReference[oaicite:1]{index=1}
-    if client.server_capabilities.semanticTokensProvider then
-      pcall(vim.lsp.semantic_tokens.stop, bufnr, client.id)
-      -- client.server_capabilities.semanticTokensProvider = nil
+    -- Global Roslyn perf tuning (cs + razor)
+    if client.name == "roslyn" then
+      if client.server_capabilities.semanticTokensProvider then
+        pcall(vim.lsp.semantic_tokens.stop, bufnr, client.id)
+      end
+      client.server_capabilities.documentHighlightProvider = false
+      client.server_capabilities.codeLensProvider = nil
+      pcall(vim.lsp.inlay_hint.enable, false, { bufnr = bufnr })
+
+      vim.diagnostic.config({
+        virtual_text = false,
+        update_in_insert = false,
+        severity_sort = true,
+      }, bufnr)
     end
-
-    -- 3) Disable cursor-idle features that often run via CursorHold autocmds
-    client.server_capabilities.documentHighlightProvider = false
-    client.server_capabilities.codeLensProvider = nil
-
-    -- 4) If you enable inlay hints globally, disable them for Razor
-    pcall(vim.lsp.inlay_hint.enable, false, { bufnr = bufnr })
   end,
 })
