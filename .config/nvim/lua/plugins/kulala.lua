@@ -5,5 +5,8 @@ return {
     global_keymaps = true,
     global_keymaps_prefix = "<leader>R",
     kulala_keymaps_prefix = "",
+    ui = {
+      display_mode = "float"
+    }
   },
 }
