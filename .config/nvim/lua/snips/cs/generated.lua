@@ -79,27 +79,31 @@ public class {} : BaseEntity
     }}
 ]=], {
       route = i(1, "/"),
-      methodType = i(2, "Get"),
+      methodType = c(2, {
+        t("Get"),
+        t("Post"),
+        t("Delete"),
+        t("Put"),
+        t("Patch"),
+        t("Head"),
+        t("Options")
+      }),
       authorization = c(3, {
         t(""),
         t({ "", "[AllowAnonymous]" }),
         t({ "", "[Authorize]" }),
         { t({ "", "[Authorize(AuthenticationSchemes = " }), i(1, ""), t(")]") },
-        { t({ "", "[Authorize(Policy = " }),               i(1, ""), t(")]") },
-        { t({ "", "[Authorize(Roles = " }),                i(1, ""), t(")]") },
+        { t({ "", "[Authorize(Policy = " }),                i(1, ""), t(")]") },
+        { t({ "", "[Authorize(Roles = " }),                 i(1, ""), t(")]") },
         { t({ "", "[Authorize(AuthenticationSchemes = " }), i(1, ""), t(", Policy = "), i(2, ""), t(")]") },
-        { t({ "", "[Authorize(AuthenticationSchemes = " }), i(1, ""), t(", Roles = "), i(2, ""), t(")]") },
+        { t({ "", "[Authorize(AuthenticationSchemes = " }), i(1, ""), t(", Roles = "),  i(2, ""), t(")]") },
         { t({ "", "[Authorize(AuthenticationSchemes = " }), i(1, ""), t(", Policy = "), i(2, ""), t(", Roles = "), i(3, ""), t(")]") },
-        { t({ "", "[Authorize(Policy = " }),               i(1, ""), t(", Roles = "),  i(2, ""), t(")]") },
+        { t({ "", "[Authorize(Policy = " }),                i(1, ""), t(", Roles = "),  i(2, ""), t(")]") },
       }),
       methodName = i(4, "MethodName"),
       args = c(5, {
         t(""),
-        sn(1, {
-          t("[FromBody] "),
-          i(1, "RequestType "),
-          i(2, "request"),
-        })
+        { t("[FromBody] "), i(1, "RequestType"), t(" "), i(2, "request"), }
       }),
       i(0),
     })
