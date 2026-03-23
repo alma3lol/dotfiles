@@ -10,7 +10,7 @@ return {
   },
   keys = function(_, keys)
     table.insert(keys, {
-      "<C-,>",
+      "<C-D>",
       function()
         local ls = require("luasnip")
         if ls.choice_active() then
@@ -20,7 +20,7 @@ return {
       mode = { "i", "n" }
     })
     table.insert(keys, {
-      "<C-.>",
+      "<C-A>",
       function()
         local ls = require("luasnip")
         if ls.choice_active() then
@@ -29,5 +29,33 @@ return {
       end,
       mode = { "i", "n" }
     })
-  end
+    table.insert(keys, {
+      "<C-E>",
+      function()
+        require("luasnip").expand()
+      end,
+      mode = { "i", "n" }
+    })
+  end,
+  config = function()
+    local types = require("luasnip.util.types")
+    require("luasnip").config.setup({
+      ext_opts = {
+        [types.choiceNode] = {
+          active = {
+            virt_text = { { "●", "GruvboxOrange" } }
+          }
+        },
+        [types.insertNode] = {
+          active = {
+            virt_text = { { "●", "GruvboxBlue" } }
+          }
+        }
+      },
+    })
+  end,
+  opts = {
+    history = true,
+    delete_check_events = "TextChanged",
+  },
 }
