@@ -15,6 +15,11 @@ layout {
             command "nvim"
         }
     }
+    tab name="Code (Tests)" cwd="DarAlmazadTests" {
+        pane borderless=true {
+            command "nvim"
+        }
+    }
     tab name="Code (Admin)" cwd="DarAlmazadAdmin" {
         pane borderless=true {
             command "nvim"
