@@ -1,6 +1,6 @@
 return {
   "xiyaowong/nvim-transparent",
   keys = {
-    { "<leader>tt", "<cmd>TransparentToggle<cr>", desc = "Toggle transparent background" },
+    { "<leader>tb", "<cmd>TransparentToggle<cr>", desc = "Toggle transparent background" },
   },
 }
