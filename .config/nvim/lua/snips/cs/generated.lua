@@ -1,16 +1,16 @@
-local ls                   = require("luasnip")
-local fmt                  = require "luasnip.extras.fmt".fmt
-local s                    = ls.snippet
-local i                    = ls.insert_node
-local c                    = ls.choice_node
-local t                    = ls.text_node
-local sn                   = ls.snippet_node
-local f                    = ls.function_node
-local r                    = require "luasnip.extras".rep
-local fmta                 = require("luasnip.extras.fmt").fmta
-local d                    = ls.dynamic_node
+local ls = require("luasnip")
+local fmt = require("luasnip.extras.fmt").fmt
+local s = ls.snippet
+local i = ls.insert_node
+local c = ls.choice_node
+local t = ls.text_node
+local sn = ls.snippet_node
+local f = ls.function_node
+local r = require("luasnip.extras").rep
+local fmta = require("luasnip.extras.fmt").fmta
+local d = ls.dynamic_node
 
-local l                    = function(index)
+local l = function(index)
   return f(function(args)
     return args[1][1]:lower()
   end, { index })
@@ -31,10 +31,10 @@ local function parse_props(args)
   local groups = math.floor(#args / 4)
 
   for n = 1, groups do
-    local base  = (n - 1) * 4
-    local typ   = trim(args[base + 1][1])
-    local name  = trim(args[base + 2][1])
-    local req   = args[base + 3][1] or ""
+    local base = (n - 1) * 4
+    local typ = trim(args[base + 1][1])
+    local name = trim(args[base + 2][1])
+    local req = args[base + 3][1] or ""
     local scope = trim(args[base + 4][1] or "all")
 
     if name ~= "" and scope ~= "skip" then
@@ -60,15 +60,23 @@ end
 
 local function ensure_nullable(typ)
   typ = trim(typ)
-  if typ == "" then return "" end
-  if typ:sub(-1) == "?" then return typ end
+  if typ == "" then
+    return ""
+  end
+  if typ:sub(-1) == "?" then
+    return typ
+  end
   return typ .. "?"
 end
 
 local function ensure_nonnullable(typ)
   typ = trim(typ)
-  if typ == "" then return "" end
-  if typ:sub(-1) == "?" then return typ:sub(1, -2) end
+  if typ == "" then
+    return ""
+  end
+  if typ:sub(-1) == "?" then
+    return typ:sub(1, -2)
+  end
   return typ
 end
 
@@ -122,7 +130,8 @@ local function gen_update_props(args)
 end
 
 local function dto_body(refs)
-  return fmta([[
+  return fmta(
+    [[
   public class <>DTO
   {
 <>
@@ -142,29 +151,37 @@ local function dto_body(refs)
   {
     public string? <> { get; set; }
   }
-]], {
-    i(2, "Entity"), -- entity
-    f(gen_dto_props, refs),
+]],
+    {
+      i(2, "Entity"), -- entity
+      f(gen_dto_props, refs),
 
-    r(2),
-    f(gen_create_props, refs),
+      r(2),
+      f(gen_create_props, refs),
 
-    r(2),
-    f(gen_update_props, refs),
+      r(2),
+      f(gen_update_props, refs),
 
-    r(2),
-    i(3, "Search"),
-  })
+      r(2),
+      i(3, "Search"),
+    }
+  )
 end
 
 local function extend(dst, src)
-  for _, n in ipairs(src) do dst[#dst + 1] = n end
+  for _, n in ipairs(src) do
+    dst[#dst + 1] = n
+  end
 end
 
 local function build_dto(max_props)
   max_props = tonumber(max_props) or 12
-  if max_props < 1 then max_props = 1 end
-  if max_props > 50 then max_props = 50 end -- safety
+  if max_props < 1 then
+    max_props = 1
+  end
+  if max_props > 50 then
+    max_props = 50
+  end -- safety
 
   local nodes = {}
 
@@ -172,16 +189,19 @@ local function build_dto(max_props)
   nodes[#nodes + 1] = t("namespace ")
   nodes[#nodes + 1] = i(1, "DarAlmazadAPI")
   nodes[#nodes + 1] = t(".Models")
-  nodes[#nodes + 1] = t({ "", "{", "", "  // PROPS editor:", "  // scope: all | dto | dto+create | dto+update | skip", "" })
+  nodes[#nodes + 1] =
+    t({ "", "{", "", "  // PROPS editor:", "  // scope: all | dto | dto+create | dto+update | skip", "" })
 
   -- props editor (ROOT LEVEL)
   local base = 4
   for n = 1, max_props do
-    local type_i      = c(base,
-      { t "string", t "int", t "Decimal", t "bool", t "Guid", t "DateTime", t "TimeOnly", t "DayOfWeek", i(1) })
-    local name_i      = i(base + 1, "")
-    local req_c       = c(base + 2, { t(" required"), t("") })
-    local scp_c       = c(base + 3, { t("all"), t("dto"), t("dto+create"), t("dto+update"), t("skip") })
+    local type_i = c(
+      base,
+      { t("string"), t("int"), t("Decimal"), t("bool"), t("Guid"), t("DateTime"), t("TimeOnly"), t("DayOfWeek"), i(1) }
+    )
+    local name_i = i(base + 1, "")
+    local req_c = c(base + 2, { t(" required"), t("") })
+    local scp_c = c(base + 3, { t("all"), t("dto"), t("dto+create"), t("dto+update"), t("skip") })
 
     nodes[#nodes + 1] = t(("  // %02d) "):format(n))
     nodes[#nodes + 1] = scp_c
@@ -193,7 +213,7 @@ local function build_dto(max_props)
     nodes[#nodes + 1] = name_i
     nodes[#nodes + 1] = t({ "", "" })
 
-    base              = base + 4
+    base = base + 4
   end
 
   local refs = prop_refs(4, max_props)
@@ -208,7 +228,8 @@ local function build_dto(max_props)
 end
 
 local function service_body(propsList)
-  return fmta([=[
+  return fmta(
+    [=[
 using <namespace>.Data;
 using <namespaceCopy>.Data.Entities;
 using <namespaceCopy>.Models;
@@ -273,36 +294,38 @@ namespace <namespaceCopy>.Services
     }
   }
 }
-]=], {
-    namespace = i(1, "DarAlmazadAPI"),
-    namespaceCopy = r(1),
-    entity = i(2, "Entity"),
-    entityCopy = r(2),
-    lower = l(2), -- <- this one is weird, keep it -1 from the one before it :/
-    user = i(3, "CreatedBy"),
-    userCopy = r(3),
-    props = f(function()
-      local nodes = { "" }
-      for _, item in ipairs(propsList) do
-        nodes[#nodes + 1] = ("\t\t\t\t%s = request.%s,"):format(item, item)
-      end
-      return nodes
-    end, {}),
-    propsUpdate = f(function()
-      local nodes = { "" }
-      for _, item in ipairs(propsList) do
-        nodes[#nodes + 1] = ("\t\t\tentity.%s = request.%s ?? entity.%s;"):format(item, item, item)
-      end
-      return nodes
-    end, {}),
-    propsDto = f(function()
-      local nodes = { "" }
-      for _, item in ipairs(propsList) do
-        nodes[#nodes + 1] = ("\t\t\t\t%s = entity.%s,"):format(item, item)
-      end
-      return nodes
-    end, {}),
-  })
+]=],
+    {
+      namespace = i(1, "DarAlmazadAPI"),
+      namespaceCopy = r(1),
+      entity = i(2, "Entity"),
+      entityCopy = r(2),
+      lower = l(2), -- <- this one is weird, keep it -1 from the one before it :/
+      user = i(3, "CreatedBy"),
+      userCopy = r(3),
+      props = f(function()
+        local nodes = { "" }
+        for _, item in ipairs(propsList) do
+          nodes[#nodes + 1] = ("\t\t\t\t%s = request.%s,"):format(item, item)
+        end
+        return nodes
+      end, {}),
+      propsUpdate = f(function()
+        local nodes = { "" }
+        for _, item in ipairs(propsList) do
+          nodes[#nodes + 1] = ("\t\t\tentity.%s = request.%s ?? entity.%s;"):format(item, item, item)
+        end
+        return nodes
+      end, {}),
+      propsDto = f(function()
+        local nodes = { "" }
+        for _, item in ipairs(propsList) do
+          nodes[#nodes + 1] = ("\t\t\t\t%s = entity.%s,"):format(item, item)
+        end
+        return nodes
+      end, {}),
+    }
+  )
 end
 
 local function build_service(props)
@@ -316,59 +339,89 @@ end
 return {
   s(
     "rep",
-    fmt([=[
+    fmt(
+      [=[
 [Required]
-public required {} {} {{get; set;}}
-]=], {
-      i(2, "string"),
-      i(1, "Password"),
-    })
+{} required {} {} {{get; set;}}
+]=],
+      {
+        c(1, {
+          t("public"),
+          t("private"),
+          t("protected"),
+        }),
+        c(2, {
+          t("string"),
+          t("int"),
+          t("Decimal"),
+          t("bool"),
+          t("Guid"),
+          t("DateTime"),
+          t("TimeOnly"),
+          t("DayOfWeek"),
+          i(1),
+        }),
+        i(3, "PropertyName"),
+      }
+    )
   ),
 
   s(
     "cm",
-    fmt([=[
+    fmt(
+      [=[
     [Route("{route}")]
     [Http{methodType}]{authorization}
     public async Task<IActionResult> {methodName}({args})
     {{
       {}
     }}
-]=], {
-      route = i(1, "/"),
-      methodType = c(2, {
-        t("Get"),
-        t("Post"),
-        t("Delete"),
-        t("Put"),
-        t("Patch"),
-        t("Head"),
-        t("Options")
-      }),
-      authorization = c(3, {
-        t(""),
-        t({ "", "[AllowAnonymous]" }),
-        t({ "", "[Authorize]" }),
-        { t({ "", "[Authorize(AuthenticationSchemes = " }), i(1, ""), t(")]") },
-        { t({ "", "[Authorize(Policy = " }),                i(1, ""), t(")]") },
-        { t({ "", "[Authorize(Roles = " }),                 i(1, ""), t(")]") },
-        { t({ "", "[Authorize(AuthenticationSchemes = " }), i(1, ""), t(", Policy = "), i(2, ""), t(")]") },
-        { t({ "", "[Authorize(AuthenticationSchemes = " }), i(1, ""), t(", Roles = "),  i(2, ""), t(")]") },
-        { t({ "", "[Authorize(AuthenticationSchemes = " }), i(1, ""), t(", Policy = "), i(2, ""), t(", Roles = "), i(3, ""), t(")]") },
-        { t({ "", "[Authorize(Policy = " }),                i(1, ""), t(", Roles = "),  i(2, ""), t(")]") },
-      }),
-      methodName = i(4, "MethodName"),
-      args = c(5, {
-        t(""),
-        { t("[FromBody] "), i(1, "RequestType"), t(" "), i(2, "request"), }
-      }),
-      i(0),
-    })
+]=],
+      {
+        route = i(1, "/"),
+        methodType = c(2, {
+          t("Get"),
+          t("Post"),
+          t("Delete"),
+          t("Put"),
+          t("Patch"),
+          t("Head"),
+          t("Options"),
+        }),
+        authorization = c(3, {
+          t(""),
+          t({ "", "[AllowAnonymous]" }),
+          t({ "", "[Authorize]" }),
+          { t({ "", "[Authorize(AuthenticationSchemes = " }), i(1, ""), t(")]") },
+          { t({ "", "[Authorize(Policy = " }), i(1, ""), t(")]") },
+          { t({ "", "[Authorize(Roles = " }), i(1, ""), t(")]") },
+          { t({ "", "[Authorize(AuthenticationSchemes = " }), i(1, ""), t(", Policy = "), i(2, ""), t(")]") },
+          { t({ "", "[Authorize(AuthenticationSchemes = " }), i(1, ""), t(", Roles = "), i(2, ""), t(")]") },
+          {
+            t({ "", "[Authorize(AuthenticationSchemes = " }),
+            i(1, ""),
+            t(", Policy = "),
+            i(2, ""),
+            t(", Roles = "),
+            i(3, ""),
+            t(")]"),
+          },
+          { t({ "", "[Authorize(Policy = " }), i(1, ""), t(", Roles = "), i(2, ""), t(")]") },
+        }),
+        methodName = i(4, "MethodName"),
+        args = c(5, {
+          t(""),
+          { t("[FromBody] "), i(1, "RequestType"), t(" "), i(2, "request") },
+        }),
+        i(0),
+      }
+    )
   ),
 
   s(
     "nec",
-    fmt([=[
+    fmt(
+      [=[
 using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -386,174 +439,225 @@ public class {class} : BaseEntity
     BaseMapping(builder);
   }}
 }}
-]=], {
-      project = i(1, "DarAlmazadAPI"),
-      table = i(2, "Table"),
-      class = i(3, "ClassName"),
-      classEntity = r(3),
-      i(0),
-    })
+]=],
+      {
+        project = i(1, "DarAlmazadAPI"),
+        table = i(2, "Table"),
+        class = i(3, "ClassName"),
+        classEntity = r(3),
+        i(0),
+      }
+    )
   ),
 
   s(
     "epml",
-    fmt([=[
+    fmt(
+      [=[
 [MaxLength({})]
-]=], {
-      i(1, "100")
-    })
+]=],
+      {
+        i(1, "100"),
+      }
+    )
   ),
 
   s(
     "epnm",
-    fmt([=[
+    fmt(
+      [=[
 [NotMapped]
-]=], {
-    })
+]=],
+      {}
+    )
   ),
 
   s(
     "epr",
-    fmt([=[
+    fmt(
+      [=[
 [Required]
-]=], {
-    })
+]=],
+      {}
+    )
   ),
 
   s(
     "epra",
-    fmt([=[
+    fmt(
+      [=[
 [Range({}, {})]
-]=], {
-      i(1, "0"),
-      i(2, "100"),
-    })
+]=],
+      {
+        i(1, "0"),
+        i(2, "100"),
+      }
+    )
   ),
 
   s(
     "epk",
-    fmt([=[
+    fmt(
+      [=[
 [Key]
-]=], {
-    })
+]=],
+      {}
+    )
   ),
 
   s(
     "epea",
-    fmt([=[
+    fmt(
+      [=[
 [EmailAddress]
-]=], {
-    })
+]=],
+      {}
+    )
   ),
 
   s(
     "epre",
-    fmt([=[
+    fmt(
+      [=[
 [RegularExpression(@"{}", ErrorMessage = "{}")]
-]=], {
-      i(1, ""),
-      i(2, ""),
-    })
+]=],
+      {
+        i(1, ""),
+        i(2, ""),
+      }
+    )
   ),
 
   s(
     "epc",
-    fmt([=[
+    fmt(
+      [=[
 {}{} ICollection<{}> {} {{ get; set; }} = new List<{}>();
-]=], {
-      c(1, {
-        t("public"),
-        t("private"),
-        t("protected"),
-      }),
-      c(2, { t "", t " required" }),
-      i(3, "CollectionType"),
-      i(4, "CollectionName"),
-      r(3),
-    })
+]=],
+      {
+        c(1, {
+          t("public"),
+          t("private"),
+          t("protected"),
+        }),
+        c(2, { t(""), t(" required") }),
+        i(3, "CollectionType"),
+        i(4, "CollectionName"),
+        r(3),
+      }
+    )
   ),
 
   s(
     "ep",
-    fmt([=[
+    fmt(
+      [=[
 {}{} {}{} {} {{ get; set; }}{}
-]=], {
-      c(1, {
-        t("public"),
-        t("private"),
-        t("protected"),
-      }),
-      c(2, { t "", t " required" }),
-      c(3, { t "string", t "int", t "Decimal", t "bool", t "Guid", t "DateTime", t "TimeOnly", t "DayOfWeek", i(2) }),
-      c(4, { t "", t "?" }),
-      i(5, "PropertyName"),
-      c(6, {
-        t "",
-        sn(1, { t " = ", i(1, ""), t(";") }),
-        t " = null;",
-        t " = null!;",
-      }),
-    })
+]=],
+      {
+        c(1, {
+          t("public"),
+          t("private"),
+          t("protected"),
+        }),
+        c(2, { t(""), t(" required") }),
+        c(3, {
+          t("string"),
+          t("int"),
+          t("Decimal"),
+          t("bool"),
+          t("Guid"),
+          t("DateTime"),
+          t("TimeOnly"),
+          t("DayOfWeek"),
+          i(2),
+        }),
+        c(4, { t(""), t("?") }),
+        i(5, "PropertyName"),
+        c(6, {
+          t(""),
+          sn(1, { t(" = "), i(1, ""), t(";") }),
+          t(" = null;"),
+          t(" = null!;"),
+        }),
+      }
+    )
   ),
 
   s(
     "bhm",
-    fmt([=[
+    fmt(
+      [=[
 builder.HasMany({entity0} => {entity1}.{collectionName}).WithOne({otherEntity0} => {otherEntity1}.{entityThere0}).HasForeignKey({otherEntity2} => {otherEntity3}.{entityThere1}Id).HasPrincipalKey({entity2} => {entity3}.Id);
-]=], {
-      entity0 = i(1, "ThisEntity"),
-      entity1 = r(1),
-      entity2 = r(1),
-      entity3 = r(1),
-      collectionName = i(2, "CollectionName"),
-      otherEntity0 = i(3, "OtherEntity"),
-      otherEntity1 = r(3),
-      otherEntity2 = r(3),
-      otherEntity3 = r(3),
-      entityThere0 = i(4, "ThisEntityThere"),
-      entityThere1 = r(4),
-    })
+]=],
+      {
+        entity0 = i(1, "ThisEntity"),
+        entity1 = r(1),
+        entity2 = r(1),
+        entity3 = r(1),
+        collectionName = i(2, "CollectionName"),
+        otherEntity0 = i(3, "OtherEntity"),
+        otherEntity1 = r(3),
+        otherEntity2 = r(3),
+        otherEntity3 = r(3),
+        entityThere0 = i(4, "ThisEntityThere"),
+        entityThere1 = r(4),
+      }
+    )
   ),
 
   s(
     "bho",
-    fmt([=[
+    fmt(
+      [=[
 builder.HasOne({entity0} => {entity1}.{relationName0}).WithOne({otherEntity0} => {otherEntity1}.{entityThere}).HasForeignKey<{entityType}>({entity2} => {entity3}.{relationName1}Id).IsRequired();
-]=], {
-      entity0 = i(1, "ThisEntity"),
-      entity1 = r(1),
-      entity2 = r(1),
-      entity3 = r(1),
-      relationName0 = i(2, "RelationName"),
-      relationName1 = r(2),
-      otherEntity0 = i(3, "OtherEntity"),
-      otherEntity1 = r(3),
-      entityThere = i(4, "ThisEntityThere"),
-      entityType = i(5, "ThisEntityType"),
-    })
+]=],
+      {
+        entity0 = i(1, "ThisEntity"),
+        entity1 = r(1),
+        entity2 = r(1),
+        entity3 = r(1),
+        relationName0 = i(2, "RelationName"),
+        relationName1 = r(2),
+        otherEntity0 = i(3, "OtherEntity"),
+        otherEntity1 = r(3),
+        entityThere = i(4, "ThisEntityThere"),
+        entityType = i(5, "ThisEntityType"),
+      }
+    )
   ),
 
   s(
     "bai",
-    fmt([=[
+    fmt(
+      [=[
 builder.Navigation({} => {}.{}).AutoInclude();
-]=], {
-      i(1, "ThisEntity"),
-      r(1),
-      i(2, "RelationName"),
-    })
+]=],
+      {
+        i(1, "ThisEntity"),
+        r(1),
+        i(2, "RelationName"),
+      }
+    )
   ),
 
-  s("dto", d(1, function() return build_dto(6) end, {})),
+  s(
+    "dto",
+    d(1, function()
+      return build_dto(6)
+    end, {})
+  ),
 
-  s({ trig = "dto:(%d+)", trigEngine = "pattern", wordTrig = false },
+  s(
+    { trig = "dto:(%d+)", trigEngine = "pattern", wordTrig = false },
     d(1, function(_, snip)
       return build_dto(tonumber(snip.captures[1]) or 6)
     end, {})
   ),
   s(
     "newapicontroller",
-    fmt([=[
+    fmt(
+      [=[
 using {namespace}.Models;
 using {namespaceCopy}.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -605,16 +709,23 @@ namespace {namespaceCopy}.Controllers
     }}
   }}
 }}
-]=], {
-      namespace = i(1, "DarAlmazadAPI"),
-      namespaceCopy = r(1),
-      entity = i(2, "entity"),
-      entityUppercaseFirstLetter = uppercaseFirstLetter(2),
-      entityCopy = r(2),
-    })
+]=],
+      {
+        namespace = i(1, "DarAlmazadAPI"),
+        namespaceCopy = r(1),
+        entity = i(2, "entity"),
+        entityUppercaseFirstLetter = uppercaseFirstLetter(2),
+        entityCopy = r(2),
+      }
+    )
   ),
 
-  s("newsrvc", d(1, function() return build_service("") end, {})),
+  s(
+    "newsrvc",
+    d(1, function()
+      return build_service("")
+    end, {})
+  ),
   s(
     { trig = "newsrvc:(.+)", trigEngine = "pattern", wordTrig = false },
     d(1, function(_, snip)
