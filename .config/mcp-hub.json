@@ -1,8 +1,27 @@
 {
-  "nativeMCPServers": [],
   "mcpServers": {
+    "blender": {
+      "args": ["blender-mcp"],
+      "command": "uvx"
+    },
+    "docker": {
+      "args": ["run", "mcp-server-docker"],
+      "command": "uv"
+    },
+    "fetch": {
+      "args": ["mcp-server-fetch"],
+      "command": "uvx"
+    },
+    "git": {
+      "args": ["mcp-server-git"],
+      "command": "uvx"
+    },
     "github": {
       "args": ["-y", "@modelcontextprotocol/server-github"],
+      "command": "npx"
+    },
+    "linear": {
+      "args": ["-y", "linear-mcp-server"],
       "command": "npx"
     },
     "neo4j": {
@@ -18,25 +37,16 @@
       "command": "uvx",
       "disabled": true
     },
-    "linear": {
-      "args": ["-y", "linear-mcp-server"],
-      "command": "npx"
-    },
-    "docker": {
-      "args": ["run", "mcp-server-docker"],
-      "command": "uv"
-    },
-    "fetch": {
-      "args": ["mcp-server-fetch"],
-      "command": "uvx"
-    },
-    "git": {
-      "args": ["mcp-server-git"],
-      "command": "uvx"
-    },
-    "blender": {
-      "args": ["blender-mcp"],
-      "command": "uvx"
+    "plane": {
+      "args": ["plane-mcp-server", "stdio"],
+      "command": "uvx",
+      "disabled": false,
+      "env": {
+        "PLANE_BASE_URL": "https://project.cipher.ly",
+        "PLANE_API_KEY": "${PLANE_API_KEY}",
+        "PLANE_WORKSPACE_SLUG": "${PLANE_WORKSPACE_SLUG}"
+      }
     }
-  }
+  },
+  "nativeMCPServers": []
 }
