@@ -1,17 +1,17 @@
 return {
   "olimorris/codecompanion.nvim",
   opts = {
-    strategies = {
+    interactions = {
       chat = {
         adapter = {
           name = "ollama",
-          model = "gpt-oss:latest",
+          model = "qwen3.6",
         },
       },
       inline = {
         adapter = {
           name = "ollama",
-          model = "gpt-oss:latest",
+          model = "qwen3.6",
         },
       },
     },
@@ -27,8 +27,7 @@ return {
           },
           {
             role = "user",
-            content =
-            "<user_prompt>Please generate some HTML boilerplate for me. Return the code only and no markdown codeblocks</user_prompt>",
+            content = "<user_prompt>Please generate some HTML boilerplate for me. Return the code only and no markdown codeblocks</user_prompt>",
           },
         },
       },
@@ -49,8 +48,8 @@ return {
     "ravitemer/mcphub.nvim",
   },
   keys = {
-    { "<leader>ccc", "<cmd>CodeCompanionChat<cr>",    desc = "CodeCompanion Chat" },
-    { "<leader>cci", "<cmd>CodeCompanion<cr>",        desc = "CodeCompanion inline assistant", mode = { "n", "v" } },
+    { "<leader>ccc", "<cmd>CodeCompanionChat<cr>", desc = "CodeCompanion Chat" },
+    { "<leader>cci", "<cmd>CodeCompanion<cr>", desc = "CodeCompanion inline assistant", mode = { "n", "v" } },
     { "<leader>cca", "<cmd>CodeCompanionActions<cr>", desc = "CodeCompanion actions" },
   },
 }
