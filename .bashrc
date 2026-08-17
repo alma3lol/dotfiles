@@ -420,15 +420,15 @@ neofetch
 [[ -f "$HOME/.fig/shell/bashrc.post.bash" ]] && builtin source "$HOME/.fig/shell/bashrc.post.bash"
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/usr/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+__conda_setup="$('/usr/bin/conda' 'shell.bash' 'hook' 2>/dev/null)"
 if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
+  eval "$__conda_setup"
 else
-    if [ -f "/usr/etc/profile.d/conda.sh" ]; then
-        . "/usr/etc/profile.d/conda.sh"
-    else
-        export PATH="/usr/bin:$PATH"
-    fi
+  if [ -f "/usr/etc/profile.d/conda.sh" ]; then
+    . "/usr/etc/profile.d/conda.sh"
+  else
+    export PATH="/usr/bin:$PATH"
+  fi
 fi
 unset __conda_setup
 # <<< conda initialize <<<
@@ -438,3 +438,6 @@ unset __conda_setup
 export PATH="$PATH:$HOME/.dotnet"
 export PATH="$PATH:$HOME/.dotnet/tools/"
 export DOTNET_ROOT="$HOME/.dotnet"
+
+. "$HOME/.local/bin/env"
+export PATH="$HOME/.config/composer/vendor/bin:$PATH"

@@ -143,7 +143,15 @@ export PATH="$PATH:$HOME/.dotnet/tools/"
 export DOTNET_ROOT="$HOME/.dotnet"
 
 # OpenFang
-export PATH=/home/alma3lol/.openfang/bin:$PATH
+export PATH="$HOME/.openfang/bin:$PATH"
 
 # Cargo
-export PATH=/home/alma3lol/.cargo/bin:$PATH
+export PATH="$HOME/.cargo/bin:$PATH"
+
+# Bun
+export PATH="$HOME/.cache/.bun/bin:$PATH"
+
+. "$HOME/.local/bin/env"
+
+# opencode
+export PATH="$HOME/.opencode/bin:$PATH"
