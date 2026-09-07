@@ -19,7 +19,7 @@ antigen bundle command-not-found
 
 antigen bundle zsh-users/zsh-syntax-highlighting
 antigen bundle zsh-users/zsh-history-substring-search
-antigen bundle zsh-users/zsh-autosuggestions
+# antigen bundle zsh-users/zsh-autosuggestions
 antigen bundle unixorn/fzf-zsh-plugin@main
 antigen bundle gsamokovarov/jump-ranger
 antigen bundle alexanderjeurissen/ranger_devicons@main
@@ -74,6 +74,7 @@ alias m=mix
 alias e="exa -bTl"
 alias kp=kprojects
 alias ifc="ifconfig \$(ifconfig | grep mtu | grep -v br | grep -v veth | grep -vw lo | awk -F: '{print \$1}' | fzf)"
+alias cc="codex --dangerously-bypass-hook-trust --dangerously-bypass-approvals-and-sandbox"
 
 export PATH=$PATH:$HOME/.cache/rebar3/bin
 
@@ -134,6 +135,10 @@ export PLANE_API_KEY=$(gpg -d $HOME/plane-api-key.txt.gpg 2>/dev/null)
 export PLANE_API_BASE="https://project.cipher.ly"
 export PLANE_WORKSPACE_SLUG="main"
 
+export KIMAI_API_TOKEN=$(gpg -d $HOME/kimai-api-key.txt.gpg 2>/dev/null)
+
+export GOOGLE_OAUTH_CLIENT_ID=$(gpg -d $HOME/.google.workspace.client_id.txt.gpg 2>/dev/null)
+export GOOGLE_OAUTH_CLIENT_SECRET=$(gpg -d $HOME/.google.workspace.client_secret.txt.gpg 2>/dev/null)
 
 # OpenClaw Completion
 [[ -f "$HOME/.openclaw/completions/openclaw.zsh" ]] && source "$HOME/.openclaw/completions/openclaw.zsh"
@@ -155,3 +160,13 @@ export PATH="$HOME/.cache/.bun/bin:$PATH"
 
 # opencode
 export PATH="$HOME/.opencode/bin:$PATH"
+
+if [[ -r "$HOME/.local/share/deja/init.zsh" ]]; then
+  source "$HOME/.local/share/deja/init.zsh"
+else
+  eval "$(deja init zsh)"
+fi
+
+# >>> Codex installer >>>
+export PATH="/home/alma3lol/.local/bin:$PATH"
+# <<< Codex installer <<<
