@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "themes": [
+    {
+      "id": "midnight-lime",
+      "name": "Midnight Lime",
+      "arabicName": "كحلي وليمي",
+      "mode": "dark",
+      "version": "1.0.0",
+      "path": "midnight-lime/THEME.md"
+    },
+    {
+      "id": "jet-flame",
+      "name": "Jet Flame",
+      "arabicName": "أسود وبرتقالي",
+      "mode": "dark",
+      "version": "1.0.0",
+      "path": "jet-flame/THEME.md"
+    },
+    {
+      "id": "paper-cornflower",
+      "name": "Paper Cornflower",
+      "arabicName": "ورقي وأزرق",
+      "mode": "light",
+      "version": "1.0.0",
+      "path": "paper-cornflower/THEME.md"
+    }
+  ]
+}

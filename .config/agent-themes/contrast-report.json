@@ -1,0 +1,218 @@
+{
+  "midnight-lime": [
+    {
+      "pair": "text-primary/surface",
+      "ratio": 13.76,
+      "required": 4.5
+    },
+    {
+      "pair": "text-primary/surface-raised",
+      "ratio": 11.37,
+      "required": 4.5
+    },
+    {
+      "pair": "text-muted/surface",
+      "ratio": 8.92,
+      "required": 4.5
+    },
+    {
+      "pair": "text-muted/surface-raised",
+      "ratio": 7.37,
+      "required": 4.5
+    },
+    {
+      "pair": "on-action/action-primary",
+      "ratio": 12.58,
+      "required": 4.5
+    },
+    {
+      "pair": "on-action/action-hover",
+      "ratio": 10.09,
+      "required": 4.5
+    },
+    {
+      "pair": "link/surface",
+      "ratio": 12.58,
+      "required": 4.5
+    },
+    {
+      "pair": "error/surface",
+      "ratio": 8.59,
+      "required": 4.5
+    },
+    {
+      "pair": "success/surface",
+      "ratio": 8.73,
+      "required": 4.5
+    },
+    {
+      "pair": "focus-ring/surface",
+      "ratio": 12.58,
+      "required": 3
+    },
+    {
+      "pair": "focus-ring/surface-raised",
+      "ratio": 10.39,
+      "required": 3
+    },
+    {
+      "pair": "border-control/surface",
+      "ratio": 4.46,
+      "required": 3
+    },
+    {
+      "pair": "border-control/surface-raised",
+      "ratio": 3.69,
+      "required": 3
+    },
+    {
+      "pair": "disabled-text/disabled-surface",
+      "ratio": 7.92,
+      "required": 4.5
+    }
+  ],
+  "jet-flame": [
+    {
+      "pair": "text-primary/surface",
+      "ratio": 21.0,
+      "required": 4.5
+    },
+    {
+      "pair": "text-primary/surface-raised",
+      "ratio": 18.1,
+      "required": 4.5
+    },
+    {
+      "pair": "text-muted/surface",
+      "ratio": 12.29,
+      "required": 4.5
+    },
+    {
+      "pair": "text-muted/surface-raised",
+      "ratio": 10.59,
+      "required": 4.5
+    },
+    {
+      "pair": "on-action/action-primary",
+      "ratio": 6.39,
+      "required": 4.5
+    },
+    {
+      "pair": "on-action/action-hover",
+      "ratio": 7.79,
+      "required": 4.5
+    },
+    {
+      "pair": "link/surface",
+      "ratio": 6.39,
+      "required": 4.5
+    },
+    {
+      "pair": "error/surface",
+      "ratio": 12.51,
+      "required": 4.5
+    },
+    {
+      "pair": "success/surface",
+      "ratio": 12.72,
+      "required": 4.5
+    },
+    {
+      "pair": "focus-ring/surface",
+      "ratio": 6.39,
+      "required": 3
+    },
+    {
+      "pair": "focus-ring/surface-raised",
+      "ratio": 5.51,
+      "required": 3
+    },
+    {
+      "pair": "border-control/surface",
+      "ratio": 5.69,
+      "required": 3
+    },
+    {
+      "pair": "border-control/surface-raised",
+      "ratio": 4.9,
+      "required": 3
+    },
+    {
+      "pair": "disabled-text/disabled-surface",
+      "ratio": 7.92,
+      "required": 4.5
+    }
+  ],
+  "paper-cornflower": [
+    {
+      "pair": "text-primary/surface",
+      "ratio": 20.38,
+      "required": 4.5
+    },
+    {
+      "pair": "text-primary/surface-raised",
+      "ratio": 18.83,
+      "required": 4.5
+    },
+    {
+      "pair": "text-muted/surface",
+      "ratio": 7.54,
+      "required": 4.5
+    },
+    {
+      "pair": "text-muted/surface-raised",
+      "ratio": 6.96,
+      "required": 4.5
+    },
+    {
+      "pair": "on-action/action-primary",
+      "ratio": 6.38,
+      "required": 4.5
+    },
+    {
+      "pair": "on-action/action-hover",
+      "ratio": 5.01,
+      "required": 4.5
+    },
+    {
+      "pair": "link/surface",
+      "ratio": 6.71,
+      "required": 4.5
+    },
+    {
+      "pair": "error/surface",
+      "ratio": 7.76,
+      "required": 4.5
+    },
+    {
+      "pair": "success/surface",
+      "ratio": 7.27,
+      "required": 4.5
+    },
+    {
+      "pair": "focus-ring/surface",
+      "ratio": 6.71,
+      "required": 3
+    },
+    {
+      "pair": "focus-ring/surface-raised",
+      "ratio": 6.2,
+      "required": 3
+    },
+    {
+      "pair": "border-control/surface",
+      "ratio": 4.52,
+      "required": 3
+    },
+    {
+      "pair": "border-control/surface-raised",
+      "ratio": 4.18,
+      "required": 3
+    },
+    {
+      "pair": "disabled-text/disabled-surface",
+      "ratio": 5.6,
+      "required": 4.5
+    }
+  ]
+}
